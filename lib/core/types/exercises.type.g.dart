@@ -39,3 +39,22 @@ WordConjugationExercise _$WordConjugationExerciseFromJson(
       .map((e) => Conjugation.fromJson(e as Map<String, dynamic>))
       .toList(),
 );
+
+GenerateStoryResponse _$GenerateStoryResponseFromJson(
+  Map<String, dynamic> json,
+) => GenerateStoryResponse(story: json['story'] as String);
+
+Map<String, dynamic> _$EvaluateStoryTranslationRequestToJson(
+  EvaluateStoryTranslationRequest instance,
+) => <String, dynamic>{
+  'story': instance.story,
+  'userTranslation': instance.userTranslation,
+};
+
+EvaluateStoryTranslationResponse _$EvaluateStoryTranslationResponseFromJson(
+  Map<String, dynamic> json,
+) => EvaluateStoryTranslationResponse(
+  score: (json['score'] as num).toInt(),
+  errors: (json['errors'] as List<dynamic>).map((e) => e as String).toList(),
+  correctTranslation: json['correctTranslation'] as String,
+);

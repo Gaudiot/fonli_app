@@ -43,4 +43,30 @@ class FonliServer {
 
     return Result.ok(exercise);
   }
+
+  static Future<Result<GenerateStoryResponse, Exception>> generateStory() async {
+    Dio dio = Dio();
+    final response = await dio.get('$baseUrl/history-translation/generate');
+
+    if (response.statusCode != 200) {
+      return Result.error(Exception("Failed to generate story"));
+    }
+
+    final GenerateStoryResponse story = GenerateStoryResponse.fromJson(response.data);
+
+    return Result.ok(story);
+  }
+
+  static Future<Result<EvaluateStoryTranslationResponse, Exception>> evaluateStoryTranslation(EvaluateStoryTranslationRequest request) async {
+    Dio dio = Dio();
+    final response = await dio.post('$baseUrl/history-translation/evaluate', data: request.toJson());
+
+    if (response.statusCode != 200) {
+      return Result.error(Exception("Failed to evaluate story translation"));
+    }
+
+    final EvaluateStoryTranslationResponse evaluation = EvaluateStoryTranslationResponse.fromJson(response.data);
+
+    return Result.ok(evaluation);
+  }
 }

@@ -42,3 +42,33 @@ class WordConjugationExercise {
 
   factory WordConjugationExercise.fromJson(Map<String, dynamic> json) => _$WordConjugationExerciseFromJson(json);
 }
+
+@JsonSerializable(createToJson: false)
+class GenerateStoryResponse {
+  final String story;
+
+  GenerateStoryResponse({required this.story});
+
+  factory GenerateStoryResponse.fromJson(Map<String, dynamic> json) => _$GenerateStoryResponseFromJson(json);
+}
+
+@JsonSerializable(createFactory: false)
+class EvaluateStoryTranslationRequest {
+  final String story;
+  final String userTranslation;
+
+  EvaluateStoryTranslationRequest({required this.story, required this.userTranslation});
+
+  Map<String, dynamic> toJson() => _$EvaluateStoryTranslationRequestToJson(this);
+}
+
+@JsonSerializable(createToJson: false)
+class EvaluateStoryTranslationResponse {
+  final int score;
+  final List<String> errors;
+  final String correctTranslation;
+
+  EvaluateStoryTranslationResponse({required this.score, required this.errors, required this.correctTranslation});
+
+  factory EvaluateStoryTranslationResponse.fromJson(Map<String, dynamic> json) => _$EvaluateStoryTranslationResponseFromJson(json);
+}
