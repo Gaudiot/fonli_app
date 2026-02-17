@@ -30,4 +30,17 @@ class FonliServer {
 
     return Result.ok(exercise);
   }
+
+  static Future<Result<WordConjugationExercise, Exception>> getWordConjugationExercise() async {
+    Dio dio = Dio();
+    final response = await dio.get('$baseUrl/word-conjugation');
+
+    if (response.statusCode != 200) {
+      return Result.error(Exception("Failed to get word conjugation exercise"));
+    }
+
+    final WordConjugationExercise exercise = WordConjugationExercise.fromJson(response.data);
+
+    return Result.ok(exercise);
+  }
 }

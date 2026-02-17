@@ -23,3 +23,19 @@ WordTranslationExercise _$WordTranslationExerciseFromJson(
       )
       .toList(),
 );
+
+Conjugation _$ConjugationFromJson(Map<String, dynamic> json) => Conjugation(
+  person: json['person'] as String,
+  number: json['number'] as String,
+  conjugation: json['conjugation'] as String,
+);
+
+WordConjugationExercise _$WordConjugationExerciseFromJson(
+  Map<String, dynamic> json,
+) => WordConjugationExercise(
+  word: json['word'] as String,
+  tense: json['tense'] as String,
+  conjugations: (json['conjugations'] as List<dynamic>)
+      .map((e) => Conjugation.fromJson(e as Map<String, dynamic>))
+      .toList(),
+);

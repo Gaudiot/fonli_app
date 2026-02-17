@@ -20,3 +20,25 @@ class WordTranslationExercise {
 
   factory WordTranslationExercise.fromJson(Map<String, dynamic> json) => _$WordTranslationExerciseFromJson(json);
 }
+
+@JsonSerializable(createToJson: false)
+class Conjugation {
+  final String person;
+  final String number;
+  final String conjugation;
+
+  Conjugation({required this.person, required this.number, required this.conjugation});
+
+  factory Conjugation.fromJson(Map<String, dynamic> json) => _$ConjugationFromJson(json);
+}
+
+@JsonSerializable(createToJson: false)
+class WordConjugationExercise {
+  final String word;
+  final String tense;
+  final List<Conjugation> conjugations;
+
+  WordConjugationExercise({required this.word, required this.tense, required this.conjugations});
+
+  factory WordConjugationExercise.fromJson(Map<String, dynamic> json) => _$WordConjugationExerciseFromJson(json);
+}
