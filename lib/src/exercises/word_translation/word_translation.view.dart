@@ -3,7 +3,7 @@ import 'package:fonli_app/core/navigation/navigation.dart';
 import 'package:fonli_app/core/types/custom/custom_types.dart';
 import 'package:fonli_app/src/exercises/word_translation/word_translation.viewmodel.dart';
 
-part './word_translation_components.dart';
+part 'word_translation.components.dart';
 
 class WordTranslationExerciseView extends StatefulWidget {
   final WordTranslationExerciseType exerciseType;
