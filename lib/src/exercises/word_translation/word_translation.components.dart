@@ -30,12 +30,23 @@ final class _NoMistakesResult extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text("Exercise finished"),
-        Text("You got all answers correct! You are a master of the language!"),
-      ],
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(32),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text("Exercise finished"),
+            SizedBox(height: 16),
+            Text(
+              "You got all answers correct! You are a master of the language!",
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 16),
+            _CompleteButton(context: context),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -152,6 +163,8 @@ class _SomeMistakesResultContent extends StatelessWidget {
     );
   }
 }
+
+// MARK: - Complete Button
 
 class _CompleteButton extends StatelessWidget {
   final BuildContext context;
