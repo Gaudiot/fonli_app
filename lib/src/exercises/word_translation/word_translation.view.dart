@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:fonli_app/core/navigation/navigation.dart';
+import 'package:fonli_app/core/types/custom/custom_types.dart';
 import 'package:fonli_app/src/exercises/word_translation/word_translation.viewmodel.dart';
-import 'package:fonli_app/src/exercises/word_translation/word_translation.viewstate.dart';
-import 'package:fonli_app/src/exercises/word_translation/word_translation_card.component.dart';
+
+part './word_translation_components.dart';
 
 class WordTranslationExerciseView extends StatefulWidget {
   final WordTranslationExerciseType exerciseType;
@@ -16,79 +18,84 @@ class WordTranslationExerciseView extends StatefulWidget {
 class _WordTranslationExerciseViewState
     extends State<WordTranslationExerciseView> {
   final WordTranslationExerciseViewModel viewModel =
-      WordTranslationExerciseViewModel(
-        exerciseType: WordTranslationExerciseType.nativeToForeign,
-        state: WordTranslationExerciseViewState(),
-      );
+      WordTranslationExerciseViewModel();
+
+  final TextEditingController answerController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    viewModel.init();
+    viewModel.fetchWordTranslationExercise();
+  }
+
+  void onAnswerSubmit(String answer) {
+    viewModel.submitAnswer(answer);
+    answerController.clear();
   }
 
   @override
   Widget build(BuildContext context) {
-    return ListenableBuilder(
-      listenable: viewModel.state,
-      builder: (context, snapshot) {
-        return Column(
-          children: [
-            Expanded(
-              child: ListView.separated(
-                itemBuilder: (_, index) => _WordTranslationQuestion(
-                  word: viewModel.state.questions[index].word,
-                  translation: viewModel.state.questions[index].translation,
-                  isAnswerHidden: viewModel.state.areAnswersHidden,
-                  answerController: viewModel.state.answerControllers[index],
-                  isCorrect: viewModel.state.isCorrect[index],
-                ),
-                separatorBuilder: (_, _) => const SizedBox(height: 32),
-                itemCount: viewModel.state.questions.length,
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () => viewModel.evaluateAnswers(),
-              child: Text("Check"),
-            ),
-          ],
-        );
-      },
+    return Scaffold(
+      body: SafeArea(
+        child: ListenableBuilder(
+          listenable: viewModel.state,
+          builder: (context, _) {
+            final state = viewModel.state;
+            if (state.isLoading) {
+              return const Center(child: CircularProgressIndicator());
+            }
+
+            return state.isExerciseFinished
+                ? _ExerciseComplete(
+                    questionsQuantity: state.questionsLength,
+                    mistakes: state.mistakes,
+                  )
+                : Column(
+                    children: [
+                      ColoredBox(
+                        color: Colors.red,
+                        child: _WordCard(word: state.currentQuestion),
+                      ),
+                      _TranslationInput(
+                        controller: answerController,
+                        onSubmitted: onAnswerSubmit,
+                      ),
+                    ],
+                  );
+          },
+        ),
+      ),
     );
   }
 }
 
-class _WordTranslationQuestion extends StatelessWidget {
+class _WordCard extends StatelessWidget {
   final String word;
-  final String translation;
-  final bool isAnswerHidden;
-  final TextEditingController answerController;
-  final bool? isCorrect;
 
-  const _WordTranslationQuestion({
-    required this.word,
-    required this.translation,
-    required this.isAnswerHidden,
-    required this.answerController,
-    required this.isCorrect,
+  const _WordCard({required this.word});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: Padding(padding: EdgeInsets.all(16), child: Text(word)),
+    );
+  }
+}
+
+class _TranslationInput extends StatelessWidget {
+  final Function(String) onSubmitted;
+  final TextEditingController controller;
+
+  const _TranslationInput({
+    required this.onSubmitted,
+    required this.controller,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        WordTranslationCard(
-          word: word,
-          translation: translation,
-          isAnswerHidden: isAnswerHidden,
-          isCorrect: isCorrect,
-        ),
-        SizedBox(height: 16),
-        TextField(
-          controller: answerController,
-          decoration: InputDecoration(hintText: "Translate \"$word\""),
-        ),
-      ],
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: TextField(controller: controller, onSubmitted: onSubmitted),
     );
   }
 }

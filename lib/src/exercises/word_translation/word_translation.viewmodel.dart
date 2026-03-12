@@ -4,41 +4,45 @@ import 'package:fonli_app/src/exercises/word_translation/word_translation.viewst
 enum WordTranslationExerciseType { nativeToForeign, foreignToNative }
 
 class WordTranslationExerciseViewModel {
-  final WordTranslationExerciseType exerciseType;
-  final WordTranslationExerciseViewState state;
+  final WordTranslationExerciseViewState state =
+      WordTranslationExerciseViewState();
 
-  WordTranslationExerciseViewModel({
-    required this.exerciseType,
-    required this.state,
-  });
+  void fetchWordTranslationExercise() async {
+    state.isLoading = true;
+    // final result =
+    //     await FonliServer.getWordTranslationForeignToNativeExercise();
 
-  Future<void> init() async {
-    await fetchQuestions();
+    // result.when(
+    //   onOk: (exercise) {
+    //     state.questions = exercise.questions
+    //         .map((q) => Question(word: q.word, translation: q.translation))
+    //         .toList();
+    //   },
+    // );
+    state.isLoading = false;
   }
 
-  Future<void> fetchQuestions() async {
-    if (exerciseType == WordTranslationExerciseType.nativeToForeign) {
-      await fetchNativeToForeignQuestions();
-    } else {
-      await fetchForeignToNativeQuestions();
+  void submitAnswer(String answer) {
+    String trimmedAnswer = answer.trim();
+    if (trimmedAnswer.isEmpty) {
+      return;
     }
+
+    state.userAnswers.add(trimmedAnswer);
+
+    final hasNextQuestion =
+        (state.currentQuestionIndex + 1) < state.questionsLength;
+    if (!hasNextQuestion) {
+      finishExercise();
+      return;
+    }
+
+    state.currentQuestionIndex++;
+    state.notifyListeners();
   }
 
-  Future<void> fetchNativeToForeignQuestions() async {
-    final questions =
-        await FonliServer.getWordTranslationNativeToForeignExercise();
-
-    questions.when(onOk: (p0) => state.questions = p0.questions);
-  }
-
-  Future<void> fetchForeignToNativeQuestions() async {
-    final questions =
-        await FonliServer.getWordTranslationForeignToNativeExercise();
-
-    questions.when(onOk: (p0) => state.questions = p0.questions);
-  }
-
-  void evaluateAnswers() {
-    state.evaluateAnswers();
+  void finishExercise() {
+    state.isExerciseFinished = true;
+    state.notifyListeners();
   }
 }

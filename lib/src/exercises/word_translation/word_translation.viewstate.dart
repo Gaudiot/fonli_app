@@ -1,58 +1,53 @@
 import 'package:flutter/material.dart';
-import 'package:fonli_app/core/types/exercises.type.dart';
+import 'package:fonli_app/core/types/custom/custom_types.dart';
 
-final class WordTranslationExerciseViewState extends ChangeNotifier {
-  List<WordTranslationExerciseQuestion> _questions = [];
+class BaseViewState extends ChangeNotifier {
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
 
-  List<WordTranslationExerciseQuestion> get questions => _questions;
+  set isLoading(bool value) {
+    _isLoading = value;
+    notifyListeners();
+  }
+}
 
-  set questions(List<WordTranslationExerciseQuestion> value) {
+class Question {
+  final String word;
+  final String translation;
+
+  Question({required this.word, required this.translation});
+}
+
+final class WordTranslationExerciseViewState extends BaseViewState {
+  int currentQuestionIndex = 0;
+  List<Question> _questions = [
+    Question(word: "1", translation: "2"),
+    Question(word: "3", translation: "4"),
+    Question(word: "5", translation: "6"),
+  ];
+  List<String> userAnswers = [];
+  bool isExerciseFinished = false;
+
+  set questions(List<Question> value) {
     _questions = value;
-    _initializeControllers();
-    notifyListeners();
   }
 
-  bool areAnswersHidden = true;
-  List<bool?> isCorrect =
-      []; // null = não verificado, true = correto, false = incorreto
-  List<TextEditingController> answerControllers = [];
+  int get questionsLength => _questions.length;
+  String get currentQuestion => _questions[currentQuestionIndex].word;
 
-  WordTranslationExerciseViewState() {
-    _initializeControllers();
-  }
-
-  void _initializeControllers() {
-    // Dispose dos controllers antigos
-    for (var controller in answerControllers) {
-      controller.dispose();
+  List<Pair<String, String>> get mistakes {
+    List<Pair<String, String>> userMistakes = [];
+    for (int i = 0; i < userAnswers.length; i++) {
+      if (userAnswers[i] != _questions[i].translation) {
+        userMistakes.add(
+          Pair(first: userAnswers[i], second: _questions[i].translation),
+        );
+      }
     }
-    // Criar novos controllers baseado no tamanho atual de questions
-    answerControllers = List.generate(
-      _questions.length,
-      (index) => TextEditingController(),
-    );
-    isCorrect = List.filled(_questions.length, null);
-  }
 
-  void toggleAnswersVisibility() {
-    areAnswersHidden = !areAnswersHidden;
-    notifyListeners();
-  }
-
-  void evaluateAnswers() {
-    for (int i = 0; i < questions.length; i++) {
-      final userAnswer = answerControllers[i].text.trim().toLowerCase();
-      final correctAnswer = questions[i].translation.trim().toLowerCase();
-      isCorrect[i] = userAnswer == correctAnswer;
-    }
-    toggleAnswersVisibility();
+    return userMistakes;
   }
 
   @override
-  void dispose() {
-    for (var controller in answerControllers) {
-      controller.dispose();
-    }
-    super.dispose();
-  }
+  void notifyListeners() => super.notifyListeners();
 }
