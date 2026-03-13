@@ -1,3 +1,4 @@
+import 'package:fonli_app/base/contexts/language.context.dart';
 import 'package:fonli_app/base/http/fonli_server.dart';
 import 'package:fonli_app/src/exercises/word_translation/word_translation.viewstate.dart';
 
@@ -7,18 +8,30 @@ class WordTranslationExerciseViewModel {
   final WordTranslationExerciseViewState state =
       WordTranslationExerciseViewState();
 
-  void fetchWordTranslationExercise() async {
+  void fetchWordTranslationExercise(
+    WordTranslationExerciseType exerciseType,
+  ) async {
     state.isLoading = true;
-    // final result =
-    //     await FonliServer.getWordTranslationForeignToNativeExercise();
 
-    // result.when(
-    //   onOk: (exercise) {
-    //     state.questions = exercise.questions
-    //         .map((q) => Question(word: q.word, translation: q.translation))
-    //         .toList();
-    //   },
-    // );
+    final t = {
+      WordTranslationExerciseType.nativeToForeign:
+          FonliServer.getWordTranslationNativeToForeignExercise,
+      WordTranslationExerciseType.foreignToNative:
+          FonliServer.getWordTranslationForeignToNativeExercise,
+    };
+
+    final result = await t[exerciseType]!(
+      LanguageNotifier.instance.nativeLanguage,
+      LanguageNotifier.instance.targetLanguage,
+    );
+
+    result.when(
+      onOk: (exercise) {
+        state.questions = exercise.questions
+            .map((q) => Question(word: q.word, translation: q.translation))
+            .toList();
+      },
+    );
     state.isLoading = false;
   }
 

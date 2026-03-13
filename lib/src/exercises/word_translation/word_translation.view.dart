@@ -25,7 +25,7 @@ class _WordTranslationExerciseViewState
   @override
   void initState() {
     super.initState();
-    viewModel.fetchWordTranslationExercise();
+    viewModel.fetchWordTranslationExercise(widget.exerciseType);
   }
 
   void onAnswerSubmit(String answer) {
