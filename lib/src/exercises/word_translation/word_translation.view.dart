@@ -52,9 +52,10 @@ class _WordTranslationExerciseViewState
                   )
                 : Column(
                     children: [
-                      ColoredBox(
-                        color: Colors.red,
-                        child: _WordCard(word: state.currentQuestion),
+                      Expanded(
+                        child: Center(
+                          child: _WordCard(word: state.currentQuestion),
+                        ),
                       ),
                       _TranslationInput(
                         controller: answerController,

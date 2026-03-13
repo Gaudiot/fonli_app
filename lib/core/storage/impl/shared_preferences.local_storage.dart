@@ -10,22 +10,23 @@ class SharedPreferencesLocalStorage implements ILocalStorage {
   }
 
   @override
-  Future<String?> getString(String key) async {
-    final _sp = SharedPreferencesAsync();
-
-    final containsKey = await _sp.containsKey(key);
+  Future<String?> getString(LocalStorageKeys key) async {
+    final containsKey = await _sp.containsKey(key.key);
 
     if (!containsKey) {
       return null;
     }
 
-    final value = await _sp.getString(key);
+    final value = await _sp.getString(key.key);
 
     return value;
   }
 
   @override
-  Future<String> getStringWithDefault(String key, String defaultValue) async {
+  Future<String> getStringWithDefault(
+    LocalStorageKeys key,
+    String defaultValue,
+  ) async {
     final value = await getString(key);
 
     if (value == null) {
@@ -36,8 +37,8 @@ class SharedPreferencesLocalStorage implements ILocalStorage {
   }
 
   @override
-  Future<String> setString(String key, String value) async {
-    await _sp.setString(key, value);
+  Future<String> setString(LocalStorageKeys key, String value) async {
+    await _sp.setString(key.key, value);
 
     return value;
   }
