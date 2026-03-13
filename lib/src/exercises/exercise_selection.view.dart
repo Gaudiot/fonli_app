@@ -1,3 +1,4 @@
+import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:fonli_app/core/navigation/navigation.dart';
 
@@ -43,6 +44,11 @@ class ExerciseSelectionView extends StatelessWidget {
               mainAxisAlignment: .center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [_LanguageDisplay()],
+                ),
+                SizedBox(height: 16),
                 Text(
                   'Select an exercise:',
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
