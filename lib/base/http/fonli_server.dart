@@ -50,9 +50,11 @@ class FonliServer {
   }
 
   static Future<Result<WordConjugationExercise, Exception>>
-  getWordConjugationExercise() async {
+  getWordConjugationExercise(String targetLanguage) async {
     Dio dio = Dio();
-    final response = await dio.get('$baseUrl/word-conjugation');
+    final response = await dio.get(
+      '$baseUrl/word-conjugation?fl=$targetLanguage',
+    );
 
     if (response.statusCode != 200) {
       return Result.error(Exception("Failed to get word conjugation exercise"));
@@ -65,10 +67,14 @@ class FonliServer {
     return Result.ok(exercise);
   }
 
-  static Future<Result<GenerateStoryResponse, Exception>>
-  generateStory() async {
+  static Future<Result<GenerateStoryResponse, Exception>> generateStory(
+    String nativeLanguage,
+    String targetLanguage,
+  ) async {
     Dio dio = Dio();
-    final response = await dio.get('$baseUrl/history-translation/generate');
+    final response = await dio.get(
+      '$baseUrl/history-translation/generate?nl=$nativeLanguage&fl=$targetLanguage',
+    );
 
     if (response.statusCode != 200) {
       return Result.error(Exception("Failed to generate story"));
@@ -82,10 +88,14 @@ class FonliServer {
   }
 
   static Future<Result<EvaluateStoryTranslationResponse, Exception>>
-  evaluateStoryTranslation(EvaluateStoryTranslationRequest request) async {
+  evaluateStoryTranslation(
+    EvaluateStoryTranslationRequest request,
+    String nativeLanguage,
+    String targetLanguage,
+  ) async {
     Dio dio = Dio();
     final response = await dio.post(
-      '$baseUrl/history-translation/evaluate',
+      '$baseUrl/history-translation/evaluate?nl=$nativeLanguage&fl=$targetLanguage',
       data: request.toJson(),
     );
 

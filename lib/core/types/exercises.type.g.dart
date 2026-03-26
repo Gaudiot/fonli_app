@@ -56,5 +56,5 @@ EvaluateStoryTranslationResponse _$EvaluateStoryTranslationResponseFromJson(
 ) => EvaluateStoryTranslationResponse(
   score: (json['score'] as num).toInt(),
   errors: (json['errors'] as List<dynamic>).map((e) => e as String).toList(),
-  correctTranslation: json['correctTranslation'] as String,
+  correctTranslation: json['correct_translation'] as String,
 );

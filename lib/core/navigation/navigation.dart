@@ -1,5 +1,8 @@
 import "package:flutter/material.dart";
+import "package:fonli_app/src/auth/auth.view.dart";
 import "package:fonli_app/src/exercises/exercise_selection.view.dart";
+import "package:fonli_app/src/exercises/story_translation/story_translation.view.dart";
+import "package:fonli_app/src/exercises/word_conjugation/word_conjugation.view.dart";
 import "package:fonli_app/src/exercises/word_translation/word_translation.view.dart";
 import "package:fonli_app/src/exercises/word_translation/word_translation.viewmodel.dart";
 import "package:fonli_app/src/language_selection/language_selection.view.dart";
@@ -7,6 +10,7 @@ import "package:fonli_app/src/language_selection/language_selection.view.dart";
 typedef RouteBuilder = Widget Function(BuildContext context);
 
 enum NavigationRoutes {
+  auth("/auth"),
   exerciseSelection("/exercise-selection"),
   nativeToForeign("/exercise/native-to-foreign"),
   foreignToNative("/exercise/foreign-to-native"),
@@ -22,11 +26,12 @@ enum NavigationRoutes {
 class NavigationManager {
   NavigationManager._internal();
 
-  static String initialRoute = NavigationRoutes.exerciseSelection.path;
+  static String initialRoute = NavigationRoutes.auth.path;
   static var _args = <String, dynamic>{};
 
   static Map<String, RouteBuilder> routesMap() {
     return {
+      NavigationRoutes.auth.path: (context) => const AuthView(),
       NavigationRoutes.exerciseSelection.path: (context) =>
           ExerciseSelectionView(),
       NavigationRoutes.nativeToForeign.path: (context) =>
@@ -37,6 +42,10 @@ class NavigationManager {
           WordTranslationExerciseView(
             exerciseType: WordTranslationExerciseType.foreignToNative,
           ),
+      NavigationRoutes.wordConjugation.path: (context) =>
+          const WordConjugationExerciseView(),
+      NavigationRoutes.storyTranslation.path: (context) =>
+          const StoryTranslationExerciseView(),
       NavigationRoutes.languageSelection.path: (context) =>
           LanguageSelectionView(),
     };
@@ -61,6 +70,15 @@ class NavigationManager {
   }) {
     _args = args ?? {};
     Navigator.pushNamed(context, route.path);
+  }
+
+  static void replaceWith(
+    BuildContext context,
+    NavigationRoutes route, {
+    Map<String, String>? args,
+  }) {
+    _args = args ?? {};
+    Navigator.pushReplacementNamed(context, route.path);
   }
 
   static Future<void> goToAndCallBack(
