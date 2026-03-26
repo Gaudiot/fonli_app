@@ -44,4 +44,21 @@ class FonliAuthServer {
       return Result.error(Exception(e.toString()));
     }
   }
+
+  static Future<Result<RefreshResponse, Exception>> refresh(
+    String refreshToken,
+  ) async {
+    Dio dio = Dio();
+    try {
+      final response = await dio.post(
+        '$baseUrl/auth/refresh',
+        data: {'refresh_token': refreshToken},
+      );
+      final data = RefreshResponse.fromJson(response.data);
+
+      return Result.ok(data);
+    } catch (e) {
+      return Result.error(Exception(e.toString()));
+    }
+  }
 }

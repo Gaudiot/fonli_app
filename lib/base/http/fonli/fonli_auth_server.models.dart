@@ -23,3 +23,16 @@ final class SignUpResponse {
     refreshToken: json['refresh_token'],
   );
 }
+
+final class RefreshResponse {
+  final String accessToken;
+  final String refreshToken;
+
+  RefreshResponse({required this.accessToken, required this.refreshToken});
+
+  factory RefreshResponse.fromJson(Map<String, dynamic> json) =>
+      RefreshResponse(
+        accessToken: json['access_token'],
+        refreshToken: json['refresh_token'],
+      );
+}
