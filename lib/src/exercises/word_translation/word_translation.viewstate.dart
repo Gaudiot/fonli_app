@@ -1,15 +1,5 @@
-import 'package:flutter/material.dart';
+import 'package:fonli_app/core/components/base_viewstate.dart';
 import 'package:fonli_app/core/types/custom/custom_types.dart';
-
-class BaseViewState extends ChangeNotifier {
-  bool _isLoading = false;
-  bool get isLoading => _isLoading;
-
-  set isLoading(bool value) {
-    _isLoading = value;
-    notifyListeners();
-  }
-}
 
 class Question {
   final String word;

@@ -1,14 +1,4 @@
-import 'package:flutter/material.dart';
-
-class BaseViewState extends ChangeNotifier {
-  bool _isLoading = false;
-  bool get isLoading => _isLoading;
-
-  set isLoading(bool value) {
-    _isLoading = value;
-    notifyListeners();
-  }
-}
+import 'package:fonli_app/core/components/base_viewstate.dart';
 
 final class StoryTranslationExerciseViewState extends BaseViewState {
   String story = "";
