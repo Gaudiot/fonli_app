@@ -5,6 +5,7 @@ import 'package:fonli_app/core/storage/secure_storage.interface.dart';
 
 final class SplashViewModel {
   void onInit(BuildContext context) async {
+    await Future.delayed(const Duration(seconds: 5));
     final isAuthenticated = await _isUserAuthenticated();
 
     if (!context.mounted) return;

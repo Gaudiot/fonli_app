@@ -2,7 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:fonli_app/core/components/ui/button.component.dart';
 import 'package:fonli_app/core/components/ui/text_input.component.dart';
-import 'package:fonli_app/core/design/colors.dart' as design;
+import 'package:fonli_app/core/design/colors.dart';
 import 'package:fonli_app/core/navigation/navigation.dart';
 import 'package:fonli_app/src/auth/auth.viewmodel.dart';
 
@@ -45,7 +45,7 @@ class _AuthViewState extends State<AuthView> {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [design.Colors.primary, design.Colors.primaryLight],
+            colors: [FColors.secondary, FColors.primary],
           ),
         ),
         child: Center(
@@ -152,7 +152,7 @@ class _LoginFormState extends State<_LoginForm> {
               emailOrUsernameController.text,
               passwordController.text,
             ),
-            color: design.Colors.primaryDark,
+            color: FColors.primaryDark,
           ),
         ],
       ),
@@ -239,7 +239,7 @@ class _SignUpFormState extends State<_SignUpForm> {
               emailController.text,
               passwordController.text,
             ),
-            color: design.Colors.primaryDark,
+            color: FColors.primaryDark,
           ),
         ],
       ),
