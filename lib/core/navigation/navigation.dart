@@ -6,10 +6,12 @@ import "package:fonli_app/src/exercises/word_conjugation/word_conjugation.view.d
 import "package:fonli_app/src/exercises/word_translation/word_translation.view.dart";
 import "package:fonli_app/src/exercises/word_translation/word_translation.viewmodel.dart";
 import "package:fonli_app/src/language_selection/language_selection.view.dart";
+import "package:fonli_app/src/splash/splash.view.dart";
 
 typedef RouteBuilder = Widget Function(BuildContext context);
 
 enum NavigationRoutes {
+  splash("/splash"),
   auth("/auth"),
   exerciseSelection("/exercise-selection"),
   nativeToForeign("/exercise/native-to-foreign"),
@@ -26,11 +28,12 @@ enum NavigationRoutes {
 class NavigationManager {
   NavigationManager._internal();
 
-  static String initialRoute = NavigationRoutes.auth.path;
+  static String initialRoute = NavigationRoutes.splash.path;
   static var _args = <String, dynamic>{};
 
   static Map<String, RouteBuilder> routesMap() {
     return {
+      NavigationRoutes.splash.path: (context) => const SplashView(),
       NavigationRoutes.auth.path: (context) => const AuthView(),
       NavigationRoutes.exerciseSelection.path: (context) =>
           ExerciseSelectionView(),

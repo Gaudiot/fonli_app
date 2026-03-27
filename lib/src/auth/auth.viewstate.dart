@@ -1,4 +1,4 @@
-import 'package:fonli_app/src/exercises/word_translation/word_translation.viewstate.dart';
+import 'package:fonli_app/core/components/base_viewstate.dart';
 
 final class AuthViewState extends BaseViewState {
   bool _isLogin = true;

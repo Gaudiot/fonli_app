@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:fonli_app/core/components/button.component.dart';
-import 'package:fonli_app/core/components/text_input.component.dart';
+import 'package:fonli_app/core/components/ui/button.component.dart';
+import 'package:fonli_app/core/components/ui/text_input.component.dart';
 import 'package:fonli_app/core/design/colors.dart' as design;
 import 'package:fonli_app/core/navigation/navigation.dart';
 import 'package:fonli_app/src/auth/auth.viewmodel.dart';
@@ -30,7 +30,10 @@ class _AuthViewState extends State<AuthView> {
 
   void _onStateChanged() {
     if (viewModel.state.isAuthenticated) {
-      NavigationManager.replaceWith(context, NavigationRoutes.exerciseSelection);
+      NavigationManager.replaceWith(
+        context,
+        NavigationRoutes.exerciseSelection,
+      );
     }
   }
 
