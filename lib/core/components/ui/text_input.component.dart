@@ -3,7 +3,14 @@ import 'package:flutter/material.dart';
 class FTextInput extends StatelessWidget {
   final String label;
   final TextEditingController? controller;
-  const FTextInput({super.key, required this.label, this.controller});
+  final bool obscureText;
+
+  const FTextInput({
+    super.key,
+    required this.label,
+    this.controller,
+    this.obscureText = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +20,7 @@ class FTextInput extends StatelessWidget {
         Text(label),
         TextField(
           controller: controller,
+          obscureText: obscureText,
           decoration: InputDecoration(
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),

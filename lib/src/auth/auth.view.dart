@@ -143,7 +143,11 @@ class _LoginFormState extends State<_LoginForm> {
             controller: emailOrUsernameController,
           ),
           SizedBox(height: 16),
-          FTextInput(label: 'Password', controller: passwordController),
+          FTextInput(
+            label: 'Password',
+            controller: passwordController,
+            obscureText: true,
+          ),
           SizedBox(height: 48),
           FButton(
             isLoading: widget.isLoading,
@@ -229,7 +233,11 @@ class _SignUpFormState extends State<_SignUpForm> {
           SizedBox(height: 16),
           FTextInput(label: 'Email', controller: emailController),
           SizedBox(height: 16),
-          FTextInput(label: 'Password', controller: passwordController),
+          FTextInput(
+            label: 'Password',
+            controller: passwordController,
+            obscureText: true,
+          ),
           SizedBox(height: 48),
           FButton(
             isLoading: widget.isLoading,

@@ -28,7 +28,7 @@ class _SplashViewState extends State<SplashView>
     _sizeAnimation = Tween<double>(
       begin: 100,
       end: 200,
-    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
 
     _controller.repeat(reverse: true);
 
@@ -62,6 +62,10 @@ class _SplashViewState extends State<SplashView>
                       'lib/assets/fonli-logo.svg',
                       height: _sizeAnimation.value,
                       width: _sizeAnimation.value,
+                      colorFilter: const ColorFilter.mode(
+                        Colors.white,
+                        BlendMode.srcIn,
+                      ),
                     ),
                   ),
                 ),
