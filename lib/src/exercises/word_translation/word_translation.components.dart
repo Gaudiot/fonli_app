@@ -107,7 +107,10 @@ class _SomeMistakesResultHeader extends StatelessWidget {
         Row(
           mainAxisSize: .min,
           children: [
-            const Icon(Icons.check_circle_outline, color: Colors.green),
+            const Icon(
+              Icons.check_circle_outline_outlined,
+              color: FColors.black,
+            ),
             SizedBox(width: 16),
             Text(
               "You got $correctAnswersQuantity out of $questionsQuantity correct",
@@ -139,7 +142,7 @@ class _SomeMistakesResultContent extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
             ),
-            color: Colors.cyan.shade200,
+            color: FColors.primaryLightest,
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -181,7 +184,7 @@ class _CompleteButton extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Material(
-          color: Colors.cyan,
+          color: FColors.secondary,
           shape: const StadiumBorder(),
           child: InkWell(
             borderRadius: BorderRadius.circular(32),

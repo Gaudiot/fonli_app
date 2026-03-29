@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fonli_app/core/design/colors.dart';
 import 'package:fonli_app/core/navigation/navigation.dart';
 import 'package:fonli_app/src/exercises/story_translation/story_translation.viewmodel.dart';
 
@@ -38,42 +39,55 @@ class _StoryTranslationExerciseViewState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: ListenableBuilder(
-          listenable: viewModel.state,
-          builder: (context, _) {
-            final state = viewModel.state;
-            if (state.isLoading && state.story.isEmpty) {
-              return const Center(child: CircularProgressIndicator());
-            }
-
-            if (state.story.isEmpty && !state.isLoading) {
-              return _FailedToFetchExercise(
-                onRetry: () => viewModel.fetchStory(),
-              );
-            }
-
-            if (state.isEvaluated) {
-              return _StoryTranslationResult(
-                score: state.score,
-                errors: state.errors,
-                correctTranslation: state.correctTranslation,
-              );
-            }
-
-            return Column(
-              children: [
-                Expanded(
-                  child: _StoryCard(story: state.story),
-                ),
-                _TranslationSection(
-                  controller: translationController,
-                  onSubmit: onSubmitPressed,
-                  isLoading: state.isLoading,
-                ),
-              ],
-            );
+      appBar: AppBar(
+        backgroundColor: FColors.primary,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.close, color: FColors.black),
+          onPressed: () {
+            NavigationManager.pop(context);
           },
+        ),
+      ),
+      body: ColoredBox(
+        color: FColors.primary,
+        child: SafeArea(
+          child: ListenableBuilder(
+            listenable: viewModel.state,
+            builder: (context, _) {
+              final state = viewModel.state;
+              if (state.isLoading && state.story.isEmpty) {
+                return const Center(child: CircularProgressIndicator());
+              }
+
+              if (state.story.isEmpty && !state.isLoading) {
+                return _FailedToFetchExercise(
+                  onRetry: () => viewModel.fetchStory(),
+                );
+              }
+
+              if (state.isEvaluated) {
+                return _StoryTranslationResult(
+                  score: state.score,
+                  errors: state.errors,
+                  correctTranslation: state.correctTranslation,
+                );
+              }
+
+              return Column(
+                children: [
+                  Expanded(
+                    child: _StoryCard(story: state.story),
+                  ),
+                  _TranslationSection(
+                    controller: translationController,
+                    onSubmit: onSubmitPressed,
+                    isLoading: state.isLoading,
+                  ),
+                ],
+              );
+            },
+          ),
         ),
       ),
     );
@@ -90,18 +104,19 @@ class _StoryCard extends StatelessWidget {
     return SingleChildScrollView(
       padding: const EdgeInsets.all(24),
       child: Card(
+        color: FColors.secondary,
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
+            mainAxisSize: .min,
             children: [
               Text(
                 "Translate this story:",
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
-                  color: Colors.grey[700],
+                  color: FColors.quaternary,
                 ),
               ),
               const SizedBox(height: 16),
@@ -133,28 +148,42 @@ class _TranslationSection extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Column(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: .min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           TextField(
             controller: controller,
             maxLines: 5,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               hintText: "Type your translation here...",
-              border: OutlineInputBorder(),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              filled: true,
+              fillColor: FColors.white,
               alignLabelWithHint: true,
             ),
           ),
           const SizedBox(height: 12),
-          FilledButton(
-            onPressed: isLoading ? null : onSubmit,
-            child: isLoading
-                ? const SizedBox(
-                    height: 20,
-                    width: 20,
-                    child: CircularProgressIndicator(strokeWidth: 2),
-                  )
-                : const Text("Submit translation"),
+          Material(
+            color: isLoading ? FColors.secondaryDark : FColors.secondary,
+            shape: const StadiumBorder(),
+            child: InkWell(
+              borderRadius: BorderRadius.circular(32),
+              onTap: isLoading ? null : onSubmit,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 14),
+                child: Center(
+                  child: isLoading
+                      ? const SizedBox(
+                          height: 20,
+                          width: 20,
+                          child: CircularProgressIndicator(strokeWidth: 2),
+                        )
+                      : const Text("Submit translation"),
+                ),
+              ),
+            ),
           ),
         ],
       ),

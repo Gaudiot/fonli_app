@@ -18,7 +18,7 @@ final class _StoryTranslationResult extends StatelessWidget {
     return SingleChildScrollView(
       padding: const EdgeInsets.all(24),
       child: Column(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: .min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
@@ -51,13 +51,13 @@ class _ScoreCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: Colors.cyan.shade100,
+        color: FColors.primaryLightest,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: .min,
         children: [
-          const Icon(Icons.star, color: Colors.amber, size: 32),
+          const Icon(Icons.star, color: FColors.secondaryDarkest, size: 32),
           const SizedBox(width: 16),
           Text(
             "Score: $score / 100",
@@ -81,7 +81,7 @@ class _ErrorsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
+      mainAxisSize: .min,
       children: [
         Text(
           "Errors:",
@@ -91,7 +91,7 @@ class _ErrorsSection extends StatelessWidget {
         Container(
           constraints: const BoxConstraints(maxHeight: 120),
           decoration: BoxDecoration(
-            color: Colors.red.shade100,
+            color: FColors.tertiaryLightest,
             borderRadius: BorderRadius.circular(12),
           ),
           child: ListView.builder(
@@ -99,11 +99,12 @@ class _ErrorsSection extends StatelessWidget {
             itemCount: errors.length,
             itemBuilder: (context, index) {
               return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Icon(Icons.close, color: Colors.red, size: 20),
+                    const Icon(Icons.close, color: FColors.tertiary, size: 20),
                     const SizedBox(width: 8),
                     Expanded(child: Text(errors[index])),
                   ],
@@ -126,7 +127,7 @@ class _CorrectTranslationSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
+      mainAxisSize: .min,
       children: [
         Text(
           "Correct translation:",
@@ -137,7 +138,7 @@ class _CorrectTranslationSection extends StatelessWidget {
           width: double.infinity,
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: Colors.green.shade100,
+            color: FColors.primaryLightest,
             borderRadius: BorderRadius.circular(12),
           ),
           child: Text(
@@ -161,11 +162,11 @@ class _CompleteButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisSize: MainAxisSize.max,
+      mainAxisSize: .max,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Material(
-          color: Colors.cyan,
+          color: FColors.secondary,
           shape: const StadiumBorder(),
           child: InkWell(
             borderRadius: BorderRadius.circular(32),
@@ -195,7 +196,7 @@ class _FailedToFetchExercise extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(32),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisSize: .min,
           children: [
             const Text(
               "Failed to load story",

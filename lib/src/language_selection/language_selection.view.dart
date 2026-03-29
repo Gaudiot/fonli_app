@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fonli_app/base/contexts/language.context.dart';
+import 'package:fonli_app/core/design/colors.dart';
 import 'package:fonli_app/core/navigation/navigation.dart';
 import 'package:fonli_app/core/storage/local_storage.interface.dart';
 
@@ -75,71 +76,87 @@ class _LanguageSelectionViewState extends State<LanguageSelectionView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            Flexible(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        const Text("Native Language"),
-                        const SizedBox(height: 8),
-                        Expanded(
-                          child: ListView.separated(
-                            itemBuilder: (context, index) =>
-                                _LanguageSelectionItem(
-                                  language: _languages[index],
-                                  isSelected:
-                                      selectedNativeLanguage ==
+      appBar: AppBar(
+        backgroundColor: FColors.secondary,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.close, color: FColors.black),
+          onPressed: () {
+            NavigationManager.pop(context);
+          },
+        ),
+      ),
+      body: Container(
+        color: FColors.secondary,
+        padding: const EdgeInsets.all(16),
+        child: SafeArea(
+          child: Column(
+            children: [
+              Flexible(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          const Text("Native Language"),
+                          const SizedBox(height: 8),
+                          Expanded(
+                            child: ListView.separated(
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemBuilder: (context, index) =>
+                                  _LanguageSelectionItem(
+                                    language: _languages[index],
+                                    isSelected:
+                                        selectedNativeLanguage ==
+                                        _languages[index].code,
+                                    onTap: () => onNativeLanguageTap(
                                       _languages[index].code,
-                                  onTap: () => onNativeLanguageTap(
-                                    _languages[index].code,
+                                    ),
                                   ),
-                                ),
-                            separatorBuilder: (context, index) =>
-                                const SizedBox(height: 16),
-                            itemCount: _languages.length,
+                              separatorBuilder: (context, index) =>
+                                  const SizedBox(height: 16),
+                              itemCount: _languages.length,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        const Text("Target Language"),
-                        const SizedBox(height: 8),
-                        Expanded(
-                          child: ListView.separated(
-                            itemBuilder: (context, index) =>
-                                _LanguageSelectionItem(
-                                  language: _languages[index],
-                                  isSelected:
-                                      selectedTargetLanguage ==
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          const Text("Target Language"),
+                          const SizedBox(height: 8),
+                          Expanded(
+                            child: ListView.separated(
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemBuilder: (context, index) =>
+                                  _LanguageSelectionItem(
+                                    language: _languages[index],
+                                    isSelected:
+                                        selectedTargetLanguage ==
+                                        _languages[index].code,
+                                    onTap: () => onTargetLanguageTap(
                                       _languages[index].code,
-                                  onTap: () => onTargetLanguageTap(
-                                    _languages[index].code,
+                                    ),
                                   ),
-                                ),
-                            separatorBuilder: (context, index) =>
-                                const SizedBox(height: 16),
-                            itemCount: _languages.length,
+                              separatorBuilder: (context, index) =>
+                                  const SizedBox(height: 16),
+                              itemCount: _languages.length,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            ElevatedButton(onPressed: onSavePressed, child: const Text("Save")),
-          ],
+              _SaveSelectionButton(onPressed: onSavePressed),
+            ],
+          ),
         ),
       ),
     );
@@ -164,11 +181,28 @@ class _LanguageSelectionItem extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: isSelected ? Colors.blue : Colors.grey[200],
+          color: isSelected ? FColors.primaryDarkest : FColors.primaryLightest,
           borderRadius: BorderRadius.circular(8),
         ),
         child: Text(language.name),
       ),
+    );
+  }
+}
+
+class _SaveSelectionButton extends StatelessWidget {
+  final VoidCallback onPressed;
+  const _SaveSelectionButton({required this.onPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        backgroundColor: FColors.primary,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      ),
+      child: const Text("Save", style: TextStyle(color: FColors.black)),
     );
   }
 }

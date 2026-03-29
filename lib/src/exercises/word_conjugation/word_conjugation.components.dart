@@ -23,6 +23,8 @@ final class _ExerciseComplete extends StatelessWidget {
   }
 }
 
+// MARK: - Exercise Completed Perfectly
+
 final class _NoMistakesResult extends StatelessWidget {
   const _NoMistakesResult();
 
@@ -32,15 +34,15 @@ final class _NoMistakesResult extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(32),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisSize: .min,
           children: [
-            const Text("Exercise finished"),
-            const SizedBox(height: 16),
+            Text("Exercise finished"),
+            SizedBox(height: 16),
             Text(
               "You got all conjugations correct! You are a master of the language!",
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16),
             _CompleteButton(context: context),
           ],
         ),
@@ -48,6 +50,8 @@ final class _NoMistakesResult extends StatelessWidget {
     );
   }
 }
+
+// MARK: - Exercise Completed with Mistakes
 
 final class _SomeMistakesResult extends StatelessWidget {
   final List<Pair<String, String>> mistakes;
@@ -65,16 +69,16 @@ final class _SomeMistakesResult extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 24, left: 24, right: 24),
       child: Column(
-        mainAxisSize: MainAxisSize.max,
+        mainAxisSize: .max,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           _SomeMistakesResultHeader(
             correctAnswersQuantity: correctAnswersQuantity,
             questionsQuantity: questionsQuantity,
           ),
-          const SizedBox(height: 32),
+          SizedBox(height: 32),
           _SomeMistakesResultContent(mistakes: mistakes),
-          const SizedBox(height: 16),
+          SizedBox(height: 16),
           _CompleteButton(context: context),
         ],
       ),
@@ -94,17 +98,20 @@ class _SomeMistakesResultHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisSize: MainAxisSize.min,
+      mainAxisSize: .min,
       children: [
         Text(
           "Exercise finished",
           style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
         Row(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisSize: .min,
           children: [
-            const Icon(Icons.check_circle_outline, color: Colors.green),
-            const SizedBox(width: 16),
+            const Icon(
+              Icons.check_circle_outline_outlined,
+              color: FColors.black,
+            ),
+            SizedBox(width: 16),
             Text(
               "You got $correctAnswersQuantity out of $questionsQuantity correct",
             ),
@@ -123,7 +130,7 @@ class _SomeMistakesResultContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisSize: MainAxisSize.min,
+      mainAxisSize: .min,
       children: [
         Text(
           "Here are your mistakes:",
@@ -135,7 +142,7 @@ class _SomeMistakesResultContent extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
             ),
-            color: Colors.cyan.shade200,
+            color: FColors.primaryLightest,
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -144,10 +151,10 @@ class _SomeMistakesResultContent extends StatelessWidget {
               itemBuilder: (context, index) {
                 final pair = mistakes[index];
                 return Row(
-                  mainAxisSize: MainAxisSize.min,
+                  mainAxisSize: .min,
                   children: [
-                    const Icon(Icons.close, color: Colors.red),
-                    const SizedBox(width: 8),
+                    Icon(Icons.close, color: Colors.red),
+                    SizedBox(width: 8),
                     Text('${pair.first} → ${pair.second}'),
                   ],
                 );
@@ -160,6 +167,8 @@ class _SomeMistakesResultContent extends StatelessWidget {
   }
 }
 
+// MARK: - Complete Button
+
 class _CompleteButton extends StatelessWidget {
   final BuildContext context;
   const _CompleteButton({required this.context});
@@ -171,17 +180,17 @@ class _CompleteButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisSize: MainAxisSize.max,
+      mainAxisSize: .max,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Material(
-          color: Colors.cyan,
+          color: FColors.secondary,
           shape: const StadiumBorder(),
           child: InkWell(
             borderRadius: BorderRadius.circular(32),
             onTap: onCompleteButtonTap,
-            child: const Padding(
-              padding: EdgeInsets.symmetric(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
                 vertical: 16,
                 horizontal: 120,
               ),
@@ -194,6 +203,8 @@ class _CompleteButton extends StatelessWidget {
   }
 }
 
+// MARK: - View Status
+
 class _FailedToFetchExercise extends StatelessWidget {
   final VoidCallback onRetry;
 
@@ -205,7 +216,7 @@ class _FailedToFetchExercise extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(32),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisSize: .min,
           children: [
             const Text(
               "Failed to load exercise",

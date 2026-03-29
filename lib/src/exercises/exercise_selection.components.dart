@@ -17,7 +17,7 @@ class _LanguageDisplay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.grey[200],
+      color: FColors.secondary,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       child: InkWell(
         borderRadius: BorderRadius.circular(8),
@@ -61,11 +61,14 @@ class _ExerciseSelectionCard extends StatelessWidget {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          backgroundColor: FColors.secondary,
         ),
         onPressed: onTap,
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 16),
-          child: Center(child: Text(title)),
+          child: Center(
+            child: Text(title, style: TextStyle(color: FColors.black)),
+          ),
         ),
       ),
     );

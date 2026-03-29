@@ -1,6 +1,7 @@
 import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:fonli_app/base/contexts/language.context.dart';
+import 'package:fonli_app/core/design/colors.dart';
 import 'package:fonli_app/core/navigation/navigation.dart';
 
 part './exercise_selection.components.dart';
@@ -37,40 +38,57 @@ class ExerciseSelectionView extends StatelessWidget {
     ];
 
     return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: SizedBox(
-            width: 300,
-            child: Column(
-              mainAxisAlignment: .center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [_LanguageDisplay()],
-                ),
-                SizedBox(height: 16),
-                Text(
-                  'Select an exercise:',
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 16),
-                ListView.separated(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: exercises.length,
-                  itemBuilder: (context, index) => _ExerciseSelectionCard(
-                    title: exercises[index].title,
-                    onTap: exercises[index].onTap,
+      body: Container(
+        padding: const EdgeInsets.all(16),
+        color: FColors.primary,
+        child: SafeArea(
+          child: Column(
+            children: [
+              _ExerciseSelectionHeader(),
+              Expanded(
+                child: Center(
+                  child: Column(
+                    mainAxisSize: .min,
+                    children: [
+                      Text(
+                        'Select an exercise:',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      ListView.separated(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: exercises.length,
+                        itemBuilder: (context, index) => _ExerciseSelectionCard(
+                          title: exercises[index].title,
+                          onTap: exercises[index].onTap,
+                        ),
+                        separatorBuilder: (context, index) =>
+                            const SizedBox(height: 8),
+                      ),
+                    ],
                   ),
-                  separatorBuilder: (context, index) =>
-                      const SizedBox(height: 8),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class _ExerciseSelectionHeader extends StatelessWidget {
+  const _ExerciseSelectionHeader();
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [_LanguageDisplay()],
     );
   }
 }
