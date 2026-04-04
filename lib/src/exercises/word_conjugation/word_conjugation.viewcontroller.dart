@@ -9,7 +9,7 @@ class WordConjugationExerciseViewController {
   void fetchWordConjugationExercise() async {
     viewModel.isLoading = true;
 
-    final result = await FonliServer.getWordConjugationExercise(
+    final result = await FonliExerciseServer.getWordConjugationExercise(
       LanguageNotifier.instance.targetLanguage,
     );
 

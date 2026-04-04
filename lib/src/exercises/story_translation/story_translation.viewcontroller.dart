@@ -1,6 +1,5 @@
 import 'package:fonli_app/base/contexts/language.context.dart';
 import 'package:fonli_app/base/http/fonli/fonli_server.dart';
-import 'package:fonli_app/core/types/exercises.type.dart';
 import 'package:fonli_app/src/exercises/story_translation/story_translation.viewmodel.dart';
 
 class StoryTranslationExerciseViewController {
@@ -11,7 +10,7 @@ class StoryTranslationExerciseViewController {
     viewModel.isInitialLoading = true;
     viewModel.notifyListeners();
 
-    final result = await FonliServer.generateStory(
+    final result = await FonliExerciseServer.generateStory(
       LanguageNotifier.instance.nativeLanguage,
       LanguageNotifier.instance.targetLanguage,
     );
@@ -38,7 +37,7 @@ class StoryTranslationExerciseViewController {
       userTranslation: trimmed,
     );
 
-    final result = await FonliServer.evaluateStoryTranslation(
+    final result = await FonliExerciseServer.evaluateStoryTranslation(
       request,
       LanguageNotifier.instance.nativeLanguage,
       LanguageNotifier.instance.targetLanguage,

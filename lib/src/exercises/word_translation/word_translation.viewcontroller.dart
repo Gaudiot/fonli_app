@@ -15,9 +15,9 @@ class WordTranslationExerciseViewController {
 
     final t = {
       WordTranslationExerciseType.nativeToForeign:
-          FonliServer.getWordTranslationNativeToForeignExercise,
+          FonliExerciseServer.getWordTranslationNativeToForeignExercise,
       WordTranslationExerciseType.foreignToNative:
-          FonliServer.getWordTranslationForeignToNativeExercise,
+          FonliExerciseServer.getWordTranslationForeignToNativeExercise,
     };
 
     final result = await t[exerciseType]!(

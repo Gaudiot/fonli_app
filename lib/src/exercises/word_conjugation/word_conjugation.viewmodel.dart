@@ -1,6 +1,6 @@
 import 'package:fonli_app/core/components/base_viewstate.dart';
 import 'package:fonli_app/core/types/custom/custom_types.dart';
-import 'package:fonli_app/core/types/exercises.type.dart';
+import 'package:fonli_app/base/http/fonli/fonli_server.dart';
 
 final class WordConjugationExerciseViewModel extends BaseViewState {
   String word = "";
