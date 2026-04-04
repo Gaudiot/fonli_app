@@ -1,50 +1,34 @@
-import 'package:fonli_app/base/contexts/language.context.dart';
-import 'package:fonli_app/base/http/fonli/fonli_server.dart';
-import 'package:fonli_app/src/exercises/word_conjugation/word_conjugation.viewstate.dart';
+import 'package:fonli_app/core/components/base_viewstate.dart';
+import 'package:fonli_app/core/types/custom/custom_types.dart';
+import 'package:fonli_app/core/types/exercises.type.dart';
 
-class WordConjugationExerciseViewModel {
-  final WordConjugationExerciseViewState state =
-      WordConjugationExerciseViewState();
+final class WordConjugationExerciseViewModel extends BaseViewState {
+  String word = "";
+  String tense = "";
+  List<Conjugation> _conjugations = [];
+  int currentQuestionIndex = 0;
+  List<String> userAnswers = [];
+  bool isExerciseFinished = false;
 
-  void fetchWordConjugationExercise() async {
-    state.isLoading = true;
-
-    final result = await FonliServer.getWordConjugationExercise(
-      LanguageNotifier.instance.targetLanguage,
-    );
-
-    result.when(
-      onOk: (exercise) {
-        state.word = exercise.word;
-        state.tense = exercise.tense;
-        state.conjugations = exercise.conjugations;
-      },
-      onError: (_) {},
-    );
-    state.isLoading = false;
+  set conjugations(List<Conjugation> value) {
+    _conjugations = value;
   }
 
-  void submitAnswer(String answer) {
-    final trimmedAnswer = answer.trim();
-    if (trimmedAnswer.isEmpty) {
-      return;
+  int get questionsLength => _conjugations.length;
+  Conjugation get currentConjugation => _conjugations[currentQuestionIndex];
+  String get currentPrompt =>
+      '${_conjugations[currentQuestionIndex].person} (${_conjugations[currentQuestionIndex].number})';
+
+  List<Pair<String, String>> get mistakes {
+    List<Pair<String, String>> userMistakes = [];
+    for (int i = 0; i < userAnswers.length && i < _conjugations.length; i++) {
+      if (userAnswers[i].trim().toLowerCase() !=
+          _conjugations[i].conjugation.trim().toLowerCase()) {
+        userMistakes.add(
+          Pair(first: userAnswers[i], second: _conjugations[i].conjugation),
+        );
+      }
     }
-
-    state.userAnswers.add(trimmedAnswer);
-
-    final hasNextQuestion =
-        (state.currentQuestionIndex + 1) < state.questionsLength;
-    if (!hasNextQuestion) {
-      finishExercise();
-      return;
-    }
-
-    state.currentQuestionIndex++;
-    state.notifyListeners();
-  }
-
-  void finishExercise() {
-    state.isExerciseFinished = true;
-    state.notifyListeners();
+    return userMistakes;
   }
 }

@@ -1,4 +1,4 @@
-part of '../fonli_auth_server.dart';
+part of '../fonli_server.dart';
 
 final class LoginResponse {
   final String accessToken;

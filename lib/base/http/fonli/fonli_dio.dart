@@ -1,9 +1,8 @@
-import 'package:dio/dio.dart';
-import 'package:fonli_app/core/storage/secure_storage.interface.dart';
+part of 'fonli_server.dart';
 
 /// [Dio] configured for Fonli API calls. Adds `Authorization: Bearer <accessToken>`
 /// when a non-empty access token exists in secure storage.
-Future<Dio> createFonliDio() async {
+Future<Dio> _fonliDio() async {
   final dio = Dio();
   dio.interceptors.add(
     InterceptorsWrapper(

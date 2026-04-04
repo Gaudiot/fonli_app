@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fonli_app/core/design/colors.dart';
 import 'package:fonli_app/core/navigation/navigation.dart';
 import 'package:fonli_app/core/types/custom/custom_types.dart';
-import 'package:fonli_app/src/exercises/word_conjugation/word_conjugation.viewmodel.dart';
+import 'package:fonli_app/src/exercises/word_conjugation/word_conjugation.viewcontroller.dart';
 
 part 'word_conjugation.components.dart';
 
@@ -16,15 +16,15 @@ class WordConjugationExerciseView extends StatefulWidget {
 
 class _WordConjugationExerciseViewState
     extends State<WordConjugationExerciseView> {
-  final WordConjugationExerciseViewModel viewModel =
-      WordConjugationExerciseViewModel();
+  final WordConjugationExerciseViewController viewController =
+      WordConjugationExerciseViewController();
 
   final TextEditingController answerController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    viewModel.fetchWordConjugationExercise();
+    viewController.fetchWordConjugationExercise();
   }
 
   @override
@@ -34,7 +34,7 @@ class _WordConjugationExerciseViewState
   }
 
   void onAnswerSubmit() {
-    viewModel.submitAnswer(answerController.text);
+    viewController.submitAnswer(answerController.text);
     answerController.clear();
   }
 
@@ -55,32 +55,32 @@ class _WordConjugationExerciseViewState
         color: FColors.primary,
         child: SafeArea(
           child: ListenableBuilder(
-            listenable: viewModel.state,
+            listenable: viewController.viewModel,
             builder: (context, _) {
-              final state = viewModel.state;
-              if (state.isLoading) {
+              final vm = viewController.viewModel;
+              if (vm.isLoading) {
                 return const Center(child: CircularProgressIndicator());
               }
 
-              if (state.questionsLength == 0) {
+              if (vm.questionsLength == 0) {
                 return _FailedToFetchExercise(
-                  onRetry: () => viewModel.fetchWordConjugationExercise(),
+                  onRetry: () => viewController.fetchWordConjugationExercise(),
                 );
               }
 
-              return state.isExerciseFinished
+              return vm.isExerciseFinished
                   ? _ExerciseComplete(
-                      questionsQuantity: state.questionsLength,
-                      mistakes: state.mistakes,
+                      questionsQuantity: vm.questionsLength,
+                      mistakes: vm.mistakes,
                     )
                   : Column(
                       children: [
                         Expanded(
                           child: Center(
                             child: _ConjugationCard(
-                              word: state.word,
-                              tense: state.tense,
-                              prompt: state.currentPrompt,
+                              word: vm.word,
+                              tense: vm.tense,
+                              prompt: vm.currentPrompt,
                             ),
                           ),
                         ),

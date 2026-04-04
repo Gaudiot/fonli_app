@@ -4,7 +4,7 @@ import 'package:fonli_app/core/components/ui/button.component.dart';
 import 'package:fonli_app/core/components/ui/text_input.component.dart';
 import 'package:fonli_app/core/design/colors.dart';
 import 'package:fonli_app/core/navigation/navigation.dart';
-import 'package:fonli_app/src/auth/auth.viewmodel.dart';
+import 'package:fonli_app/src/auth/auth.viewcontroller.dart';
 
 class AuthView extends StatefulWidget {
   const AuthView({super.key});
@@ -14,22 +14,22 @@ class AuthView extends StatefulWidget {
 }
 
 class _AuthViewState extends State<AuthView> {
-  final AuthViewModel viewModel = AuthViewModel();
+  final AuthViewController viewController = AuthViewController();
 
   @override
   void initState() {
     super.initState();
-    viewModel.state.addListener(_onStateChanged);
+    viewController.viewModel.addListener(_onViewModelChanged);
   }
 
   @override
   void dispose() {
-    viewModel.state.removeListener(_onStateChanged);
+    viewController.viewModel.removeListener(_onViewModelChanged);
     super.dispose();
   }
 
-  void _onStateChanged() {
-    if (viewModel.state.isAuthenticated) {
+  void _onViewModelChanged() {
+    if (viewController.viewModel.isAuthenticated) {
       NavigationManager.replaceWith(
         context,
         NavigationRoutes.exerciseSelection,
@@ -50,20 +50,20 @@ class _AuthViewState extends State<AuthView> {
         ),
         child: Center(
           child: ListenableBuilder(
-            listenable: viewModel.state,
+            listenable: viewController.viewModel,
             builder: (context, _) {
-              final state = viewModel.state;
+              final vm = viewController.viewModel;
 
-              return state.isLogin
+              return vm.isLogin
                   ? _LoginForm(
-                      onSignUpTap: viewModel.toggleForm,
-                      onSubmit: viewModel.submitLogin,
-                      isLoading: state.isLoading,
+                      onSignUpTap: viewController.toggleForm,
+                      onSubmit: viewController.submitLogin,
+                      isLoading: vm.isLoading,
                     )
                   : _SignUpForm(
-                      onLogInTap: viewModel.toggleForm,
-                      onSubmit: viewModel.submitSignUp,
-                      isLoading: state.isLoading,
+                      onLogInTap: viewController.toggleForm,
+                      onSubmit: viewController.submitSignUp,
+                      isLoading: vm.isLoading,
                     );
             },
           ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fonli_app/core/design/colors.dart';
-import 'package:fonli_app/src/splash/splash.viewmodel.dart';
+import 'package:fonli_app/src/splash/splash.viewcontroller.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -12,7 +12,7 @@ class SplashView extends StatefulWidget {
 
 class _SplashViewState extends State<SplashView>
     with SingleTickerProviderStateMixin {
-  final viewModel = SplashViewModel();
+  final SplashViewController viewController = SplashViewController();
   late final AnimationController _controller;
   late final Animation<double> _sizeAnimation;
 
@@ -33,7 +33,7 @@ class _SplashViewState extends State<SplashView>
     _controller.repeat(reverse: true);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      viewModel.onInit(context);
+      viewController.onInit(context);
     });
   }
 

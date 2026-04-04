@@ -49,7 +49,7 @@ class _LanguageDisplay extends StatelessWidget {
 }
 
 class _UserSettingsDisplay extends StatelessWidget {
-  const _UserSettingsDisplay({super.key});
+  const _UserSettingsDisplay();
 
   @override
   Widget build(BuildContext context) {

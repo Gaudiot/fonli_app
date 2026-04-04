@@ -1,61 +1,40 @@
-import 'package:fonli_app/base/contexts/language.context.dart';
-import 'package:fonli_app/base/http/fonli/fonli_server.dart';
-import 'package:fonli_app/src/exercises/word_translation/word_translation.viewstate.dart';
+import 'package:fonli_app/core/components/base_viewstate.dart';
+import 'package:fonli_app/core/types/custom/custom_types.dart';
 
-enum WordTranslationExerciseType { nativeToForeign, foreignToNative }
+class Question {
+  final String word;
+  final String translation;
 
-class WordTranslationExerciseViewModel {
-  final WordTranslationExerciseViewState state =
-      WordTranslationExerciseViewState();
+  Question({required this.word, required this.translation});
+}
 
-  void fetchWordTranslationExercise(
-    WordTranslationExerciseType exerciseType,
-  ) async {
-    state.isLoading = true;
+final class WordTranslationExerciseViewModel extends BaseViewState {
+  int currentQuestionIndex = 0;
+  List<Question> _questions = [
+    Question(word: "1", translation: "2"),
+    Question(word: "3", translation: "4"),
+    Question(word: "5", translation: "6"),
+  ];
+  List<String> userAnswers = [];
+  bool isExerciseFinished = false;
 
-    final t = {
-      WordTranslationExerciseType.nativeToForeign:
-          FonliServer.getWordTranslationNativeToForeignExercise,
-      WordTranslationExerciseType.foreignToNative:
-          FonliServer.getWordTranslationForeignToNativeExercise,
-    };
-
-    final result = await t[exerciseType]!(
-      LanguageNotifier.instance.nativeLanguage,
-      LanguageNotifier.instance.targetLanguage,
-    );
-
-    result.when(
-      onOk: (exercise) {
-        state.questions = exercise.questions
-            .map((q) => Question(word: q.word, translation: q.translation))
-            .toList();
-      },
-    );
-    state.isLoading = false;
+  set questions(List<Question> value) {
+    _questions = value;
   }
 
-  void submitAnswer(String answer) {
-    String trimmedAnswer = answer.trim();
-    if (trimmedAnswer.isEmpty) {
-      return;
+  int get questionsLength => _questions.length;
+  String get currentQuestion => _questions[currentQuestionIndex].word;
+
+  List<Pair<String, String>> get mistakes {
+    List<Pair<String, String>> userMistakes = [];
+    for (int i = 0; i < userAnswers.length; i++) {
+      if (userAnswers[i] != _questions[i].translation) {
+        userMistakes.add(
+          Pair(first: userAnswers[i], second: _questions[i].translation),
+        );
+      }
     }
 
-    state.userAnswers.add(trimmedAnswer);
-
-    final hasNextQuestion =
-        (state.currentQuestionIndex + 1) < state.questionsLength;
-    if (!hasNextQuestion) {
-      finishExercise();
-      return;
-    }
-
-    state.currentQuestionIndex++;
-    state.notifyListeners();
-  }
-
-  void finishExercise() {
-    state.isExerciseFinished = true;
-    state.notifyListeners();
+    return userMistakes;
   }
 }

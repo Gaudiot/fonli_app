@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fonli_app/core/design/colors.dart';
 import 'package:fonli_app/core/navigation/navigation.dart';
 import 'package:fonli_app/core/types/custom/custom_types.dart';
-import 'package:fonli_app/src/exercises/word_translation/word_translation.viewmodel.dart';
+import 'package:fonli_app/src/exercises/word_translation/word_translation.viewcontroller.dart';
 
 part 'word_translation.components.dart';
 
@@ -18,20 +18,20 @@ class WordTranslationExerciseView extends StatefulWidget {
 
 class _WordTranslationExerciseViewState
     extends State<WordTranslationExerciseView> {
-  final WordTranslationExerciseViewModel viewModel =
-      WordTranslationExerciseViewModel();
+  final WordTranslationExerciseViewController viewController =
+      WordTranslationExerciseViewController();
 
   final TextEditingController answerController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    viewModel.fetchWordTranslationExercise(widget.exerciseType);
+    viewController.fetchWordTranslationExercise(widget.exerciseType);
   }
 
   void onAnswerSubmit() {
     final answer = answerController.text;
-    viewModel.submitAnswer(answer);
+    viewController.submitAnswer(answer);
     answerController.clear();
   }
 
@@ -52,23 +52,23 @@ class _WordTranslationExerciseViewState
         color: FColors.primary,
         child: SafeArea(
           child: ListenableBuilder(
-            listenable: viewModel.state,
+            listenable: viewController.viewModel,
             builder: (context, _) {
-              final state = viewModel.state;
-              if (state.isLoading) {
+              final vm = viewController.viewModel;
+              if (vm.isLoading) {
                 return const Center(child: CircularProgressIndicator());
               }
 
-              return state.isExerciseFinished
+              return vm.isExerciseFinished
                   ? _ExerciseComplete(
-                      questionsQuantity: state.questionsLength,
-                      mistakes: state.mistakes,
+                      questionsQuantity: vm.questionsLength,
+                      mistakes: vm.mistakes,
                     )
                   : Column(
                       children: [
                         Expanded(
                           child: Center(
-                            child: _WordCard(word: state.currentQuestion),
+                            child: _WordCard(word: vm.currentQuestion),
                           ),
                         ),
                         _TranslationInput(

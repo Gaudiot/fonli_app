@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fonli_app/core/design/colors.dart';
 import 'package:fonli_app/core/navigation/navigation.dart';
-import 'package:fonli_app/src/exercises/story_translation/story_translation.viewmodel.dart';
+import 'package:fonli_app/src/exercises/story_translation/story_translation.viewcontroller.dart';
 
 part 'story_translation.components.dart';
 
@@ -15,15 +15,15 @@ class StoryTranslationExerciseView extends StatefulWidget {
 
 class _StoryTranslationExerciseViewState
     extends State<StoryTranslationExerciseView> {
-  final StoryTranslationExerciseViewModel viewModel =
-      StoryTranslationExerciseViewModel();
+  final StoryTranslationExerciseViewController viewController =
+      StoryTranslationExerciseViewController();
 
   final TextEditingController translationController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    viewModel.fetchStory();
+    viewController.fetchStory();
   }
 
   @override
@@ -33,7 +33,7 @@ class _StoryTranslationExerciseViewState
   }
 
   void onSubmitPressed() {
-    viewModel.submitTranslation(translationController.text);
+    viewController.submitTranslation(translationController.text);
   }
 
   @override
@@ -53,36 +53,36 @@ class _StoryTranslationExerciseViewState
         color: FColors.primary,
         child: SafeArea(
           child: ListenableBuilder(
-            listenable: viewModel.state,
+            listenable: viewController.viewModel,
             builder: (context, _) {
-              final state = viewModel.state;
-              if (state.isLoading && state.story.isEmpty) {
+              final vm = viewController.viewModel;
+              if (vm.isInitialLoading && vm.storyText.isEmpty) {
                 return const Center(child: CircularProgressIndicator());
               }
 
-              if (state.story.isEmpty && !state.isLoading) {
+              if (vm.storyText.isEmpty && !vm.isInitialLoading) {
                 return _FailedToFetchExercise(
-                  onRetry: () => viewModel.fetchStory(),
+                  onRetry: () => viewController.fetchStory(),
                 );
               }
 
-              if (state.isEvaluated) {
+              if (vm.isEvaluated) {
                 return _StoryTranslationResult(
-                  score: state.score,
-                  errors: state.errors,
-                  correctTranslation: state.correctTranslation,
+                  score: vm.score,
+                  errors: vm.errorsList,
+                  correctTranslation: vm.correctTranslationText,
                 );
               }
 
               return Column(
                 children: [
                   Expanded(
-                    child: _StoryCard(story: state.story),
+                    child: _StoryCard(story: vm.storyText),
                   ),
                   _TranslationSection(
                     controller: translationController,
                     onSubmit: onSubmitPressed,
-                    isLoading: state.isLoading,
+                    isSubmitButtonLoading: vm.isSubmitButtonLoading,
                   ),
                 ],
               );
@@ -135,12 +135,12 @@ class _StoryCard extends StatelessWidget {
 class _TranslationSection extends StatelessWidget {
   final TextEditingController controller;
   final VoidCallback onSubmit;
-  final bool isLoading;
+  final bool isSubmitButtonLoading;
 
   const _TranslationSection({
     required this.controller,
     required this.onSubmit,
-    required this.isLoading,
+    required this.isSubmitButtonLoading,
   });
 
   @override
@@ -166,15 +166,17 @@ class _TranslationSection extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           Material(
-            color: isLoading ? FColors.secondaryDark : FColors.secondary,
+            color: isSubmitButtonLoading
+                ? FColors.secondaryDark
+                : FColors.secondary,
             shape: const StadiumBorder(),
             child: InkWell(
               borderRadius: BorderRadius.circular(32),
-              onTap: isLoading ? null : onSubmit,
+              onTap: isSubmitButtonLoading ? null : onSubmit,
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 14),
                 child: Center(
-                  child: isLoading
+                  child: isSubmitButtonLoading
                       ? const SizedBox(
                           height: 20,
                           width: 20,

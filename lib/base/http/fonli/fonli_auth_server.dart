@@ -1,7 +1,4 @@
-import 'package:fonli_app/base/http/fonli/fonli_dio.dart';
-import 'package:fonli_app/core/types/response.type.dart';
-
-part 'models/fonli_auth_server.models.dart';
+part of 'fonli_server.dart';
 
 class FonliAuthServer {
   static const String baseUrl = "http://localhost:8000";
@@ -13,7 +10,7 @@ class FonliAuthServer {
     String email,
     String password,
   ) async {
-    final dio = await createFonliDio();
+    final dio = await _fonliDio();
     try {
       final response = await dio.post(
         '$baseUrl/auth/signup',
@@ -31,7 +28,7 @@ class FonliAuthServer {
     String emailOrUsername,
     String password,
   ) async {
-    final dio = await createFonliDio();
+    final dio = await _fonliDio();
     try {
       final response = await dio.post(
         '$baseUrl/auth/login',
@@ -48,7 +45,7 @@ class FonliAuthServer {
   static Future<Result<RefreshResponse, Exception>> refresh(
     String refreshToken,
   ) async {
-    final dio = await createFonliDio();
+    final dio = await _fonliDio();
     try {
       final response = await dio.post(
         '$baseUrl/auth/refresh',
