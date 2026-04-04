@@ -8,7 +8,7 @@ final class SplashViewController {
   final SplashViewModel viewModel = SplashViewModel();
 
   void onInit(BuildContext context) async {
-    final isAuthenticated = await _isUserAuthenticated();
+    final isAuthenticated = await _hasUserAuthenticatedBefore();
 
     if (!context.mounted) return;
 
@@ -17,24 +17,15 @@ final class SplashViewController {
         : _navigateToAuth(context);
   }
 
-  Future<bool> _isUserAuthenticated() async {
-    final refreshToken = await _getStoredRefreshToken();
-    if (refreshToken == null) return false;
+  Future<bool> _hasUserAuthenticatedBefore() async {
+    final accessToken = await _getAccessToken();
+    if (accessToken == null) return false;
 
-    final result = await FonliAuthServer.refresh(refreshToken);
-    if (result.isError || result.data == null) return false;
-
-    await _saveTokens(result.data!.accessToken, result.data!.refreshToken);
     return true;
   }
 
-  Future<String?> _getStoredRefreshToken() {
-    return secureStorage.getString(SecureStorageKeys.refreshToken);
-  }
-
-  Future<void> _saveTokens(String accessToken, String refreshToken) async {
-    await secureStorage.setString(SecureStorageKeys.accessToken, accessToken);
-    await secureStorage.setString(SecureStorageKeys.refreshToken, refreshToken);
+  Future<String?> _getAccessToken() {
+    return secureStorage.getString(.accessToken);
   }
 
   void _navigateToAuth(BuildContext context) {
