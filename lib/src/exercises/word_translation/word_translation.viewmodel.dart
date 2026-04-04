@@ -1,5 +1,5 @@
 import 'package:fonli_app/base/contexts/language.context.dart';
-import 'package:fonli_app/base/http/fonli_server.dart';
+import 'package:fonli_app/base/http/fonli/fonli_server.dart';
 import 'package:fonli_app/src/exercises/word_translation/word_translation.viewstate.dart';
 
 enum WordTranslationExerciseType { nativeToForeign, foreignToNative }

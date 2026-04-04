@@ -48,6 +48,30 @@ class _LanguageDisplay extends StatelessWidget {
   }
 }
 
+class _UserSettingsDisplay extends StatelessWidget {
+  const _UserSettingsDisplay({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 48,
+      height: 48,
+      child: Material(
+        color: FColors.secondary,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        child: IconButton(
+          onPressed: () {
+            NavigationManager.goTo(context, .userSettings);
+          },
+          icon: Icon(Icons.person, color: FColors.black, size: 28),
+          splashRadius: 24,
+          tooltip: 'User Settings',
+        ),
+      ),
+    );
+  }
+}
+
 class _ExerciseSelectionCard extends StatelessWidget {
   final String title;
   final VoidCallback onTap;

@@ -87,8 +87,8 @@ class _ExerciseSelectionHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [_LanguageDisplay()],
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [_LanguageDisplay(), _UserSettingsDisplay()],
     );
   }
 }

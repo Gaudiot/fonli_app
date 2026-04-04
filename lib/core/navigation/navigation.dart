@@ -7,6 +7,7 @@ import "package:fonli_app/src/exercises/word_translation/word_translation.view.d
 import "package:fonli_app/src/exercises/word_translation/word_translation.viewmodel.dart";
 import "package:fonli_app/src/language_selection/language_selection.view.dart";
 import "package:fonli_app/src/splash/splash.view.dart";
+import "package:fonli_app/src/user_settings/user_settings.view.dart";
 
 typedef RouteBuilder = Widget Function(BuildContext context);
 
@@ -18,7 +19,8 @@ enum NavigationRoutes {
   foreignToNative("/exercise/foreign-to-native"),
   wordConjugation("/exercise/word-conjugation"),
   storyTranslation("/exercise/story-translation"),
-  languageSelection("/language-selection");
+  languageSelection("/language-selection"),
+  userSettings("/user-settings");
 
   final String path;
 
@@ -51,6 +53,8 @@ class NavigationManager {
           const StoryTranslationExerciseView(),
       NavigationRoutes.languageSelection.path: (context) =>
           LanguageSelectionView(),
+      NavigationRoutes.userSettings.path: (context) =>
+          const UserSettingsView(),
     };
   }
 

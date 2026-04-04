@@ -1,18 +1,21 @@
-import 'package:dio/dio.dart';
+import 'package:fonli_app/base/http/fonli/fonli_dio.dart';
 import 'package:fonli_app/core/types/exercises.type.dart';
 import 'package:fonli_app/core/types/response.type.dart';
 
-class FonliServer {
-  static const String baseUrl = "http://localhost:8000";
+part 'fonli_user_server.dart';
+part 'models/fonli_user_server.models.dart';
 
+const String baseUrl = "http://localhost:8000";
+
+class FonliServer {
   static Future<Result<WordTranslationExercise, Exception>>
   getWordTranslationNativeToForeignExercise(
     String nativeLanguage,
     String targetLanguage,
   ) async {
-    Dio dio = Dio();
+    final dio = await createFonliDio();
     final response = await dio.get(
-      '$baseUrl/word-translation/native-to-foreign?nl=$nativeLanguage&fl=$targetLanguage',
+      '$baseUrl/exercises/word-translation/native-to-foreign?nl=$nativeLanguage&fl=$targetLanguage',
     );
 
     if (response.statusCode != 200) {
@@ -31,9 +34,9 @@ class FonliServer {
     String nativeLanguage,
     String targetLanguage,
   ) async {
-    Dio dio = Dio();
+    final dio = await createFonliDio();
     final response = await dio.get(
-      '$baseUrl/word-translation/foreign-to-native?nl=$nativeLanguage&fl=$targetLanguage',
+      '$baseUrl/exercises/word-translation/foreign-to-native?nl=$nativeLanguage&fl=$targetLanguage',
     );
 
     if (response.statusCode != 200) {
@@ -51,9 +54,9 @@ class FonliServer {
 
   static Future<Result<WordConjugationExercise, Exception>>
   getWordConjugationExercise(String targetLanguage) async {
-    Dio dio = Dio();
+    final dio = await createFonliDio();
     final response = await dio.get(
-      '$baseUrl/word-conjugation?fl=$targetLanguage',
+      '$baseUrl/exercises/word-conjugation?fl=$targetLanguage',
     );
 
     if (response.statusCode != 200) {
@@ -71,9 +74,9 @@ class FonliServer {
     String nativeLanguage,
     String targetLanguage,
   ) async {
-    Dio dio = Dio();
+    final dio = await createFonliDio();
     final response = await dio.get(
-      '$baseUrl/history-translation/generate?nl=$nativeLanguage&fl=$targetLanguage',
+      '$baseUrl/exercises/story-translation/generate?nl=$nativeLanguage&fl=$targetLanguage',
     );
 
     if (response.statusCode != 200) {
@@ -93,9 +96,9 @@ class FonliServer {
     String nativeLanguage,
     String targetLanguage,
   ) async {
-    Dio dio = Dio();
+    final dio = await createFonliDio();
     final response = await dio.post(
-      '$baseUrl/history-translation/evaluate?nl=$nativeLanguage&fl=$targetLanguage',
+      '$baseUrl/exercises/story-translation/evaluate?nl=$nativeLanguage&fl=$targetLanguage',
       data: request.toJson(),
     );
 
