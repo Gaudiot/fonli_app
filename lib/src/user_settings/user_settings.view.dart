@@ -14,7 +14,8 @@ class UserSettingsView extends StatefulWidget {
 class _UserSettingsViewState extends State<UserSettingsView> {
   static const int _maxLifestyleLength = 500;
 
-  final UserSettingsViewController viewController = UserSettingsViewController();
+  final UserSettingsViewController viewController =
+      UserSettingsViewController();
   final TextEditingController _lifestyleController = TextEditingController();
   bool _syncedInitialLifestyle = false;
 
@@ -48,6 +49,12 @@ class _UserSettingsViewState extends State<UserSettingsView> {
     final ok = await viewController.save(_lifestyleController.text);
     if (!mounted) return;
     showUserSettingsScaffoldMock(context, success: ok);
+  }
+
+  Future<void> _onLogout() async {
+    await viewController.logout();
+    if (!mounted) return;
+    NavigationManager.pushNamedAndRemoveAll(context, NavigationRoutes.auth);
   }
 
   @override
@@ -88,58 +95,75 @@ class _UserSettingsViewState extends State<UserSettingsView> {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  const Text(
-                    "Your lifestyle helps us create more personalized exercises for you.",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                      color: FColors.black,
-                    ),
-                  ),
-                  const SizedBox(height: 32),
-                  const Text(
-                    'Lifestyle',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  TextField(
-                    controller: _lifestyleController,
-                    maxLines: 5,
-                    maxLength: _maxLifestyleLength,
-                    textCapitalization: TextCapitalization.sentences,
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: FColors.secondary,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  ElevatedButton(
-                    onPressed: vm.saving ? null : _onSave,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: FColors.secondaryDarkest,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                    child: vm.saving
-                        ? const SizedBox(
-                            height: 20,
-                            width: 20,
-                            child: CircularProgressIndicator(
-                              strokeWidth: 2,
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          const Text(
+                            "Your lifestyle helps us create more personalized exercises for you.",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
                               color: FColors.black,
                             ),
-                          )
-                        : const Text(
-                            'Save',
-                            style: TextStyle(color: FColors.black),
                           ),
+                          const SizedBox(height: 32),
+                          const Text(
+                            'Lifestyle',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          TextField(
+                            controller: _lifestyleController,
+                            maxLines: 5,
+                            maxLength: _maxLifestyleLength,
+                            textCapitalization: TextCapitalization.sentences,
+                            decoration: InputDecoration(
+                              filled: true,
+                              fillColor: FColors.secondary,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                          ElevatedButton(
+                            onPressed: vm.saving ? null : _onSave,
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: FColors.secondaryDarkest,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                            ),
+                            child: vm.saving
+                                ? const SizedBox(
+                                    height: 20,
+                                    width: 20,
+                                    child: CircularProgressIndicator(
+                                      strokeWidth: 2,
+                                      color: FColors.black,
+                                    ),
+                                  )
+                                : const Text(
+                                    'Save',
+                                    style: TextStyle(color: FColors.black),
+                                  ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: vm.saving ? null : _onLogout,
+                    style: TextButton.styleFrom(
+                      backgroundColor: FColors.tertiary,
+                      foregroundColor: FColors.white,
+                    ),
+                    child: const Text('Log out'),
                   ),
                 ],
               );

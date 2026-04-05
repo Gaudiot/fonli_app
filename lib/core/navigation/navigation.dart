@@ -53,8 +53,7 @@ class NavigationManager {
           const StoryTranslationExerciseView(),
       NavigationRoutes.languageSelection.path: (context) =>
           LanguageSelectionView(),
-      NavigationRoutes.userSettings.path: (context) =>
-          const UserSettingsView(),
+      NavigationRoutes.userSettings.path: (context) => const UserSettingsView(),
     };
   }
 
@@ -86,6 +85,19 @@ class NavigationManager {
   }) {
     _args = args ?? {};
     Navigator.pushReplacementNamed(context, route.path);
+  }
+
+  static Future<T?> pushNamedAndRemoveAll<T extends Object?>(
+    BuildContext context,
+    NavigationRoutes route, {
+    Map<String, String>? args,
+  }) {
+    _args = args ?? {};
+    return Navigator.pushNamedAndRemoveUntil<T>(
+      context,
+      route.path,
+      (route) => false,
+    );
   }
 
   static Future<void> goToAndCallBack(

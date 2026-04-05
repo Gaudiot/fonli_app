@@ -1,3 +1,5 @@
+import 'package:fonli_app/base/http/fonli/fonli_server.dart';
+import 'package:fonli_app/core/storage/secure_storage.interface.dart';
 import 'package:fonli_app/src/user_settings/user_settings.repository.dart';
 import 'package:fonli_app/src/user_settings/user_settings.viewmodel.dart';
 
@@ -38,6 +40,15 @@ class UserSettingsViewController {
     } finally {
       viewModel.saving = false;
       viewModel.notifyListeners();
+    }
+  }
+
+  Future<void> logout() async {
+    try {
+      await FonliAuthServer.logout();
+    } finally {
+      await secureStorage.deleteKey(SecureStorageKeys.accessToken);
+      await secureStorage.deleteKey(SecureStorageKeys.refreshToken);
     }
   }
 }
