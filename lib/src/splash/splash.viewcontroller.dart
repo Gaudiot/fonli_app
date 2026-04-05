@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fonli_app/base/http/fonli/fonli_server.dart';
 import 'package:fonli_app/core/navigation/navigation.dart';
 import 'package:fonli_app/core/storage/secure_storage.interface.dart';
 import 'package:fonli_app/src/splash/splash.viewmodel.dart';

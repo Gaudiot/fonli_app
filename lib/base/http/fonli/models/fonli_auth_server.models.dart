@@ -24,6 +24,14 @@ final class SignUpResponse {
   );
 }
 
+final class RefreshRequest {
+  final String refreshToken;
+
+  RefreshRequest({required this.refreshToken});
+
+  Map<String, dynamic> toJson() => {'refresh_token': refreshToken};
+}
+
 final class RefreshResponse {
   final String accessToken;
   final String refreshToken;
@@ -32,7 +40,7 @@ final class RefreshResponse {
 
   factory RefreshResponse.fromJson(Map<String, dynamic> json) =>
       RefreshResponse(
-        accessToken: json['access_token'],
-        refreshToken: json['refresh_token'],
+        accessToken: json['access_token'] as String,
+        refreshToken: json['refresh_token'] as String,
       );
 }
