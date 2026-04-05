@@ -56,7 +56,7 @@ class FonliExerciseServer {
     final dio = await _fonliDio();
     try {
       final response = await dio.get(
-        '$baseUrl/exercises/word-conjugation?fl=$targetLanguage',
+        '$baseUrl/exercises/word-conjugation?fl=$targetLanguage&tense=present-simple',
       );
       final exercise = WordConjugationExercise.fromJson(
         response.data as Map<String, dynamic>,
