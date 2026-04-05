@@ -15,6 +15,7 @@ dependencies:
   flutter_svg: ^2.2.4
   json_annotation: ^4.10.0
   shared_preferences: ^2.5.4
+  top_snackbar_flutter: ^3.3.0
 
 dev_dependencies:
   flutter_test:
