@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fonli_app/core/components/snackbar/snackbar.dart';
 import 'package:fonli_app/core/design/colors.dart';
 import 'package:fonli_app/core/navigation/navigation.dart';
 import 'package:fonli_app/core/types/custom/custom_types.dart';
@@ -26,7 +27,23 @@ class _WordTranslationExerciseViewState
   @override
   void initState() {
     super.initState();
+    viewController.viewModel.addListener(_onViewModelChanged);
     viewController.fetchWordTranslationExercise(widget.exerciseType);
+  }
+
+  @override
+  void dispose() {
+    viewController.viewModel.removeListener(_onViewModelChanged);
+    super.dispose();
+  }
+
+  void _onViewModelChanged() {
+    final vm = viewController.viewModel;
+    final err = vm.snackbarErrorMessage;
+    if (err != null && mounted) {
+      vm.clearSnackbarError();
+      snackbarMessenger.showError(context, err);
+    }
   }
 
   void onAnswerSubmit() {
@@ -57,6 +74,14 @@ class _WordTranslationExerciseViewState
               final vm = viewController.viewModel;
               if (vm.isLoading) {
                 return const Center(child: CircularProgressIndicator());
+              }
+
+              if (vm.questionsLength == 0) {
+                return _FailedToFetchExercise(
+                  onRetry: () => viewController.fetchWordTranslationExercise(
+                    widget.exerciseType,
+                  ),
+                );
               }
 
               return vm.isExerciseFinished

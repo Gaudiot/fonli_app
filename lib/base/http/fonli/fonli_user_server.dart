@@ -12,7 +12,13 @@ class FonliUserServer {
 
       return Result.ok(data);
     } catch (e) {
-      return Result.error(Exception(e.toString()));
+      if (e is DioException && e.response != null) {
+        final response = e.response!;
+        return Result.error(Exception(response.data['error']));
+      }
+      return Result.error(
+        Exception("Failed to get user lifestyle. Try again later."),
+      );
     }
   }
 
@@ -29,7 +35,13 @@ class FonliUserServer {
 
       return Result.ok(data);
     } catch (e) {
-      return Result.error(Exception(e.toString()));
+      if (e is DioException && e.response != null) {
+        final response = e.response!;
+        return Result.error(Exception(response.data['error']));
+      }
+      return Result.error(
+        Exception("Failed to save user lifestyle. Try again later."),
+      );
     }
   }
 }

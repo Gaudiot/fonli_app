@@ -10,16 +10,26 @@ class Question {
 
 final class WordTranslationExerciseViewModel extends BaseViewState {
   int currentQuestionIndex = 0;
-  List<Question> _questions = [
-    Question(word: "1", translation: "2"),
-    Question(word: "3", translation: "4"),
-    Question(word: "5", translation: "6"),
-  ];
+  List<Question> _questions = [];
   List<String> userAnswers = [];
   bool isExerciseFinished = false;
 
+  /// Set when fetch fails; consumed by the view to show the app snackbar.
+  String? snackbarErrorMessage;
+
   set questions(List<Question> value) {
     _questions = value;
+  }
+
+  void clearSnackbarError() {
+    if (snackbarErrorMessage == null) return;
+    snackbarErrorMessage = null;
+    notifyListeners();
+  }
+
+  void reportSnackbarError(String message) {
+    snackbarErrorMessage = message;
+    notifyListeners();
   }
 
   int get questionsLength => _questions.length;

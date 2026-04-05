@@ -19,7 +19,9 @@ class StoryTranslationExerciseViewController {
       onOk: (response) {
         viewModel.storyText = response.story;
       },
-      onError: (_) {},
+      onError: (e) {
+        viewModel.reportSnackbarError(_messageFromExerciseError(e));
+      },
     );
     viewModel.isInitialLoading = false;
     viewModel.notifyListeners();
@@ -50,9 +52,20 @@ class StoryTranslationExerciseViewController {
         viewModel.correctTranslationText = response.correctTranslation;
         viewModel.isEvaluated = true;
       },
-      onError: (_) {},
+      onError: (e) {
+        viewModel.reportSnackbarError(_messageFromExerciseError(e));
+      },
     );
     viewModel.isSubmitButtonLoading = false;
     viewModel.notifyListeners();
+  }
+
+  String _messageFromExerciseError(Object error) {
+    final s = error.toString();
+    const prefix = 'Exception: ';
+    if (s.startsWith(prefix)) {
+      return s.substring(prefix.length);
+    }
+    return s;
   }
 }

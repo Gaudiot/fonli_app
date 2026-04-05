@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fonli_app/core/components/snackbar/snackbar.dart';
 import 'package:fonli_app/core/design/colors.dart';
 import 'package:fonli_app/core/navigation/navigation.dart';
 import 'package:fonli_app/src/exercises/story_translation/story_translation.viewcontroller.dart';
@@ -23,11 +24,22 @@ class _StoryTranslationExerciseViewState
   @override
   void initState() {
     super.initState();
+    viewController.viewModel.addListener(_onViewModelChanged);
     viewController.fetchStory();
+  }
+
+  void _onViewModelChanged() {
+    final vm = viewController.viewModel;
+    final err = vm.snackbarErrorMessage;
+    if (err != null && mounted) {
+      vm.clearSnackbarError();
+      snackbarMessenger.showError(context, err);
+    }
   }
 
   @override
   void dispose() {
+    viewController.viewModel.removeListener(_onViewModelChanged);
     translationController.dispose();
     super.dispose();
   }

@@ -8,4 +8,18 @@ final class StoryTranslationExerciseViewModel extends BaseViewState {
   int score = 0;
   List<String> errorsList = [];
   String correctTranslationText = "";
+
+  /// Set when generate/evaluate fails; consumed by the view to show the app snackbar.
+  String? snackbarErrorMessage;
+
+  void clearSnackbarError() {
+    if (snackbarErrorMessage == null) return;
+    snackbarErrorMessage = null;
+    notifyListeners();
+  }
+
+  void reportSnackbarError(String message) {
+    snackbarErrorMessage = message;
+    notifyListeners();
+  }
 }

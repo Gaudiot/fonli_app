@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:fonli_app/core/components/snackbar/snackbar.dart';
 import 'package:fonli_app/core/components/ui/button.component.dart';
 import 'package:fonli_app/core/components/ui/text_input.component.dart';
 import 'package:fonli_app/core/design/colors.dart';
@@ -31,7 +32,15 @@ class _AuthViewState extends State<AuthView> {
   }
 
   void _onViewModelChanged() {
-    if (viewController.viewModel.isAuthenticated) {
+    final vm = viewController.viewModel;
+
+    final err = vm.authErrorMessage;
+    if (err != null && mounted) {
+      vm.clearAuthError();
+      snackbarMessenger.showError(context, err);
+    }
+
+    if (vm.isAuthenticated && mounted) {
       NavigationManager.replaceWith(
         context,
         NavigationRoutes.exerciseSelection,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fonli_app/core/components/snackbar/snackbar.dart';
 import 'package:fonli_app/core/design/colors.dart';
 import 'package:fonli_app/core/navigation/navigation.dart';
 import 'package:fonli_app/core/types/custom/custom_types.dart';
@@ -24,11 +25,22 @@ class _WordConjugationExerciseViewState
   @override
   void initState() {
     super.initState();
+    viewController.viewModel.addListener(_onViewModelChanged);
     viewController.fetchWordConjugationExercise();
+  }
+
+  void _onViewModelChanged() {
+    final vm = viewController.viewModel;
+    final err = vm.snackbarErrorMessage;
+    if (err != null && mounted) {
+      vm.clearSnackbarError();
+      snackbarMessenger.showError(context, err);
+    }
   }
 
   @override
   void dispose() {
+    viewController.viewModel.removeListener(_onViewModelChanged);
     answerController.dispose();
     super.dispose();
   }

@@ -31,8 +31,20 @@ class WordTranslationExerciseViewController {
             .map((q) => Question(word: q.word, translation: q.translation))
             .toList();
       },
+      onError: (e) {
+        viewModel.reportSnackbarError(_messageFromExerciseError(e));
+      },
     );
     viewModel.isLoading = false;
+  }
+
+  String _messageFromExerciseError(Object error) {
+    final s = error.toString();
+    const prefix = 'Exception: ';
+    if (s.startsWith(prefix)) {
+      return s.substring(prefix.length);
+    }
+    return s;
   }
 
   void submitAnswer(String answer) {

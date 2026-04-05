@@ -1,6 +1,6 @@
+import 'package:fonli_app/base/http/fonli/fonli_server.dart';
 import 'package:fonli_app/core/components/base_viewstate.dart';
 import 'package:fonli_app/core/types/custom/custom_types.dart';
-import 'package:fonli_app/base/http/fonli/fonli_server.dart';
 
 final class WordConjugationExerciseViewModel extends BaseViewState {
   String word = "";
@@ -10,8 +10,22 @@ final class WordConjugationExerciseViewModel extends BaseViewState {
   List<String> userAnswers = [];
   bool isExerciseFinished = false;
 
+  /// Set when fetch fails; consumed by the view to show the app snackbar.
+  String? snackbarErrorMessage;
+
   set conjugations(List<Conjugation> value) {
     _conjugations = value;
+  }
+
+  void clearSnackbarError() {
+    if (snackbarErrorMessage == null) return;
+    snackbarErrorMessage = null;
+    notifyListeners();
+  }
+
+  void reportSnackbarError(String message) {
+    snackbarErrorMessage = message;
+    notifyListeners();
   }
 
   int get questionsLength => _conjugations.length;

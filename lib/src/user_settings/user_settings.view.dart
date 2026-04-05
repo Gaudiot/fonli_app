@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fonli_app/core/components/snackbar/snackbar.dart';
 import 'package:fonli_app/core/design/colors.dart';
 import 'package:fonli_app/core/navigation/navigation.dart';
-import 'package:fonli_app/src/user_settings/user_settings.scaffold.dart';
 import 'package:fonli_app/src/user_settings/user_settings.viewcontroller.dart';
 
 class UserSettingsView extends StatefulWidget {
@@ -30,11 +30,7 @@ class _UserSettingsViewState extends State<UserSettingsView> {
     await viewController.load();
     if (!mounted) return;
     if (viewController.viewModel.hasError) {
-      showUserSettingsScaffoldMock(
-        context,
-        success: false,
-        message: 'Could not load lifestyle.',
-      );
+      snackbarMessenger.showError(context, 'Could not load lifestyle.');
     }
   }
 
@@ -48,7 +44,11 @@ class _UserSettingsViewState extends State<UserSettingsView> {
   Future<void> _onSave() async {
     final ok = await viewController.save(_lifestyleController.text);
     if (!mounted) return;
-    showUserSettingsScaffoldMock(context, success: ok);
+    if (ok) {
+      snackbarMessenger.showSuccess(context, 'Lifestyle saved.');
+    } else {
+      snackbarMessenger.showError(context, 'Could not save lifestyle.');
+    }
   }
 
   Future<void> _onLogout() async {

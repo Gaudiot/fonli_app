@@ -19,9 +19,20 @@ class WordConjugationExerciseViewController {
         viewModel.tense = exercise.tense;
         viewModel.conjugations = exercise.conjugations;
       },
-      onError: (_) {},
+      onError: (e) {
+        viewModel.reportSnackbarError(_messageFromExerciseError(e));
+      },
     );
     viewModel.isLoading = false;
+  }
+
+  String _messageFromExerciseError(Object error) {
+    final s = error.toString();
+    const prefix = 'Exception: ';
+    if (s.startsWith(prefix)) {
+      return s.substring(prefix.length);
+    }
+    return s;
   }
 
   void submitAnswer(String answer) {

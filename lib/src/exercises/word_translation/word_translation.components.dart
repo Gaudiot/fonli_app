@@ -206,19 +206,30 @@ class _CompleteButton extends StatelessWidget {
 // MARK: - View Status
 
 class _FailedToFetchExercise extends StatelessWidget {
-  const _FailedToFetchExercise();
+  final VoidCallback onRetry;
+
+  const _FailedToFetchExercise({required this.onRetry});
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
-  }
-}
-
-class _LoadingExercise extends StatelessWidget {
-  const _LoadingExercise();
-
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(32),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text(
+              'Failed to load exercise',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 16),
+            FilledButton(
+              onPressed: onRetry,
+              child: const Text('Retry'),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
