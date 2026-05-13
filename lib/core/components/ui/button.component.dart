@@ -30,7 +30,7 @@ class FButton extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           child: isLoading
               ? _LoadingContent()
-              : Text(text, style: const TextStyle(color: Colors.white)),
+              : Text(text, style: const TextStyle(color: Colors.black)),
         ),
       ),
     );

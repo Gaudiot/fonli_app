@@ -52,13 +52,7 @@ class _AuthViewState extends State<AuthView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [FColors.secondary, FColors.primary],
-          ),
-        ),
+        color: FColors.primary,
         child: Center(
           child: ListenableBuilder(
             listenable: viewController.viewModel,

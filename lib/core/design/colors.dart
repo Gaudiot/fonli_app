@@ -13,22 +13,22 @@ class FColors {
   static const Color black = Color(0xFF000000);
 
   //MARK: - Primary
-  static const Color primaryDarkest = Color(0xFF2C8C8C);
-  static const Color primaryDarker = Color(0xFF319B9B);
-  static const Color primaryDark = Color(0xFF36ABAB);
-  static const Color primary = Color(0xFF39B3B3);
-  static const Color primaryLight = Color(0xFF45CACA);
-  static const Color primaryLighter = Color(0xFF54C9C9);
-  static const Color primaryLightest = Color(0xFF64CECE);
+  static const Color primaryDarkest = Color(0xFFDCD193);
+  static const Color primaryDarker = Color(0xFFE1D8A3);
+  static const Color primaryDark = Color(0xFFE6DEB2);
+  static const Color primary = Color(0xFFEBE5C2);
+  static const Color primaryLight = Color(0xFFF0EBD1);
+  static const Color primaryLighter = Color(0xFFF4F1DE);
+  static const Color primaryLightest = Color(0xFFFAF8F0);
 
   //MARK: - Secondary
-  static const Color secondaryDarkest = Color(0xFFDCD193);
-  static const Color secondaryDarker = Color(0xFFE1D8A3);
-  static const Color secondaryDark = Color(0xFFE6DEB2);
-  static const Color secondary = Color(0xFFEBE5C2);
-  static const Color secondaryLight = Color(0xFFF0EBD1);
-  static const Color secondaryLighter = Color(0xFFF4F1DE);
-  static const Color secondaryLightest = Color(0xFFFAF8F0);
+  static const Color secondaryDarkest = Color(0xFF2C8C8C);
+  static const Color secondaryDarker = Color(0xFF319B9B);
+  static const Color secondaryDark = Color(0xFF36ABAB);
+  static const Color secondary = Color(0xFF39B3B3);
+  static const Color secondaryLight = Color(0xFF45CACA);
+  static const Color secondaryLighter = Color(0xFF54C9C9);
+  static const Color secondaryLightest = Color(0xFF64CECE);
 
   //MARK: - Tertiary
   static const Color tertiaryDarkest = Color(0xFFD85531);
