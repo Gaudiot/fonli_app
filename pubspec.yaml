@@ -14,6 +14,7 @@ dependencies:
   flutter_secure_storage: ^10.0.0
   flutter_svg: ^2.2.4
   json_annotation: ^4.10.0
+  logger: ^2.7.0
   shared_preferences: ^2.5.4
   top_snackbar_flutter: ^3.3.0
 

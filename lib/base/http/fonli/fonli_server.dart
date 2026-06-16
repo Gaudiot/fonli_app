@@ -13,4 +13,4 @@ part 'models/fonli_auth_server.models.dart';
 part 'models/fonli_exercise_server.models.dart';
 part 'fonli_exercise_server.dart';
 
-const String baseUrl = "http://localhost:8000";
+const String baseUrl = "https://gaudiot.com";
