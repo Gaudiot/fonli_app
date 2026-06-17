@@ -1,8 +1,6 @@
 part of 'fonli_server.dart';
 
 class FonliAuthServer {
-  static const String baseUrl = "http://localhost:8000";
-
   FonliAuthServer._();
 
   static Future<Result<SignUpResponse, Exception>> signUp(
@@ -10,10 +8,10 @@ class FonliAuthServer {
     String email,
     String password,
   ) async {
-    final dio = await _fonliDio();
+    final fonliApi = FonliApi.instace;
     try {
-      final response = await dio.post(
-        '$baseUrl/auth/signup',
+      final response = await fonliApi.post(
+        '/auth/signup',
         data: {'username': username, 'email': email, 'password': password},
       );
       final data = SignUpResponse.fromJson(response.data);
@@ -32,10 +30,10 @@ class FonliAuthServer {
     String emailOrUsername,
     String password,
   ) async {
-    final dio = await _fonliDio();
+    final fonliApi = FonliApi.instace;
     try {
-      final response = await dio.post(
-        '$baseUrl/auth/login',
+      final response = await fonliApi.post(
+        '/auth/login',
         data: {'email_or_username': emailOrUsername, 'password': password},
       );
       final data = LoginResponse.fromJson(response.data);
@@ -54,9 +52,9 @@ class FonliAuthServer {
     String refreshToken,
   ) async {
     try {
-      final dio = Dio();
-      final response = await dio.post(
-        '$baseUrl/auth/refresh',
+      final fonliApi = FonliApi.instace;
+      final response = await fonliApi.post(
+        '/auth/refresh',
         data: RefreshRequest(refreshToken: refreshToken).toJson(),
       );
       if (response.statusCode != 200 || response.data == null) {
@@ -75,9 +73,9 @@ class FonliAuthServer {
   }
 
   static Future<Result<void, Exception>> logout() async {
-    final dio = await _fonliDio();
+    final fonliApi = FonliApi.instace;
     try {
-      await dio.post('$baseUrl/auth/logout');
+      await fonliApi.post('/auth/logout');
       return Result.ok(null);
     } catch (e) {
       if (e is DioException && e.response != null) {

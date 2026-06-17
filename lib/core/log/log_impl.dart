@@ -9,27 +9,27 @@ class LogImpl implements FLogger {
   }
 
   @override
-  void error(dynamic message) {
-    _logger.e(message.toString());
+  void error(LoggableMetadata message) {
+    _logger.e(message.toLogString());
   }
 
   @override
-  void warn(dynamic message) {
-    _logger.w(message.toString());
+  void warn(LoggableMetadata message) {
+    _logger.w(message.toLogString());
   }
 
   @override
-  void info(dynamic message) {
-    _logger.i(message.toString());
+  void info(LoggableMetadata message) {
+    _logger.i(message.toLogString());
   }
 
   @override
-  void debug(dynamic message) {
-    _logger.d(message.toString());
+  void debug(LoggableMetadata message) {
+    _logger.d(message.toLogString());
   }
 
   @override
-  void trace(dynamic message) {
-    _logger.t(message.toString());
+  void trace(LoggableMetadata message) {
+    _logger.t(message.toLogString());
   }
 }

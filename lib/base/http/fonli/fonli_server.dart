@@ -1,8 +1,10 @@
 import 'package:dio/dio.dart';
+import 'package:fonli_app/core/log/log.dart';
 import 'package:fonli_app/core/storage/secure_storage.interface.dart';
 import 'package:fonli_app/core/types/response.type.dart';
+import 'package:fonli_app/core/log/log_impl.dart';
 
-part 'fonli_dio.dart';
+part 'fonli_api.dart';
 
 part 'fonli_user_server.dart';
 part 'models/fonli_user_server.models.dart';
@@ -13,4 +15,4 @@ part 'models/fonli_auth_server.models.dart';
 part 'models/fonli_exercise_server.models.dart';
 part 'fonli_exercise_server.dart';
 
-const String baseUrl = "https://gaudiot.com";
+part 'models/fonli_api.log_metadata.dart';

@@ -8,22 +8,17 @@ class FonliExerciseServer {
     String nativeLanguage,
     String targetLanguage,
   ) async {
-    final dio = await _fonliDio();
+    final fonliApi = FonliApi.instace;
     try {
-      final response = await dio.get(
-        '$baseUrl/exercises/word-translation/native-to-foreign?nl=$nativeLanguage&fl=$targetLanguage',
+      final response = await fonliApi.get(
+        '/exercises/word-translation/native-to-foreign?nl=$nativeLanguage&fl=$targetLanguage',
       );
       final exercise = WordTranslationExercise.fromJson(
         response.data as Map<String, dynamic>,
       );
       return Result.ok(exercise);
     } catch (e) {
-      return Result.error(
-        _fonliExerciseExceptionFromCatch(
-          e,
-          'Failed to load word translation exercise. Try again later.',
-        ),
-      );
+      return Result.error(Exception(e));
     }
   }
 
@@ -32,31 +27,26 @@ class FonliExerciseServer {
     String nativeLanguage,
     String targetLanguage,
   ) async {
-    final dio = await _fonliDio();
+    final fonliApi = FonliApi.instace;
     try {
-      final response = await dio.get(
-        '$baseUrl/exercises/word-translation/foreign-to-native?nl=$nativeLanguage&fl=$targetLanguage',
+      final response = await fonliApi.get(
+        '/exercises/word-translation/foreign-to-native?nl=$nativeLanguage&fl=$targetLanguage',
       );
       final exercise = WordTranslationExercise.fromJson(
         response.data as Map<String, dynamic>,
       );
       return Result.ok(exercise);
     } catch (e) {
-      return Result.error(
-        _fonliExerciseExceptionFromCatch(
-          e,
-          'Failed to load word translation exercise. Try again later.',
-        ),
-      );
+      return Result.error(Exception(e));
     }
   }
 
   static Future<Result<WordConjugationExercise, Exception>>
   getWordConjugationExercise(String targetLanguage) async {
-    final dio = await _fonliDio();
+    final fonliApi = FonliApi.instace;
     try {
-      final response = await dio.get(
-        '$baseUrl/exercises/word-conjugation?fl=$targetLanguage&tense=present-simple',
+      final response = await fonliApi.get(
+        '/exercises/word-conjugation?fl=$targetLanguage&tense=present-simple',
       );
       final exercise = WordConjugationExercise.fromJson(
         response.data as Map<String, dynamic>,
@@ -76,10 +66,10 @@ class FonliExerciseServer {
     String nativeLanguage,
     String targetLanguage,
   ) async {
-    final dio = await _fonliDio();
+    final fonliApi = FonliApi.instace;
     try {
-      final response = await dio.get(
-        '$baseUrl/exercises/story-translation/generate?nl=$nativeLanguage&fl=$targetLanguage',
+      final response = await fonliApi.get(
+        '/exercises/story-translation/generate?nl=$nativeLanguage&fl=$targetLanguage',
       );
       final story = GenerateStoryResponse.fromJson(
         response.data as Map<String, dynamic>,
@@ -101,10 +91,10 @@ class FonliExerciseServer {
     String nativeLanguage,
     String targetLanguage,
   ) async {
-    final dio = await _fonliDio();
+    final fonliApi = FonliApi.instace;
     try {
-      final response = await dio.post(
-        '$baseUrl/exercises/story-translation/evaluate?nl=$nativeLanguage&fl=$targetLanguage',
+      final response = await fonliApi.post(
+        '/exercises/story-translation/evaluate?nl=$nativeLanguage&fl=$targetLanguage',
         data: request.toJson(),
       );
       final evaluation = EvaluateStoryTranslationResponse.fromJson(
