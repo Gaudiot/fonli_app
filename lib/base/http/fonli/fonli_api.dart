@@ -19,7 +19,7 @@ class FonliApi {
   static Dio get instace {
     if (!_instance.isInitialized) {
       _instance.isInitialized = true;
-      _instance.dio = Dio(BaseOptions(baseUrl: "https://gaudiot.com"));
+      _instance.dio = Dio(BaseOptions(baseUrl: "https://fonli.gaudiot.com"));
       _instance.addInterceptors();
     }
     return _instance.dio;
@@ -85,6 +85,7 @@ extension on FonliApi {
 extension on FonliApi {
   FonliServerLogMetadata _getInfoLogMetadata(Response response) {
     return FonliServerLogMetadata(
+      method: response.requestOptions.method,
       url: response.requestOptions.uri.toString(),
       statusCode: response.statusCode ?? 0,
     );
@@ -92,6 +93,7 @@ extension on FonliApi {
 
   FonliServerLogMetadata _getErrorLogMetadata(DioException err) {
     return FonliServerLogMetadata(
+      method: err.requestOptions.method,
       url: err.requestOptions.uri.toString(),
       statusCode: err.response?.statusCode ?? 0,
     );
