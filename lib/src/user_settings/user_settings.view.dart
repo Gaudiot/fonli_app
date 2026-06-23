@@ -124,7 +124,7 @@ class _UserSettingsViewState extends State<UserSettingsView> {
                             textCapitalization: TextCapitalization.sentences,
                             decoration: InputDecoration(
                               filled: true,
-                              fillColor: FColors.secondary,
+                              fillColor: FColors.primaryLighter,
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8),
                               ),
@@ -134,7 +134,7 @@ class _UserSettingsViewState extends State<UserSettingsView> {
                           ElevatedButton(
                             onPressed: vm.saving ? null : _onSave,
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: FColors.secondaryDarkest,
+                              backgroundColor: FColors.secondary,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8),
                               ),
