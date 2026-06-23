@@ -53,24 +53,26 @@ class _AuthViewState extends State<AuthView> {
     return Scaffold(
       body: Container(
         color: FColors.primary,
-        child: Center(
-          child: ListenableBuilder(
-            listenable: viewController.viewModel,
-            builder: (context, _) {
-              final vm = viewController.viewModel;
+        child: SafeArea(
+          child: Center(
+            child: ListenableBuilder(
+              listenable: viewController.viewModel,
+              builder: (context, _) {
+                final vm = viewController.viewModel;
 
-              return vm.isLogin
-                  ? _LoginForm(
-                      onSignUpTap: viewController.toggleForm,
-                      onSubmit: viewController.submitLogin,
-                      isLoading: vm.isLoading,
-                    )
-                  : _SignUpForm(
-                      onLogInTap: viewController.toggleForm,
-                      onSubmit: viewController.submitSignUp,
-                      isLoading: vm.isLoading,
-                    );
-            },
+                return vm.isLogin
+                    ? _LoginForm(
+                        onSignUpTap: viewController.toggleForm,
+                        onSubmit: viewController.submitLogin,
+                        isLoading: vm.isLoading,
+                      )
+                    : _SignUpForm(
+                        onLogInTap: viewController.toggleForm,
+                        onSubmit: viewController.submitSignUp,
+                        isLoading: vm.isLoading,
+                      );
+              },
+            ),
           ),
         ),
       ),
