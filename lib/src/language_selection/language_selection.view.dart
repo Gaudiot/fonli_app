@@ -77,7 +77,7 @@ class _LanguageSelectionViewState extends State<LanguageSelectionView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: FColors.secondary,
+        backgroundColor: FColors.primary,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.close, color: FColors.black),
@@ -87,7 +87,7 @@ class _LanguageSelectionViewState extends State<LanguageSelectionView> {
         ),
       ),
       body: Container(
-        color: FColors.secondary,
+        color: FColors.primary,
         padding: const EdgeInsets.all(16),
         child: SafeArea(
           child: Column(
@@ -181,7 +181,7 @@ class _LanguageSelectionItem extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: isSelected ? FColors.primaryDarkest : FColors.primaryLightest,
+          color: isSelected ? FColors.secondary : FColors.primaryLightest,
           borderRadius: BorderRadius.circular(8),
         ),
         child: Text(language.name),
@@ -199,7 +199,7 @@ class _SaveSelectionButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        backgroundColor: FColors.primary,
+        backgroundColor: FColors.secondary,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
       child: const Text("Save", style: TextStyle(color: FColors.black)),
