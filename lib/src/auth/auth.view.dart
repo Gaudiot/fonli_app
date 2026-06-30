@@ -5,6 +5,7 @@ import 'package:fonli_app/core/components/ui/button.component.dart';
 import 'package:fonli_app/core/components/ui/text_input.component.dart';
 import 'package:fonli_app/core/design/colors.dart';
 import 'package:fonli_app/core/navigation/navigation.dart';
+import 'package:fonli_app/l10n/output/app_localizations.dart';
 import 'package:fonli_app/src/auth/auth.viewcontroller.dart';
 
 part 'auth.components.dart';

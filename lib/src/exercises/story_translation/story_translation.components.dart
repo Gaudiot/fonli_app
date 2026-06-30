@@ -22,7 +22,7 @@ final class _StoryTranslationResult extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
-            "Exercise finished",
+            AppLocalizations.of(context)!.exercise_finished,
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 24),
@@ -60,11 +60,8 @@ class _ScoreCard extends StatelessWidget {
           const Icon(Icons.star, color: FColors.secondaryDarkest, size: 32),
           const SizedBox(width: 16),
           Text(
-            "Score: $score / 100",
-            style: const TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.bold,
-            ),
+            AppLocalizations.of(context)!.translation_score(score, 100),
+            style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
           ),
         ],
       ),
@@ -84,7 +81,7 @@ class _ErrorsSection extends StatelessWidget {
       mainAxisSize: .min,
       children: [
         Text(
-          "Errors:",
+          AppLocalizations.of(context)!.exercise_mistakes_output,
           style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 8),
@@ -99,8 +96,10 @@ class _ErrorsSection extends StatelessWidget {
             itemCount: errors.length,
             itemBuilder: (context, index) {
               return Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 4,
+                ),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -130,7 +129,7 @@ class _CorrectTranslationSection extends StatelessWidget {
       mainAxisSize: .min,
       children: [
         Text(
-          "Correct translation:",
+          AppLocalizations.of(context)!.correct_translation,
           style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 8),
@@ -171,12 +170,11 @@ class _CompleteButton extends StatelessWidget {
           child: InkWell(
             borderRadius: BorderRadius.circular(32),
             onTap: onCompleteButtonTap,
-            child: const Padding(
-              padding: EdgeInsets.symmetric(
-                vertical: 16,
-                horizontal: 120,
+            child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 16, horizontal: 120),
+              child: Center(
+                child: Text(AppLocalizations.of(context)!.complete),
               ),
-              child: Center(child: Text("Complete")),
             ),
           ),
         ),
@@ -198,14 +196,14 @@ class _FailedToFetchExercise extends StatelessWidget {
         child: Column(
           mainAxisSize: .min,
           children: [
-            const Text(
-              "Failed to load story",
+            Text(
+              AppLocalizations.of(context)!.exercise_load_fail,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
             FilledButton(
               onPressed: onRetry,
-              child: const Text("Retry"),
+              child: Text(AppLocalizations.of(context)!.common__retry),
             ),
           ],
         ),

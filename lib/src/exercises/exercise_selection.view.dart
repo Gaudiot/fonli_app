@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fonli_app/base/contexts/language.context.dart';
 import 'package:fonli_app/core/design/colors.dart';
 import 'package:fonli_app/core/navigation/navigation.dart';
+import 'package:fonli_app/l10n/output/app_localizations.dart';
 
 part './exercise_selection.components.dart';
 
@@ -20,19 +21,19 @@ class ExerciseSelectionView extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<_ExerciseModel> exercises = [
       _ExerciseModel(
-        title: "Native to Foreign",
+        title: AppLocalizations.of(context)!.exercise_native_to_foreign,
         onTap: () => NavigationManager.goTo(context, .nativeToForeign),
       ),
       _ExerciseModel(
-        title: "Foreign to Native",
+        title: AppLocalizations.of(context)!.exercise_foreign_to_native,
         onTap: () => NavigationManager.goTo(context, .foreignToNative),
       ),
       _ExerciseModel(
-        title: "Word Conjugation",
+        title: AppLocalizations.of(context)!.exercise_conjugation,
         onTap: () => NavigationManager.goTo(context, .wordConjugation),
       ),
       _ExerciseModel(
-        title: "Story Translation",
+        title: AppLocalizations.of(context)!.exercise_story,
         onTap: () => NavigationManager.goTo(context, .storyTranslation),
       ),
     ];
@@ -51,7 +52,7 @@ class ExerciseSelectionView extends StatelessWidget {
                     mainAxisSize: .min,
                     children: [
                       Text(
-                        'Select an exercise:',
+                        AppLocalizations.of(context)!.select_exercise,
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,

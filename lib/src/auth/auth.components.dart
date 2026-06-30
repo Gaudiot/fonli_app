@@ -62,19 +62,19 @@ class _LoginFormState extends State<_LoginForm> {
           ),
           const SizedBox(height: 24),
           FTextInput(
-            label: 'Email/Username',
+            label: AppLocalizations.of(context)!.email_or_username,
             controller: emailOrUsernameController,
           ),
           const SizedBox(height: 16),
           FTextInput(
-            label: 'Password',
+            label: AppLocalizations.of(context)!.password,
             controller: passwordController,
             obscureText: true,
           ),
           const SizedBox(height: 48),
           FButton(
             isLoading: widget.isLoading,
-            text: 'Log In',
+            text: AppLocalizations.of(context)!.login,
             onPressed: () => widget.onSubmit(
               emailOrUsernameController.text,
               passwordController.text,
@@ -98,17 +98,17 @@ class _LoginFormHeader extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        const Text(
-          'Login',
+        Text(
+          AppLocalizations.of(context)!.login,
           style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
           textAlign: TextAlign.center,
         ),
         Text.rich(
           TextSpan(
-            text: "Don't have an account? ",
+            text: "${AppLocalizations.of(context)!.no_account} ",
             children: [
               TextSpan(
-                text: 'Sign Up',
+                text: AppLocalizations.of(context)!.signup,
                 style: const TextStyle(fontWeight: FontWeight.bold),
                 recognizer: isLoading
                     ? null
@@ -163,19 +163,25 @@ class _SignUpFormState extends State<_SignUpForm> {
             isLoading: widget.isLoading,
           ),
           const SizedBox(height: 24),
-          FTextInput(label: 'Username', controller: usernameController),
-          const SizedBox(height: 16),
-          FTextInput(label: 'Email', controller: emailController),
+          FTextInput(
+            label: AppLocalizations.of(context)!.username,
+            controller: usernameController,
+          ),
           const SizedBox(height: 16),
           FTextInput(
-            label: 'Password',
+            label: AppLocalizations.of(context)!.email,
+            controller: emailController,
+          ),
+          const SizedBox(height: 16),
+          FTextInput(
+            label: AppLocalizations.of(context)!.password,
             controller: passwordController,
             obscureText: true,
           ),
           const SizedBox(height: 48),
           FButton(
             isLoading: widget.isLoading,
-            text: 'Sign Up',
+            text: AppLocalizations.of(context)!.signup,
             onPressed: () => widget.onSubmit(
               usernameController.text,
               emailController.text,
@@ -200,17 +206,17 @@ class _SignUpFormHeader extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        const Text(
-          'Sign Up',
+        Text(
+          AppLocalizations.of(context)!.signup,
           style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
           textAlign: TextAlign.center,
         ),
         Text.rich(
           TextSpan(
-            text: 'Already have an account? ',
+            text: "${AppLocalizations.of(context)!.have_account} ",
             children: [
               TextSpan(
-                text: 'Log In',
+                text: AppLocalizations.of(context)!.login,
                 style: const TextStyle(fontWeight: FontWeight.bold),
                 recognizer: isLoading
                     ? null

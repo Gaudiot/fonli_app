@@ -3,6 +3,7 @@ import 'package:fonli_app/core/components/snackbar/snackbar.dart';
 import 'package:fonli_app/core/design/colors.dart';
 import 'package:fonli_app/core/navigation/navigation.dart';
 import 'package:fonli_app/core/types/custom/custom_types.dart';
+import 'package:fonli_app/l10n/output/app_localizations.dart';
 import 'package:fonli_app/src/exercises/word_translation/word_translation.viewcontroller.dart';
 
 part 'word_translation.components.dart';
@@ -149,8 +150,8 @@ class _TranslationInput extends StatelessWidget {
               maxLines: 1,
               autocorrect: false,
               enableSuggestions: false,
-              decoration: const InputDecoration(
-                hintText: 'insert translation',
+              decoration: InputDecoration(
+                hintText: AppLocalizations.of(context)!.insert_translation,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(16)),
                 ),

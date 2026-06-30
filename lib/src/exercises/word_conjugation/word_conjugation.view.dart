@@ -3,6 +3,7 @@ import 'package:fonli_app/core/components/snackbar/snackbar.dart';
 import 'package:fonli_app/core/design/colors.dart';
 import 'package:fonli_app/core/navigation/navigation.dart';
 import 'package:fonli_app/core/types/custom/custom_types.dart';
+import 'package:fonli_app/l10n/output/app_localizations.dart';
 import 'package:fonli_app/src/exercises/word_conjugation/word_conjugation.viewcontroller.dart';
 
 part 'word_conjugation.components.dart';
@@ -133,22 +134,16 @@ class _ConjugationCard extends StatelessWidget {
           children: [
             Text(
               word,
-              style: const TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-              ),
+              style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
             Text(
               tense,
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.grey[600],
-              ),
+              style: TextStyle(fontSize: 16, color: Colors.grey[600]),
             ),
             const SizedBox(height: 24),
             Text(
-              "Conjugate for: $prompt",
+              AppLocalizations.of(context)!.conjugate_for(prompt),
               style: const TextStyle(fontSize: 18),
             ),
           ],
@@ -182,8 +177,8 @@ class _ConjugationInput extends StatelessWidget {
               maxLines: 1,
               autocorrect: false,
               enableSuggestions: false,
-              decoration: const InputDecoration(
-                hintText: 'Type the conjugation...',
+              decoration: InputDecoration(
+                hintText: AppLocalizations.of(context)!.insert_conjugation,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(16)),
                 ),

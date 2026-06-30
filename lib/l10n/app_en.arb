@@ -1,0 +1,185 @@
+{
+    "@@locale": "en",
+    "common__retry": "Retry",
+    "@common__retry": {
+        "description": "Retry label"
+    },
+    "common__submit": "Submit",
+    "@common__submit": {
+        "description": "Submit label"
+    },
+    "save": "Save",
+    "@save": {
+        "description": "Save label"
+    },
+    "email": "E-mail",
+    "@email": {
+        "description": "E-mail label"
+    },
+    "username": "Username",
+    "@username": {
+        "description": "Username label"
+    },
+    "email_or_username": "E-mail/Username",
+    "@email_or_username": {
+        "description": "E-mail or username label"
+    },
+    "password": "Password",
+    "@password": {
+        "description": "Password label"
+    },
+    "login": "Login",
+    "@login": {
+        "description": "Login button"
+    },
+    "have_account": "Already have an account?",
+    "@have_account": {
+        "description": "Text displayed to direct user to login form"
+    },
+    "no_account": "Don't have an account?",
+    "@no_account": {
+        "description": "Text displayed to direct user to sign up form"
+    },
+    "signup": "Sign Up",
+    "@signup": {
+        "description": "Sign up label"
+    },
+    "logout": "Log Out",
+    "@logout": {
+        "description": "Log out label"
+    },
+    "complete": "Complete",
+    "@complete": {
+        "description": "Complete label"
+    },
+    "select_exercise": "Select an exercise",
+    "@select_exercise": {
+        "description": "Text to select an exercise"
+    },
+    "exercise_native_to_foreign": "Native to Foreign",
+    "@exercise_native_to_foreign": {
+        "description": "Native to foreign exercise label"
+    },
+    "exercise_foreign_to_native": "Foreign to Native",
+    "@exercise_foreign_to_native": {
+        "description": "Foreign to native exercise label"
+    },
+    "exercise_conjugation": "Word Conjugation",
+    "@exercise_conjugation": {
+        "description": "Word conjugation exercise label"
+    },
+    "exercise_story": "Story Translation",
+    "@exercise_story": {
+        "description": "Story translation exercise label"
+    },
+    "native_lang": "Native Language",
+    "@native_lang": {
+        "description": "Native language label"
+    },
+    "foreign_lang": "Foreign Language",
+    "@foreign_lang": {
+        "description": "Foreign language label"
+    },
+    "lang__english": "English",
+    "@lang__english": {
+        "description": "English"
+    },
+    "lang__portuguese": "Portuguese",
+    "@lang__portuguese": {
+        "description": "Portuguese"
+    },
+    "lang__french": "French",
+    "@lang__french": {
+        "description": "French"
+    },
+    "lang__italian": "Italian",
+    "@lang__italian": {
+        "description": "Italian"
+    },
+    "user_settings": "User Settings",
+    "@user_settings": {
+        "description": "User settings label"
+    },
+    "lifestyle": "Lifestyle",
+    "@lifestyle": {
+        "description": "Lifestyle label"
+    },
+    "lifestyle_header": "Your lifestyle helps us create more personalized exercises for you.",
+    "@lifestyle_header": {
+        "description": "Lifestyle header"
+    },
+    "insert_translation": "insert translation",
+    "@insert_translation": {
+        "description": "insert translation label"
+    },
+    "exercise_finished": "Exercise finished",
+    "@exercise_finished": {
+        "description": "Exercise finished label"
+    },
+    "exercise_no_mistake": "You got all answers correct! You are a master of the language!",
+    "@exercise_no_mistake": {
+        "description": "Text exhibited when the user finish an execise with no mistakes"
+    },
+    "exercise_mistakes": "You got {correctAnswersQuantity} out of {questionsQuantity} correct",
+    "@exercise_mistakes": {
+        "description": "Text exhibited when the user finish an exercise with some mistakes",
+        "placeholders": {
+            "correctAnswersQuantity": {
+                "type": "int",
+                "example": "7"
+            },
+            "questionsQuantity": {
+                "type": "int",
+                "example": "10"
+            }
+        }
+    },
+    "exercise_mistakes_output": "Here are your mistakes:",
+    "@exercise_mistakes_output": {
+        "description": "Title displayed before users mistake on exercise"
+    },
+    "exercise_load_fail": "Failed to load exercise",
+    "@exercise_load_fail": {
+        "description": "Text displayed when the exercise fails to load"
+    },
+    "conjugate_for": "conjugate for: {prompt}",
+    "@conjugate_for": {
+        "description": "Command displayed at word conjugation",
+        "placeholders": {
+            "prompt": {
+                "type": "String",
+                "example": "run"
+            }
+        }
+    },
+    "insert_conjugation": "Insert conjugation...",
+    "@insert_conjugation": {
+        "description": "Placeholder to insert conjugation"
+    },
+    "translate_story": "Translate the story:",
+    "@translate_story": {
+        "description": "Translate story label"
+    },
+    "input_translation": "Input the translation here...",
+    "@input_translation": {
+        "description": "Placeholder to input story translation"
+    },
+    "translation_score": "Score: {score}/{total}",
+    "@translation_score": {
+        "description": "The user's score on story translation",
+        "placeholders": {
+            "score": {
+                "type": "int",
+                "example": "70"
+            },
+            "total": {
+                "type": "int",
+                "example": "100"
+            }
+        }
+    },
+    "correct_translation": "Correct translation",
+    "@correct_translation": {
+        "description": "Correct translation label"
+    }
+}

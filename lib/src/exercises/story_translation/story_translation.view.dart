@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fonli_app/core/components/snackbar/snackbar.dart';
 import 'package:fonli_app/core/design/colors.dart';
 import 'package:fonli_app/core/navigation/navigation.dart';
+import 'package:fonli_app/l10n/output/app_localizations.dart';
 import 'package:fonli_app/src/exercises/story_translation/story_translation.viewcontroller.dart';
 
 part 'story_translation.components.dart';
@@ -88,9 +89,7 @@ class _StoryTranslationExerciseViewState
 
               return Column(
                 children: [
-                  Expanded(
-                    child: _StoryCard(story: vm.storyText),
-                  ),
+                  Expanded(child: _StoryCard(story: vm.storyText)),
                   _TranslationSection(
                     controller: translationController,
                     onSubmit: onSubmitPressed,
@@ -124,7 +123,7 @@ class _StoryCard extends StatelessWidget {
             mainAxisSize: .min,
             children: [
               Text(
-                "Translate this story:",
+                AppLocalizations.of(context)!.translate_story,
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -132,10 +131,7 @@ class _StoryCard extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16),
-              Text(
-                story,
-                style: const TextStyle(fontSize: 18, height: 1.5),
-              ),
+              Text(story, style: const TextStyle(fontSize: 18, height: 1.5)),
             ],
           ),
         ),
@@ -167,7 +163,7 @@ class _TranslationSection extends StatelessWidget {
             controller: controller,
             maxLines: 5,
             decoration: InputDecoration(
-              hintText: "Type your translation here...",
+              hintText: AppLocalizations.of(context)!.input_translation,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(16),
               ),
@@ -194,7 +190,7 @@ class _TranslationSection extends StatelessWidget {
                           width: 20,
                           child: CircularProgressIndicator(strokeWidth: 2),
                         )
-                      : const Text("Submit translation"),
+                      : Text(AppLocalizations.of(context)!.common__submit),
                 ),
               ),
             ),

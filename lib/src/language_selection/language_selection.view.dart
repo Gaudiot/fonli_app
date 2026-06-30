@@ -3,6 +3,7 @@ import 'package:fonli_app/base/contexts/language.context.dart';
 import 'package:fonli_app/core/design/colors.dart';
 import 'package:fonli_app/core/navigation/navigation.dart';
 import 'package:fonli_app/core/storage/local_storage.interface.dart';
+import 'package:fonli_app/l10n/output/app_localizations.dart';
 
 class _LanguageModel {
   final String name;
@@ -10,13 +11,6 @@ class _LanguageModel {
 
   _LanguageModel({required this.name, required this.code});
 }
-
-final List<_LanguageModel> _languages = [
-  _LanguageModel(name: "English", code: "US"),
-  _LanguageModel(name: "Portuguese", code: "BR"),
-  _LanguageModel(name: "French", code: "FR"),
-  _LanguageModel(name: "Italian", code: "IT"),
-];
 
 class LanguageSelectionView extends StatefulWidget {
   const LanguageSelectionView({super.key});
@@ -75,6 +69,25 @@ class _LanguageSelectionViewState extends State<LanguageSelectionView> {
 
   @override
   Widget build(BuildContext context) {
+    final List<_LanguageModel> _languages = [
+      _LanguageModel(
+        name: AppLocalizations.of(context)!.lang__english,
+        code: "US",
+      ),
+      _LanguageModel(
+        name: AppLocalizations.of(context)!.lang__portuguese,
+        code: "BR",
+      ),
+      _LanguageModel(
+        name: AppLocalizations.of(context)!.lang__french,
+        code: "FR",
+      ),
+      _LanguageModel(
+        name: AppLocalizations.of(context)!.lang__italian,
+        code: "IT",
+      ),
+    ];
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: FColors.primary,
@@ -100,7 +113,7 @@ class _LanguageSelectionViewState extends State<LanguageSelectionView> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          const Text("Native Language"),
+                          Text(AppLocalizations.of(context)!.native_lang),
                           const SizedBox(height: 8),
                           Expanded(
                             child: ListView.separated(
@@ -128,7 +141,7 @@ class _LanguageSelectionViewState extends State<LanguageSelectionView> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          const Text("Target Language"),
+                          Text(AppLocalizations.of(context)!.foreign_lang),
                           const SizedBox(height: 8),
                           Expanded(
                             child: ListView.separated(
@@ -202,7 +215,10 @@ class _SaveSelectionButton extends StatelessWidget {
         backgroundColor: FColors.secondary,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
-      child: const Text("Save", style: TextStyle(color: FColors.black)),
+      child: Text(
+        AppLocalizations.of(context)!.save,
+        style: TextStyle(color: FColors.black),
+      ),
     );
   }
 }

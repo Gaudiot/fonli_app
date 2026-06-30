@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fonli_app/core/components/snackbar/snackbar.dart';
 import 'package:fonli_app/core/design/colors.dart';
 import 'package:fonli_app/core/navigation/navigation.dart';
+import 'package:fonli_app/l10n/output/app_localizations.dart';
 import 'package:fonli_app/src/user_settings/user_settings.viewcontroller.dart';
 
 class UserSettingsView extends StatefulWidget {
@@ -74,8 +75,8 @@ class _UserSettingsViewState extends State<UserSettingsView> {
           icon: const Icon(Icons.close, color: FColors.black),
           onPressed: () => NavigationManager.pop(context),
         ),
-        title: const Text(
-          'User settings',
+        title: Text(
+          AppLocalizations.of(context)!.user_settings,
           style: TextStyle(color: FColors.black),
         ),
       ),
@@ -100,8 +101,8 @@ class _UserSettingsViewState extends State<UserSettingsView> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          const Text(
-                            "Your lifestyle helps us create more personalized exercises for you.",
+                          Text(
+                            AppLocalizations.of(context)!.lifestyle_header,
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w600,
@@ -109,8 +110,8 @@ class _UserSettingsViewState extends State<UserSettingsView> {
                             ),
                           ),
                           const SizedBox(height: 32),
-                          const Text(
-                            'Lifestyle',
+                          Text(
+                            AppLocalizations.of(context)!.lifestyle,
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
@@ -148,8 +149,8 @@ class _UserSettingsViewState extends State<UserSettingsView> {
                                       color: FColors.black,
                                     ),
                                   )
-                                : const Text(
-                                    'Save',
+                                : Text(
+                                    AppLocalizations.of(context)!.save,
                                     style: TextStyle(color: FColors.black),
                                   ),
                           ),
@@ -163,7 +164,7 @@ class _UserSettingsViewState extends State<UserSettingsView> {
                       backgroundColor: FColors.tertiary,
                       foregroundColor: FColors.white,
                     ),
-                    child: const Text('Log out'),
+                    child: Text(AppLocalizations.of(context)!.logout),
                   ),
                 ],
               );
