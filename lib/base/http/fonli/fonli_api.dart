@@ -6,15 +6,14 @@ class FonliPaths {
   static String userLifestyle = "/user/lifestyle";
 }
 
-const String _refreshAttemptedExtraKey = 'fonli_refresh_attempted';
-
 class FonliApi {
-  late final Dio dio;
-  bool isInitialized = false;
+  late final Dio _dio;
+  bool _isInitialized = false;
   final logger = LogImpl(name: "FonliApi");
 
   // Refresh data
   Future<bool>? _activeRefreshFuture;
+  static const String _refreshAttemptedExtraKey = 'fonli_refresh_attempted';
 
   // singleton instance
   static final FonliApi _instance = FonliApi._();
@@ -22,16 +21,16 @@ class FonliApi {
   FonliApi._();
 
   static Dio get instance {
-    if (!_instance.isInitialized) {
-      _instance.isInitialized = true;
-      _instance.dio = Dio(BaseOptions(baseUrl: "https://fonli.gaudiot.com"));
+    if (!_instance._isInitialized) {
+      _instance._isInitialized = true;
+      _instance._dio = Dio(BaseOptions(baseUrl: "https://fonli.gaudiot.com"));
       _instance.addInterceptors();
     }
-    return _instance.dio;
+    return _instance._dio;
   }
 
   void addInterceptors() {
-    dio.interceptors.add(
+    _dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: _onRequestInterceptor,
         onResponse: _onResponseInterceptor,
@@ -75,12 +74,12 @@ extension on FonliApi {
 
     try {
       final opts = err.requestOptions;
-      opts.extra[_refreshAttemptedExtraKey] = true;
+      opts.extra[FonliApi._refreshAttemptedExtraKey] = true;
       final newToken = await secureStorage.getString(.accessToken);
       if (newToken != null && newToken.isNotEmpty) {
         opts.headers['Authorization'] = 'Bearer $newToken';
       }
-      final response = await dio.fetch(opts);
+      final response = await _dio.fetch(opts);
       return handler.resolve(response);
     } on DioException catch (retryErr) {
       return handler.next(retryErr);
@@ -88,13 +87,10 @@ extension on FonliApi {
       return handler.next(err);
     }
   }
-}
 
-// MARK: - Session refresh
-extension on FonliApi {
   bool _isRequestAuthRetryable(DioException err) {
     if (err.response?.statusCode != 401) return false;
-    if (err.requestOptions.extra[_refreshAttemptedExtraKey] == true) {
+    if (err.requestOptions.extra[FonliApi._refreshAttemptedExtraKey] == true) {
       return false;
     }
     final path = err.requestOptions.uri.path;
@@ -102,8 +98,11 @@ extension on FonliApi {
 
     return true;
   }
+}
 
-  Future<bool> _refreshUserSession() async {
+// MARK: - Session refresh
+extension on FonliApi {
+  Future<bool> _refreshUserSession() {
     final existing = _activeRefreshFuture;
     if (existing != null) return existing;
 
@@ -122,10 +121,8 @@ extension on FonliApi {
     final data = result.data;
     if (data == null) return false;
 
-    Future.wait([
-      secureStorage.setString(.accessToken, data.accessToken),
-      secureStorage.setString(.refreshToken, data.refreshToken),
-    ]);
+    await secureStorage.setString(.accessToken, data.accessToken);
+    await secureStorage.setString(.refreshToken, data.refreshToken);
 
     return true;
   }
