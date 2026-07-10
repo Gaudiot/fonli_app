@@ -21,7 +21,7 @@ class FonliApi {
 
   FonliApi._();
 
-  static Dio get instace {
+  static Dio get instance {
     if (!_instance.isInitialized) {
       _instance.isInitialized = true;
       _instance.dio = Dio(BaseOptions(baseUrl: "https://fonli.gaudiot.com"));

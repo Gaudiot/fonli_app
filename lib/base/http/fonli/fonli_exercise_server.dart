@@ -8,7 +8,7 @@ class FonliExerciseServer {
     String nativeLanguage,
     String targetLanguage,
   ) async {
-    final fonliApi = FonliApi.instace;
+    final fonliApi = FonliApi.instance;
     try {
       final response = await fonliApi.get(
         '/exercises/word-translation/native-to-foreign?nl=$nativeLanguage&fl=$targetLanguage',
@@ -27,7 +27,7 @@ class FonliExerciseServer {
     String nativeLanguage,
     String targetLanguage,
   ) async {
-    final fonliApi = FonliApi.instace;
+    final fonliApi = FonliApi.instance;
     try {
       final response = await fonliApi.get(
         '/exercises/word-translation/foreign-to-native?nl=$nativeLanguage&fl=$targetLanguage',
@@ -43,7 +43,7 @@ class FonliExerciseServer {
 
   static Future<Result<WordConjugationExercise, Exception>>
   getWordConjugationExercise(String targetLanguage) async {
-    final fonliApi = FonliApi.instace;
+    final fonliApi = FonliApi.instance;
     try {
       final response = await fonliApi.get(
         '/exercises/word-conjugation?fl=$targetLanguage&tense=present-simple',
@@ -66,7 +66,7 @@ class FonliExerciseServer {
     String nativeLanguage,
     String targetLanguage,
   ) async {
-    final fonliApi = FonliApi.instace;
+    final fonliApi = FonliApi.instance;
     try {
       final response = await fonliApi.get(
         '/exercises/story-translation/generate?nl=$nativeLanguage&fl=$targetLanguage',
@@ -91,7 +91,7 @@ class FonliExerciseServer {
     String nativeLanguage,
     String targetLanguage,
   ) async {
-    final fonliApi = FonliApi.instace;
+    final fonliApi = FonliApi.instance;
     try {
       final response = await fonliApi.post(
         '/exercises/story-translation/evaluate?nl=$nativeLanguage&fl=$targetLanguage',

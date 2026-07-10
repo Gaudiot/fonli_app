@@ -5,7 +5,7 @@ class FonliUserServer {
 
   static Future<Result<GetUserLifestyleResponse, Exception>>
   getUserLifestyle() async {
-    final fonliApi = FonliApi.instace;
+    final fonliApi = FonliApi.instance;
     try {
       final response = await fonliApi.get('/user/lifestyle');
       final data = GetUserLifestyleResponse.fromJson(response.data);
@@ -19,7 +19,7 @@ class FonliUserServer {
   static Future<Result<SaveUserLifestyleResponse, Exception>> saveUserLifestyle(
     String lifestyle,
   ) async {
-    final fonliApi = FonliApi.instace;
+    final fonliApi = FonliApi.instance;
     try {
       final response = await fonliApi.post(
         '/user/lifestyle',

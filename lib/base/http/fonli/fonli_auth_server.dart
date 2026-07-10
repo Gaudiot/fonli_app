@@ -8,7 +8,7 @@ class FonliAuthServer {
     String email,
     String password,
   ) async {
-    final fonliApi = FonliApi.instace;
+    final fonliApi = FonliApi.instance;
     try {
       final response = await fonliApi.post(
         '/auth/signup',
@@ -30,7 +30,7 @@ class FonliAuthServer {
     String emailOrUsername,
     String password,
   ) async {
-    final fonliApi = FonliApi.instace;
+    final fonliApi = FonliApi.instance;
     try {
       final response = await fonliApi.post(
         '/auth/login',
@@ -52,7 +52,7 @@ class FonliAuthServer {
     String refreshToken,
   ) async {
     try {
-      final fonliApi = FonliApi.instace;
+      final fonliApi = FonliApi.instance;
       final response = await fonliApi.post(
         '/auth/refresh',
         data: RefreshRequest(refreshToken: refreshToken).toJson(),
@@ -73,7 +73,7 @@ class FonliAuthServer {
   }
 
   static Future<Result<void, Exception>> logout() async {
-    final fonliApi = FonliApi.instace;
+    final fonliApi = FonliApi.instance;
     try {
       await fonliApi.post('/auth/logout');
       return Result.ok(null);
