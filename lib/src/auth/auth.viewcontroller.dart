@@ -1,5 +1,5 @@
 import 'package:fonli_app/base/http/fonli/fonli_server.dart';
-import 'package:fonli_app/core/storage/secure_storage.interface.dart';
+import 'package:fonli_app/base/notifiers/auth_session.notifier.dart';
 import 'package:fonli_app/src/auth/auth.viewmodel.dart';
 
 final class AuthViewController {
@@ -23,7 +23,10 @@ final class AuthViewController {
       return;
     }
 
-    await _saveTokens(result.data!.accessToken, result.data!.refreshToken);
+    await AuthSessionNotifier.instance.saveTokens(
+      accessToken: result.data!.accessToken,
+      refreshToken: result.data!.refreshToken,
+    );
     viewModel.isLoading = false;
     viewModel.isAuthenticated = true;
   }
@@ -40,23 +43,20 @@ final class AuthViewController {
       return;
     }
 
-    await _saveTokens(result.data!.accessToken, result.data!.refreshToken);
+    await AuthSessionNotifier.instance.saveTokens(
+      accessToken: result.data!.accessToken,
+      refreshToken: result.data!.refreshToken,
+    );
     viewModel.isLoading = false;
     viewModel.isAuthenticated = true;
   }
 
   String _messageFromAuthError(Object error) {
     final s = error.toString();
-    print(s);
     const prefix = 'Exception: ';
     if (s.startsWith(prefix)) {
       return s.substring(prefix.length);
     }
     return s;
-  }
-
-  Future<void> _saveTokens(String accessToken, String refreshToken) async {
-    await secureStorage.setString(SecureStorageKeys.accessToken, accessToken);
-    await secureStorage.setString(SecureStorageKeys.refreshToken, refreshToken);
   }
 }

@@ -46,7 +46,7 @@ extension on FonliApi {
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
-    final accessToken = await secureStorage.getString(.accessToken);
+    final accessToken = await AuthSessionNotifier.instance.getAccessToken();
     if (accessToken != null && accessToken.isNotEmpty) {
       options.headers['Authorization'] = 'Bearer $accessToken';
     }
@@ -75,7 +75,7 @@ extension on FonliApi {
     try {
       final opts = err.requestOptions;
       opts.extra[FonliApi._refreshAttemptedExtraKey] = true;
-      final newToken = await secureStorage.getString(.accessToken);
+      final newToken = await AuthSessionNotifier.instance.getAccessToken();
       if (newToken != null && newToken.isNotEmpty) {
         opts.headers['Authorization'] = 'Bearer $newToken';
       }
@@ -112,17 +112,28 @@ extension on FonliApi {
   }
 
   Future<bool> _performRefresh() async {
-    final refreshToken = await secureStorage.getString(.refreshToken);
-    if (refreshToken == null || refreshToken.isEmpty) return false;
+    final refreshToken = await AuthSessionNotifier.instance.getRefreshToken();
+    if (refreshToken == null || refreshToken.isEmpty) {
+      await AuthSessionNotifier.instance.clear();
+      return false;
+    }
 
     final result = await FonliAuthServer.refresh(refreshToken);
-    if (result.isError) return false;
+    if (result.isError) {
+      await AuthSessionNotifier.instance.clear();
+      return false;
+    }
 
     final data = result.data;
-    if (data == null) return false;
+    if (data == null) {
+      await AuthSessionNotifier.instance.clear();
+      return false;
+    }
 
-    await secureStorage.setString(.accessToken, data.accessToken);
-    await secureStorage.setString(.refreshToken, data.refreshToken);
+    await AuthSessionNotifier.instance.saveTokens(
+      accessToken: data.accessToken,
+      refreshToken: data.refreshToken,
+    );
 
     return true;
   }

@@ -40,6 +40,7 @@ class AuthSessionNotifier extends ChangeNotifier {
   }) async {
     await secureStorage.setString(.accessToken, accessToken);
     await secureStorage.setString(.refreshToken, refreshToken);
+    _setState(AuthState.authenticated);
   }
 
   Future<void> clear() async {

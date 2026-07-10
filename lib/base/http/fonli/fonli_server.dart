@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:fonli_app/base/notifiers/auth_session.notifier.dart';
 import 'package:fonli_app/core/log/log.dart';
-import 'package:fonli_app/core/storage/secure_storage.interface.dart';
 import 'package:fonli_app/core/types/response.type.dart';
 import 'package:fonli_app/core/log/log_impl.dart';
 
