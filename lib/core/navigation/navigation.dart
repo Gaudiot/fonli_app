@@ -30,6 +30,8 @@ enum NavigationRoutes {
 class NavigationManager {
   NavigationManager._internal();
 
+  static final GlobalKey<NavigatorState> navigatorKey =
+      GlobalKey<NavigatorState>();
   static String initialRoute = NavigationRoutes.splash.path;
   static var _args = <String, dynamic>{};
 

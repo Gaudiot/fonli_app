@@ -1,4 +1,4 @@
-import 'package:fonli_app/base/contexts/language.context.dart';
+import 'package:fonli_app/base/notifiers/language.notifier.dart';
 import 'package:fonli_app/base/http/fonli/fonli_server.dart';
 import 'package:fonli_app/src/exercises/story_translation/story_translation.viewmodel.dart';
 

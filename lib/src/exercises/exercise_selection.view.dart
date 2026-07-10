@@ -1,6 +1,6 @@
 import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
-import 'package:fonli_app/base/contexts/language.context.dart';
+import 'package:fonli_app/base/notifiers/language.notifier.dart';
 import 'package:fonli_app/core/design/colors.dart';
 import 'package:fonli_app/core/navigation/navigation.dart';
 import 'package:fonli_app/l10n/output/app_localizations.dart';
