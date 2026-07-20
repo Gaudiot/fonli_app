@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:fonli_app/base/notifiers/language.notifier.dart';
 import 'package:fonli_app/base/http/fonli/fonli_server.dart';
 import 'package:fonli_app/src/exercises/word_translation/word_translation.viewmodel.dart';
@@ -54,6 +55,7 @@ class WordTranslationExerciseViewController {
     }
 
     viewModel.userAnswers.add(trimmedAnswer);
+    HapticFeedback.lightImpact();
 
     final hasNextQuestion =
         (viewModel.currentQuestionIndex + 1) < viewModel.questionsLength;
