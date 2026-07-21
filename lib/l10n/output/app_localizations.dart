@@ -110,6 +110,12 @@ abstract class AppLocalizations {
   /// **'Submit'**
   String get common__submit;
 
+  /// Next label
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get common__next;
+
   /// Save label
   ///
   /// In en, this message translates to:

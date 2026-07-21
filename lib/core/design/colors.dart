@@ -47,4 +47,8 @@ class FColors {
   static const Color quaternaryLight = Color(0xFF494D6E);
   static const Color quaternaryLighter = Color(0xFF52567A);
   static const Color quaternaryLightest = Color(0xFF5A5E87);
+
+  //MARK: - Feedback
+  static const Color feedbackCorrect = Color.fromARGB(255, 150, 225, 145);
+  static const Color feedbackIncorrect = Color.fromARGB(255, 224, 95, 95);
 }

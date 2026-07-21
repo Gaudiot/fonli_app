@@ -1,7 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:fonli_app/base/notifiers/language.notifier.dart';
 import 'package:fonli_app/base/http/fonli/fonli_server.dart';
-import 'package:fonli_app/src/exercises/word_conjugation/word_conjugation.viewmodel.dart';
+import 'package:fonli_app/src/learning/word_conjugation/word_conjugation.viewmodel.dart';
 
 class WordConjugationExerciseViewController {
   final WordConjugationExerciseViewModel viewModel =

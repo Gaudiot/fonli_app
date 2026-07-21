@@ -38,9 +38,7 @@ final class WordConjugationExerciseViewModel extends BaseViewState {
     for (int i = 0; i < userAnswers.length && i < _conjugations.length; i++) {
       if (userAnswers[i].trim().toLowerCase() !=
           _conjugations[i].conjugation.trim().toLowerCase()) {
-        userMistakes.add(
-          Pair(first: userAnswers[i], second: _conjugations[i].conjugation),
-        );
+        userMistakes.add(Pair(userAnswers[i], _conjugations[i].conjugation));
       }
     }
     return userMistakes;

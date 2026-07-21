@@ -11,8 +11,11 @@ class Question {
 final class WordTranslationExerciseViewModel extends BaseViewState {
   int currentQuestionIndex = 0;
   List<Question> _questions = [];
-  List<String> userAnswers = [];
+  List<Pair<String, String>> userMistakes = [];
   bool isExerciseFinished = false;
+
+  bool currentAnswerSubmitted = false;
+  bool isAnswerCorrect = false;
 
   /// Set when fetch fails; consumed by the view to show the app snackbar.
   String? snackbarErrorMessage;
@@ -34,17 +37,7 @@ final class WordTranslationExerciseViewModel extends BaseViewState {
 
   int get questionsLength => _questions.length;
   String get currentQuestion => _questions[currentQuestionIndex].word;
+  String get currentAnswer => _questions[currentQuestionIndex].translation;
 
-  List<Pair<String, String>> get mistakes {
-    List<Pair<String, String>> userMistakes = [];
-    for (int i = 0; i < userAnswers.length; i++) {
-      if (userAnswers[i] != _questions[i].translation) {
-        userMistakes.add(
-          Pair(first: userAnswers[i], second: _questions[i].translation),
-        );
-      }
-    }
-
-    return userMistakes;
-  }
+  List<Pair<String, String>> get mistakes => userMistakes;
 }

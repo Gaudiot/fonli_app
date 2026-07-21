@@ -1,10 +1,10 @@
 import "package:flutter/material.dart";
 import "package:fonli_app/src/auth/auth.view.dart";
-import "package:fonli_app/src/exercises/exercise_selection.view.dart";
-import "package:fonli_app/src/exercises/story_translation/story_translation.view.dart";
-import "package:fonli_app/src/exercises/word_conjugation/word_conjugation.view.dart";
-import "package:fonli_app/src/exercises/word_translation/word_translation.view.dart";
-import "package:fonli_app/src/exercises/word_translation/word_translation.viewcontroller.dart";
+import "package:fonli_app/src/learning/exercise_selection.view.dart";
+import "package:fonli_app/src/learning/story_translation/story_translation.view.dart";
+import "package:fonli_app/src/learning/word_conjugation/word_conjugation.view.dart";
+import "package:fonli_app/src/learning/word_translation/word_translation.view.dart";
+import "package:fonli_app/src/learning/word_translation/word_translation.viewcontroller.dart";
 import "package:fonli_app/src/language_selection/language_selection.view.dart";
 import "package:fonli_app/src/splash/splash.view.dart";
 import "package:fonli_app/src/user_settings/user_settings.view.dart";

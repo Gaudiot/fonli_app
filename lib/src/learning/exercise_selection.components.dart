@@ -1,4 +1,4 @@
-part of './exercise_selection.view.dart';
+part of 'exercise_selection.view.dart';
 
 class _LanguageDisplay extends StatelessWidget {
   final double _arrowSize = 32;

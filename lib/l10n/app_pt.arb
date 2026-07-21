@@ -8,6 +8,10 @@
     "@common__submit": {
         "description": "Submit label"
     },
+    "common__next": "Próximo",
+    "@common__next": {
+        "description": "Next label"
+    },
     "save": "Salvar",
     "@save": {
         "description": "Save label"

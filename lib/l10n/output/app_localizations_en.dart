@@ -15,6 +15,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get common__submit => 'Submit';
 
   @override
+  String get common__next => 'Next';
+
+  @override
   String get save => 'Save';
 
   @override

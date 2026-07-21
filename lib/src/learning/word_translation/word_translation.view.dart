@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:fonli_app/core/components/snackbar/snackbar.dart';
+import 'package:fonli_app/core/components/ui/button.component.dart';
+import 'package:fonli_app/core/components/ui/if_else_widget.component.dart';
 import 'package:fonli_app/core/design/colors.dart';
 import 'package:fonli_app/core/navigation/navigation.dart';
 import 'package:fonli_app/core/types/custom/custom_types.dart';
 import 'package:fonli_app/l10n/output/app_localizations.dart';
-import 'package:fonli_app/src/exercises/word_translation/word_translation.viewcontroller.dart';
+import 'package:fonli_app/src/learning/word_translation/word_translation.viewcontroller.dart';
 
 part 'word_translation.components.dart';
 
@@ -85,25 +87,39 @@ class _WordTranslationExerciseViewState
                 );
               }
 
-              return vm.isExerciseFinished
-                  ? _ExerciseComplete(
-                      questionsQuantity: vm.questionsLength,
-                      mistakes: vm.mistakes,
-                    )
-                  : Column(
-                      children: [
-                        Expanded(
-                          child: Center(
-                            child: _WordCard(word: vm.currentQuestion),
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: vm.isExerciseFinished
+                    ? _ExerciseComplete(
+                        questionsQuantity: vm.questionsLength,
+                        mistakes: vm.mistakes,
+                      )
+                    : Column(
+                        children: [
+                          Expanded(
+                            child: Center(
+                              child: _WordCard(
+                                word: vm.currentQuestion,
+                                answer: vm.currentAnswer,
+                                isAnswerCorrect: vm.isAnswerCorrect,
+                                isAnswerSubmitted: vm.currentAnswerSubmitted,
+                              ),
+                            ),
                           ),
-                        ),
-                        _TranslationInput(
-                          controller: answerController,
-                          onSubmitted: onAnswerSubmit,
-                          onSubmitButtonPressed: onAnswerSubmit,
-                        ),
-                      ],
-                    );
+                          IfElseWidget(
+                            ifChild: NextQuestionButton(
+                              onPressed: viewController.moveToNextQuestion,
+                            ),
+                            elseChild: _TranslationInput(
+                              controller: answerController,
+                              onSubmitted: onAnswerSubmit,
+                              onSubmitButtonPressed: onAnswerSubmit,
+                            ),
+                            condition: vm.currentAnswerSubmitted,
+                          ),
+                        ],
+                      ),
+              );
             },
           ),
         ),
@@ -114,14 +130,40 @@ class _WordTranslationExerciseViewState
 
 class _WordCard extends StatelessWidget {
   final String word;
+  final String answer;
+  final bool isAnswerCorrect;
+  final bool isAnswerSubmitted;
 
-  const _WordCard({required this.word});
+  const _WordCard({
+    required this.word,
+    required this.answer,
+    required this.isAnswerCorrect,
+    required this.isAnswerSubmitted,
+  });
+
+  Color get cardColor {
+    if (isAnswerSubmitted) {
+      return isAnswerCorrect
+          ? FColors.feedbackCorrect
+          : FColors.feedbackIncorrect;
+    }
+    return FColors.secondary;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: FColors.secondary,
-      child: Padding(padding: EdgeInsets.all(16), child: Text(word)),
+      color: cardColor,
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          mainAxisSize: .min,
+          children: [
+            Text(word),
+            ...[if (isAnswerSubmitted) Text("Answer: $answer")],
+          ],
+        ),
+      ),
     );
   }
 }
@@ -179,6 +221,21 @@ class _TranslationInput extends StatelessWidget {
           const SizedBox(width: 4),
         ],
       ),
+    );
+  }
+}
+
+class NextQuestionButton extends StatelessWidget {
+  final VoidCallback onPressed;
+
+  const NextQuestionButton({super.key, required this.onPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    return FButton(
+      text: AppLocalizations.of(context)!.common__next,
+      onPressed: onPressed,
+      color: FColors.secondary,
     );
   }
 }

@@ -1,4 +1,4 @@
-part of './word_translation.view.dart';
+part of 'word_translation.view.dart';
 
 final class _ExerciseComplete extends StatelessWidget {
   final int questionsQuantity;

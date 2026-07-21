@@ -1,7 +1,9 @@
 import 'package:flutter/services.dart';
 import 'package:fonli_app/base/notifiers/language.notifier.dart';
 import 'package:fonli_app/base/http/fonli/fonli_server.dart';
-import 'package:fonli_app/src/exercises/word_translation/word_translation.viewmodel.dart';
+import 'package:fonli_app/core/types/custom/custom_types.dart';
+import 'package:fonli_app/src/learning/word_translation/word_translation.viewmodel.dart';
+import 'package:fuzzywuzzy/fuzzywuzzy.dart';
 
 enum WordTranslationExerciseType { nativeToForeign, foreignToNative }
 
@@ -54,8 +56,20 @@ class WordTranslationExerciseViewController {
       return;
     }
 
-    viewModel.userAnswers.add(trimmedAnswer);
     HapticFeedback.lightImpact();
+
+    final isAnswerCorrect = checkAnswer(viewModel.currentAnswer, trimmedAnswer);
+    if (!isAnswerCorrect) {
+      viewModel.userMistakes.add(Pair(trimmedAnswer, viewModel.currentAnswer));
+    }
+    viewModel.isAnswerCorrect = isAnswerCorrect;
+
+    viewModel.currentAnswerSubmitted = true;
+    viewModel.notifyListeners();
+  }
+
+  void moveToNextQuestion() {
+    viewModel.currentAnswerSubmitted = false;
 
     final hasNextQuestion =
         (viewModel.currentQuestionIndex + 1) < viewModel.questionsLength;
@@ -71,5 +85,12 @@ class WordTranslationExerciseViewController {
   void finishExercise() {
     viewModel.isExerciseFinished = true;
     viewModel.notifyListeners();
+  }
+
+  bool checkAnswer(String correctAnswer, String userAnswer) {
+    const threshold = 90;
+    final similarityScore = ratio(correctAnswer, userAnswer);
+
+    return similarityScore >= threshold;
   }
 }
