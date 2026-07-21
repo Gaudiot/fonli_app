@@ -3,7 +3,7 @@ import 'package:fonli_app/core/components/snackbar/snackbar.dart';
 import 'package:fonli_app/core/design/colors.dart';
 import 'package:fonli_app/core/navigation/navigation.dart';
 import 'package:fonli_app/l10n/output/app_localizations.dart';
-import 'package:fonli_app/src/exercises/story_translation/story_translation.viewcontroller.dart';
+import 'package:fonli_app/src/learning/story_translation/story_translation.viewcontroller.dart';
 
 part 'story_translation.components.dart';
 

@@ -4,7 +4,7 @@ import 'package:fonli_app/core/design/colors.dart';
 import 'package:fonli_app/core/navigation/navigation.dart';
 import 'package:fonli_app/core/types/custom/custom_types.dart';
 import 'package:fonli_app/l10n/output/app_localizations.dart';
-import 'package:fonli_app/src/exercises/word_conjugation/word_conjugation.viewcontroller.dart';
+import 'package:fonli_app/src/learning/word_conjugation/word_conjugation.viewcontroller.dart';
 
 part 'word_conjugation.components.dart';
 

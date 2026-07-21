@@ -1,4 +1,4 @@
-part of './exercise_selection.view.dart';
+part of 'exercise_selection.view.dart';
 
 class _SettingsDisplay extends StatelessWidget {
   const _SettingsDisplay();

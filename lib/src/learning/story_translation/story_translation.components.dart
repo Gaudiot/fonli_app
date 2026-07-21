@@ -1,4 +1,4 @@
-part of './story_translation.view.dart';
+part of 'story_translation.view.dart';
 
 final class _StoryTranslationResult extends StatelessWidget {
   final int score;

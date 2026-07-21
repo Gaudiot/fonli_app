@@ -15,6 +15,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get common__submit => 'Enviar';
 
   @override
+  String get common__next => 'Próximo';
+
+  @override
   String get save => 'Salvar';
 
   @override

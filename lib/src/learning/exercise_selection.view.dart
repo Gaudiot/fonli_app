@@ -3,7 +3,7 @@ import 'package:fonli_app/core/design/colors.dart';
 import 'package:fonli_app/core/navigation/navigation.dart';
 import 'package:fonli_app/l10n/output/app_localizations.dart';
 
-part './exercise_selection.components.dart';
+part 'exercise_selection.components.dart';
 
 class _ExerciseModel {
   final String title;
