@@ -132,4 +132,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get correct_translation => 'Correct translation';
+
+  @override
+  String get settings__title => 'Settings';
+
+  @override
+  String get settings__change_learning_language => 'Change Learning Language';
+
+  @override
+  String get settings__lifestyle_settings => 'Lifestyle Settings';
 }

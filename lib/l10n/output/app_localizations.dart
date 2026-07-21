@@ -331,6 +331,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Correct translation'**
   String get correct_translation;
+
+  /// Settings title
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settings__title;
+
+  /// Change learning language label
+  ///
+  /// In en, this message translates to:
+  /// **'Change Learning Language'**
+  String get settings__change_learning_language;
+
+  /// Lifestyle settings label
+  ///
+  /// In en, this message translates to:
+  /// **'Lifestyle Settings'**
+  String get settings__lifestyle_settings;
 }
 
 class _AppLocalizationsDelegate

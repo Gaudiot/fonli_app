@@ -1,7 +1,7 @@
 import 'package:fonli_app/base/http/fonli/fonli_server.dart';
 import 'package:fonli_app/base/notifiers/auth_session.notifier.dart';
-import 'package:fonli_app/src/user_settings/user_settings.repository.dart';
-import 'package:fonli_app/src/user_settings/user_settings.viewmodel.dart';
+import 'package:fonli_app/src/settings/lifestyle_settings/lifestyle_settings.repository.dart';
+import 'package:fonli_app/src/settings/lifestyle_settings/lifestyle_settings.viewmodel.dart';
 
 class UserSettingsViewController {
   UserSettingsViewController({UserSettingsRepository? repository})

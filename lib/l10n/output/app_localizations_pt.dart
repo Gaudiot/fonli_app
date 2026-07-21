@@ -132,4 +132,14 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get correct_translation => 'Tradução correta';
+
+  @override
+  String get settings__title => 'Configurações';
+
+  @override
+  String get settings__change_learning_language =>
+      'Mudar Lingua de Aprendizagem';
+
+  @override
+  String get settings__lifestyle_settings => 'Definir Cotidiano';
 }

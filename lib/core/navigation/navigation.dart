@@ -5,9 +5,10 @@ import "package:fonli_app/src/exercises/story_translation/story_translation.view
 import "package:fonli_app/src/exercises/word_conjugation/word_conjugation.view.dart";
 import "package:fonli_app/src/exercises/word_translation/word_translation.view.dart";
 import "package:fonli_app/src/exercises/word_translation/word_translation.viewcontroller.dart";
-import "package:fonli_app/src/language_selection/language_selection.view.dart";
+import "package:fonli_app/src/settings/language_learning_settings/language_learning_settings.view.dart";
+import "package:fonli_app/src/settings/settings.view.dart";
 import "package:fonli_app/src/splash/splash.view.dart";
-import "package:fonli_app/src/user_settings/user_settings.view.dart";
+import "package:fonli_app/src/settings/lifestyle_settings/lifestyle_settings.view.dart";
 
 typedef RouteBuilder = Widget Function(BuildContext context);
 
@@ -19,8 +20,9 @@ enum NavigationRoutes {
   foreignToNative("/exercise/foreign-to-native"),
   wordConjugation("/exercise/word-conjugation"),
   storyTranslation("/exercise/story-translation"),
-  languageSelection("/language-selection"),
-  userSettings("/user-settings");
+  languageLearningSettings("/language-learning-settings"),
+  settings("/settings"),
+  userLifestyle("/user-lifestyle");
 
   final String path;
 
@@ -53,9 +55,11 @@ class NavigationManager {
           const WordConjugationExerciseView(),
       NavigationRoutes.storyTranslation.path: (context) =>
           const StoryTranslationExerciseView(),
-      NavigationRoutes.languageSelection.path: (context) =>
-          LanguageSelectionView(),
-      NavigationRoutes.userSettings.path: (context) => const UserSettingsView(),
+      NavigationRoutes.languageLearningSettings.path: (context) =>
+          LanguageLearningSettingView(),
+      NavigationRoutes.settings.path: (context) => SettingsView(),
+      NavigationRoutes.userLifestyle.path: (context) =>
+          const UserSettingsView(),
     };
   }
 

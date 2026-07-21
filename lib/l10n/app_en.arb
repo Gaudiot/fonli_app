@@ -181,5 +181,17 @@
     "correct_translation": "Correct translation",
     "@correct_translation": {
         "description": "Correct translation label"
+    },
+    "settings__title": "Settings",
+    "@settings__title": {
+        "description": "Settings title"
+    },
+    "settings__change_learning_language": "Change Learning Language",
+    "@settings__change_learning_language": {
+        "description": "Change learning language label"
+    },
+    "settings__lifestyle_settings": "Lifestyle Settings",
+    "@settings__lifestyle_settings": {
+        "description": "Lifestyle settings label"
     }
 }

@@ -12,14 +12,16 @@ class _LanguageModel {
   _LanguageModel({required this.name, required this.code});
 }
 
-class LanguageSelectionView extends StatefulWidget {
-  const LanguageSelectionView({super.key});
+class LanguageLearningSettingView extends StatefulWidget {
+  const LanguageLearningSettingView({super.key});
 
   @override
-  State<LanguageSelectionView> createState() => _LanguageSelectionViewState();
+  State<LanguageLearningSettingView> createState() =>
+      _LanguageLearningSettingViewState();
 }
 
-class _LanguageSelectionViewState extends State<LanguageSelectionView> {
+class _LanguageLearningSettingViewState
+    extends State<LanguageLearningSettingView> {
   String selectedNativeLanguage = "US";
   String selectedTargetLanguage = "BR";
   final LanguageNotifier _languageNotifier = LanguageNotifier();

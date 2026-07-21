@@ -3,7 +3,7 @@ import 'package:fonli_app/core/components/snackbar/snackbar.dart';
 import 'package:fonli_app/core/design/colors.dart';
 import 'package:fonli_app/core/navigation/navigation.dart';
 import 'package:fonli_app/l10n/output/app_localizations.dart';
-import 'package:fonli_app/src/user_settings/user_settings.viewcontroller.dart';
+import 'package:fonli_app/src/settings/lifestyle_settings/lifestyle_settings.viewcontroller.dart';
 
 class UserSettingsView extends StatefulWidget {
   const UserSettingsView({super.key});
@@ -50,12 +50,6 @@ class _UserSettingsViewState extends State<UserSettingsView> {
     } else {
       snackbarMessenger.showError(context, 'Could not save lifestyle.');
     }
-  }
-
-  Future<void> _onLogout() async {
-    await viewController.logout();
-    if (!mounted) return;
-    NavigationManager.pushNamedAndRemoveAll(context, NavigationRoutes.auth);
   }
 
   @override
@@ -157,14 +151,6 @@ class _UserSettingsViewState extends State<UserSettingsView> {
                         ],
                       ),
                     ),
-                  ),
-                  TextButton(
-                    onPressed: vm.saving ? null : _onLogout,
-                    style: TextButton.styleFrom(
-                      backgroundColor: FColors.tertiary,
-                      foregroundColor: FColors.white,
-                    ),
-                    child: Text(AppLocalizations.of(context)!.logout),
                   ),
                 ],
               );

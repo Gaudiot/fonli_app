@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:fonli_app/core/app_info/app_info.dart';
 import 'package:fonli_app/core/navigation/navigation.dart';
 import 'package:fonli_app/core/navigation/session_wrapper.dart';
 import 'package:fonli_app/l10n/output/app_localizations.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await AppInfo.init();
   runApp(const MainApp());
 }
 

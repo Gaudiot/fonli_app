@@ -1,55 +1,7 @@
 part of './exercise_selection.view.dart';
 
-class _LanguageDisplay extends StatelessWidget {
-  final double _arrowSize = 32;
-  final LanguageNotifier _languageNotifier = LanguageNotifier();
-
-  final ImageTheme _imageTheme = () {
-    final double iconSize = 32;
-
-    return ImageTheme(height: iconSize, width: iconSize, shape: Circle());
-  }();
-
-  void _openOptions(BuildContext context) {
-    NavigationManager.goTo(context, .languageSelection);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: FColors.secondary,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(8),
-        onTap: () => _openOptions(context),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ListenableBuilder(
-            listenable: _languageNotifier,
-            builder: (context, _) {
-              return Row(
-                children: [
-                  CountryFlag.fromCountryCode(
-                    _languageNotifier.nativeLanguage,
-                    theme: _imageTheme,
-                  ),
-                  Icon(Icons.arrow_forward_rounded, size: _arrowSize),
-                  CountryFlag.fromCountryCode(
-                    _languageNotifier.targetLanguage,
-                    theme: _imageTheme,
-                  ),
-                ],
-              );
-            },
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _UserSettingsDisplay extends StatelessWidget {
-  const _UserSettingsDisplay();
+class _SettingsDisplay extends StatelessWidget {
+  const _SettingsDisplay();
 
   @override
   Widget build(BuildContext context) {
@@ -61,9 +13,9 @@ class _UserSettingsDisplay extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         child: IconButton(
           onPressed: () {
-            NavigationManager.goTo(context, .userSettings);
+            NavigationManager.goTo(context, .settings);
           },
-          icon: Icon(Icons.person, color: FColors.black, size: 28),
+          icon: Icon(Icons.settings, color: FColors.black, size: 28),
           splashRadius: 24,
           tooltip: 'User Settings',
         ),

@@ -18,6 +18,7 @@ dependencies:
   intl: ^0.20.2
   json_annotation: ^4.10.0
   logger: ^2.7.0
+  package_info_plus: ^10.2.1
   shared_preferences: ^2.5.4
   top_snackbar_flutter: ^3.3.0
 

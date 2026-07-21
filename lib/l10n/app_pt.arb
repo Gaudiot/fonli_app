@@ -181,5 +181,17 @@
     "correct_translation": "Tradução correta",
     "@correct_translation": {
         "description": "Correct translation label"
+    },
+    "settings__title": "Configurações",
+    "@settings__title": {
+        "description": "Settings title"
+    },
+    "settings__change_learning_language": "Mudar Lingua de Aprendizagem",
+    "@settings__change_learning_language": {
+        "description": "Change learning language label"
+    },
+    "settings__lifestyle_settings": "Definir Cotidiano",
+    "@settings__lifestyle_settings": {
+        "description": "Lifestyle settings label"
     }
 }
