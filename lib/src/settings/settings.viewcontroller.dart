@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fonli_app/base/http/fonli/fonli_server.dart';
 import 'package:fonli_app/base/notifiers/auth_session.notifier.dart';
 import 'package:fonli_app/core/navigation/navigation.dart';
 

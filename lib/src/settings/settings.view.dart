@@ -34,7 +34,7 @@ class SettingsView extends StatelessWidget {
                 children: [
                   const SizedBox(height: 16),
                   const Text(
-                    "UsernameHere",
+                    "Fonli Settings",
                     style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 16),
