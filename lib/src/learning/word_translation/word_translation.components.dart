@@ -2,7 +2,7 @@ part of 'word_translation.view.dart';
 
 final class _ExerciseComplete extends StatelessWidget {
   final int questionsQuantity;
-  final List<Pair<String, String>> mistakes;
+  final List<UserMistake> mistakes;
 
   const _ExerciseComplete({
     required this.questionsQuantity,
@@ -23,7 +23,7 @@ final class _ExerciseComplete extends StatelessWidget {
   }
 }
 
-// MARK: - Exercise Completed Perfectly
+// MARK: - Exercise Completed Perfect
 
 final class _NoMistakesResult extends StatelessWidget {
   const _NoMistakesResult();
@@ -54,7 +54,7 @@ final class _NoMistakesResult extends StatelessWidget {
 // MARK: - Exercise Completed with Mistakes
 
 final class _SomeMistakesResult extends StatelessWidget {
-  final List<Pair<String, String>> mistakes;
+  final List<UserMistake> mistakes;
   final int questionsQuantity;
 
   const _SomeMistakesResult({
@@ -125,46 +125,79 @@ class _SomeMistakesResultHeader extends StatelessWidget {
 }
 
 class _SomeMistakesResultContent extends StatelessWidget {
-  final List<Pair<String, String>> mistakes;
+  final List<UserMistake> mistakes;
 
   const _SomeMistakesResultContent({required this.mistakes});
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisSize: .min,
       children: [
         Text(
           AppLocalizations.of(context)!.exercise_mistakes_output,
           style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
-        Container(
-          height: 100,
-          decoration: ShapeDecoration(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
+        ConstrainedBox(
+          constraints: BoxConstraints(maxHeight: 270),
+          child: Container(
+            decoration: ShapeDecoration(
+              shape: RoundedRectangleBorder(
+                side: BorderSide(color: FColors.black),
+                borderRadius: BorderRadius.circular(4),
+              ),
             ),
-            color: FColors.primaryLightest,
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: ListView.builder(
-              itemCount: mistakes.length,
-              itemBuilder: (context, index) {
-                final pair = mistakes[index];
-                return Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(Icons.close, color: Colors.red),
-                    SizedBox(width: 8),
-                    Text('${pair.first} → ${pair.second}'),
-                  ],
-                );
-              },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+              child: ListView.separated(
+                shrinkWrap: true,
+                itemCount: mistakes.length,
+                separatorBuilder: (context, index) => SizedBox(height: 8),
+                itemBuilder: (context, index) {
+                  final mistake = mistakes[index];
+                  return _Teste(
+                    word: mistake.word,
+                    userAnswer: mistake.userAnswer,
+                    correctAnswer: mistake.correctAnswer,
+                  );
+                },
+              ),
             ),
           ),
         ),
       ],
+    );
+  }
+}
+
+class _Teste extends StatelessWidget {
+  final String word;
+  final String userAnswer;
+  final String correctAnswer;
+
+  const _Teste({
+    required this.word,
+    required this.userAnswer,
+    required this.correctAnswer,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      decoration: ShapeDecoration(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+        color: FColors.primaryLighter,
+      ),
+      child: Column(
+        mainAxisSize: .min,
+        crossAxisAlignment: .start,
+        children: [
+          Text(word, style: TextStyle(fontWeight: FontWeight.bold)),
+          const Divider(),
+          Text(userAnswer, style: TextStyle(color: FColors.feedbackIncorrect)),
+          Text(correctAnswer, style: TextStyle(color: Colors.green)),
+        ],
+      ),
     );
   }
 }

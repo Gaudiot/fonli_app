@@ -4,9 +4,9 @@ import 'package:fonli_app/core/components/ui/button.component.dart';
 import 'package:fonli_app/core/components/ui/if_else_widget.component.dart';
 import 'package:fonli_app/core/design/colors.dart';
 import 'package:fonli_app/core/navigation/navigation.dart';
-import 'package:fonli_app/core/types/custom/custom_types.dart';
 import 'package:fonli_app/l10n/output/app_localizations.dart';
 import 'package:fonli_app/src/learning/word_translation/word_translation.viewcontroller.dart';
+import 'package:fonli_app/src/learning/word_translation/word_translation.viewmodel.dart';
 
 part 'word_translation.components.dart';
 
@@ -107,7 +107,7 @@ class _WordTranslationExerciseViewState
                             ),
                           ),
                           IfElseWidget(
-                            ifChild: NextQuestionButton(
+                            ifChild: _NextQuestionButton(
                               onPressed: viewController.moveToNextQuestion,
                             ),
                             elseChild: _TranslationInput(
@@ -225,10 +225,10 @@ class _TranslationInput extends StatelessWidget {
   }
 }
 
-class NextQuestionButton extends StatelessWidget {
+class _NextQuestionButton extends StatelessWidget {
   final VoidCallback onPressed;
 
-  const NextQuestionButton({super.key, required this.onPressed});
+  const _NextQuestionButton({required this.onPressed});
 
   @override
   Widget build(BuildContext context) {

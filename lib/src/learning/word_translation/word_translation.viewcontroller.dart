@@ -1,7 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:fonli_app/base/notifiers/language.notifier.dart';
 import 'package:fonli_app/base/http/fonli/fonli_server.dart';
-import 'package:fonli_app/core/types/custom/custom_types.dart';
 import 'package:fonli_app/src/learning/word_translation/word_translation.viewmodel.dart';
 import 'package:fuzzywuzzy/fuzzywuzzy.dart';
 
@@ -60,7 +59,13 @@ class WordTranslationExerciseViewController {
 
     final isAnswerCorrect = checkAnswer(viewModel.currentAnswer, trimmedAnswer);
     if (!isAnswerCorrect) {
-      viewModel.userMistakes.add(Pair(trimmedAnswer, viewModel.currentAnswer));
+      viewModel.userMistakes.add(
+        UserMistake(
+          word: viewModel.currentQuestion,
+          userAnswer: trimmedAnswer,
+          correctAnswer: viewModel.currentAnswer,
+        ),
+      );
     }
     viewModel.isAnswerCorrect = isAnswerCorrect;
 
