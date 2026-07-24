@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:fonli_app/core/design/colors.dart';
 
 class FButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
   final Color color;
   final bool isLoading;
+  final bool isEnabled;
 
   const FButton({
     super.key,
@@ -12,14 +14,23 @@ class FButton extends StatelessWidget {
     required this.onPressed,
     this.color = Colors.white,
     this.isLoading = false,
+    this.isEnabled = true,
   });
+
+  Color get _textColor => isEnabled ? FColors.black : FColors.disabled;
+
+  VoidCallback? _onPressed() {
+    if (!isEnabled) return null;
+    if (isLoading) return null;
+    return onPressed;
+  }
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: isLoading ? null : onPressed,
+        onPressed: _onPressed(),
         style: ElevatedButton.styleFrom(
           backgroundColor: color,
           shape: RoundedRectangleBorder(
@@ -30,7 +41,7 @@ class FButton extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           child: isLoading
               ? _LoadingContent()
-              : Text(text, style: const TextStyle(color: Colors.black)),
+              : Text(text, style: TextStyle(color: _textColor)),
         ),
       ),
     );

@@ -28,7 +28,7 @@ class _LanguageLearningSettingViewState
 
   void initLanguages() async {
     selectedNativeLanguage = await localStorage.getStringWithDefault(
-      LocalStorageKeys.nativeLanguage,
+      LocalStorageKeys.baseLanguage,
       "US",
     );
     selectedTargetLanguage = await localStorage.getStringWithDefault(

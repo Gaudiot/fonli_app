@@ -25,8 +25,14 @@ class AppLocalizationsEn extends AppLocalizations {
       'Select the language you want to learn.';
 
   @override
-  String get onboarding__base_language_title =>
-      'Choose the language you speak.';
+  String get onboarding__base_language_title => 'Choose a language you speak.';
+
+  @override
+  String get onboarding__lifestyle_title => 'Tell us more about yourself.';
+
+  @override
+  String get onboarding__lifestyle_description =>
+      'With this we can create personalized exercises for you!';
 
   @override
   String get save => 'Save';

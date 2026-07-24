@@ -20,9 +20,17 @@
     "@onboarding__target_language_title": {
         "description": "Title at onboarding target language step"
     },
-    "onboarding__base_language_title": "Escolha o idioma que você fala.",
+    "onboarding__base_language_title": "Escolha um idioma que você fale.",
     "@onboarding__base_language_title": {
         "description": "Title at onboarding base language step"
+    },
+    "onboarding__lifestyle_title": "Nos conte mais sobre você.",
+    "@onboarding__lifestyle_title": {
+        "description": "Title at onboarding lifestyle step"
+    },
+    "onboarding__lifestyle_description": "Com isso podemos criar exercícios personalizados para você!",
+    "@onboarding__lifestyle_description": {
+        "description": "Description at onboarding lifestyle step"
     },
     "save": "Salvar",
     "@save": {

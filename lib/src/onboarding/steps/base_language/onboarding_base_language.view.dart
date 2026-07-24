@@ -10,7 +10,11 @@ import 'package:fonli_app/src/onboarding/steps/base_language/onboarding_base_lan
 
 class OnboardingBaseLanguageView extends StatefulWidget {
   final EventEmitter<OnboardingStepStatus> emitter;
-  const OnboardingBaseLanguageView({super.key, required this.emitter});
+  late final OnboardingBaseLanguageViewController viewController;
+
+  OnboardingBaseLanguageView({super.key, required this.emitter}) {
+    viewController = OnboardingBaseLanguageViewController(emitter: emitter);
+  }
 
   @override
   State<OnboardingBaseLanguageView> createState() =>
@@ -19,10 +23,10 @@ class OnboardingBaseLanguageView extends StatefulWidget {
 
 class _OnboardingBaseLanguageViewState
     extends State<OnboardingBaseLanguageView> {
-  final viewController = OnboardingBaseLanguageViewController();
-
   @override
   Widget build(BuildContext context) {
+    final viewController = widget.viewController;
+
     return ListenableBuilder(
       listenable: viewController.viewModel,
       builder: (context, _) {
@@ -39,6 +43,8 @@ class _OnboardingBaseLanguageViewState
                     AppLocalizations.of(
                       context,
                     )!.onboarding__base_language_title,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
                   ),
                   Expanded(
                     child: ListView.builder(
@@ -55,13 +61,13 @@ class _OnboardingBaseLanguageViewState
                           ),
                         ),
                         trailing:
-                            vm.selectedLanguage ==
+                            vm.baseLanguage ==
                                 AvailableLanguages.languageCodes[index].code
                             ? Icon(Icons.check)
                             : null,
                         onTap: () {
                           setState(() {
-                            vm.selectedLanguage =
+                            vm.baseLanguage =
                                 AvailableLanguages.languageCodes[index].code;
                           });
                         },
@@ -71,6 +77,7 @@ class _OnboardingBaseLanguageViewState
                   FButton(
                     onPressed: viewController.onNextPressed,
                     text: AppLocalizations.of(context)!.common__next,
+                    isEnabled: vm.baseLanguage != null,
                   ),
                   TextButton(
                     onPressed: () {

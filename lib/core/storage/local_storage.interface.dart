@@ -3,7 +3,7 @@ import 'package:fonli_app/core/storage/impl/shared_preferences.local_storage.dar
 final ILocalStorage localStorage = SharedPreferencesLocalStorage();
 
 enum LocalStorageKeys {
-  nativeLanguage("native_language"),
+  baseLanguage("base_language"),
   targetLanguage("target_language"),
   onboarded("onboarded");
 

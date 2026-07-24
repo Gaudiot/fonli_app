@@ -17,7 +17,11 @@ class OnboardingLifestyleView extends StatelessWidget {
         child: SafeArea(
           child: Column(
             children: [
-              Text('Onboarding Lifestyle'),
+              Text(
+                AppLocalizations.of(context)!.onboarding__lifestyle_title,
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+              ),
               Spacer(),
               TextButton(
                 onPressed: () {

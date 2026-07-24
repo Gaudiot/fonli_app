@@ -10,9 +10,11 @@ import 'package:fonli_app/src/onboarding/steps/target_language/onboarding_target
 
 class OnboardingTargetLanguageView extends StatelessWidget {
   final EventEmitter<OnboardingStepStatus> emitter;
-  final vm = OnboardingTargetLanguageViewController();
+  late final OnboardingTargetLanguageViewController vm;
 
-  OnboardingTargetLanguageView({super.key, required this.emitter});
+  OnboardingTargetLanguageView({super.key, required this.emitter}) {
+    vm = OnboardingTargetLanguageViewController(emitter: emitter);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +31,8 @@ class OnboardingTargetLanguageView extends StatelessWidget {
                     AppLocalizations.of(
                       context,
                     )!.onboarding__target_language_title,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
                   ),
                   Expanded(
                     child: ListView.builder(
@@ -58,12 +62,11 @@ class OnboardingTargetLanguageView extends StatelessWidget {
                   ),
                   FButton(
                     text: AppLocalizations.of(context)!.common__next,
-                    onPressed: () {},
+                    onPressed: vm.onNextPressed,
+                    isEnabled: vm.viewModel.targetLanguage != null,
                   ),
                   TextButton(
-                    onPressed: () {
-                      emitter.emit(.completed);
-                    },
+                    onPressed: vm.onSkipPressed,
                     child: Text(AppLocalizations.of(context)!.common__skip),
                   ),
                 ],

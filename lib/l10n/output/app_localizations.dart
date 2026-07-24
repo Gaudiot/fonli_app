@@ -131,8 +131,20 @@ abstract class AppLocalizations {
   /// Title at onboarding base language step
   ///
   /// In en, this message translates to:
-  /// **'Choose the language you speak.'**
+  /// **'Choose a language you speak.'**
   String get onboarding__base_language_title;
+
+  /// Title at onboarding lifestyle step
+  ///
+  /// In en, this message translates to:
+  /// **'Tell us more about yourself.'**
+  String get onboarding__lifestyle_title;
+
+  /// Description at onboarding lifestyle step
+  ///
+  /// In en, this message translates to:
+  /// **'With this we can create personalized exercises for you!'**
+  String get onboarding__lifestyle_description;
 
   /// Save label
   ///

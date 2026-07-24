@@ -1,10 +1,11 @@
 import 'package:fonli_app/core/components/base_viewstate.dart';
 
 class OnboardingBaseLanguageViewModel extends BaseViewState {
-  String? selectedLanguage;
+  String? _baseLanguage;
 
-  setSelectedLanguage(String languageCode) {
-    selectedLanguage = languageCode;
+  String? get baseLanguage => _baseLanguage;
+  set baseLanguage(String languageCode) {
+    _baseLanguage = languageCode;
     notifyListeners();
   }
 }

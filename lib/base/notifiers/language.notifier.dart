@@ -12,28 +12,28 @@ class LanguageNotifier extends ChangeNotifier {
 
   factory LanguageNotifier() => _instance;
 
-  String _nativeLanguage = "BR";
-  String _targetLanguage = "IT";
+  String _baseLanguage = "pt_br";
+  String _targetLanguage = "en_us";
 
   Future<void> _loadFromStorage() async {
-    _nativeLanguage = await localStorage.getStringWithDefault(
-      LocalStorageKeys.nativeLanguage,
-      "BR",
+    _baseLanguage = await localStorage.getStringWithDefault(
+      LocalStorageKeys.baseLanguage,
+      "pt_br",
     );
     _targetLanguage = await localStorage.getStringWithDefault(
       LocalStorageKeys.targetLanguage,
-      "IT",
+      "en_us",
     );
     notifyListeners();
   }
 
-  String get nativeLanguage => _nativeLanguage;
+  String get nativeLanguage => _baseLanguage;
   String get targetLanguage => _targetLanguage;
 
   set nativeLanguage(String value) {
-    if (_nativeLanguage == value) return;
-    _nativeLanguage = value;
-    localStorage.setString(.nativeLanguage, value);
+    if (_baseLanguage == value) return;
+    _baseLanguage = value;
+    localStorage.setString(.baseLanguage, value);
     notifyListeners();
   }
 

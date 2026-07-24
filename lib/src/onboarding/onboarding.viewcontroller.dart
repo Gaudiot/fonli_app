@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:fonli_app/core/navigation/navigation.dart';
+import 'package:fonli_app/core/storage/local_storage.interface.dart';
 import 'package:fonli_app/core/types/base_event.dart';
 import 'package:fonli_app/src/onboarding/onboarding.viewmodel.dart';
 import 'package:fonli_app/src/onboarding/steps/base_language/onboarding_base_language.view.dart';
@@ -66,6 +67,7 @@ class OnboardingViewController {
   }
 
   void exitOnboarding(BuildContext context) {
+    localStorage.setBoolean(.onboarded, true);
     NavigationManager.pushNamedAndRemoveAll(context, .exerciseSelection);
   }
 }

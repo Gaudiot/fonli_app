@@ -12,6 +12,8 @@ class FColors {
 
   static const Color black = Color(0xFF000000);
 
+  static const Color disabled = Color(0xFF808080);
+
   //MARK: - Primary
   static const Color primaryDarkest = Color(0xFFDCD193);
   static const Color primaryDarker = Color(0xFFE1D8A3);
