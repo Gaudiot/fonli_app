@@ -21,6 +21,7 @@ class OnboardingTargetLanguageView extends StatelessWidget {
     return Scaffold(
       body: Container(
         color: FColors.primary,
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: SafeArea(
           child: ListenableBuilder(
             listenable: vm.viewModel,
@@ -62,6 +63,7 @@ class OnboardingTargetLanguageView extends StatelessWidget {
                   ),
                   FButton(
                     text: AppLocalizations.of(context)!.common__next,
+                    color: FColors.secondary,
                     onPressed: vm.onNextPressed,
                   ),
                 ],

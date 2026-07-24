@@ -76,6 +76,7 @@ class _OnboardingBaseLanguageViewState
                   ),
                   FButton(
                     onPressed: viewController.onNextPressed,
+                    color: FColors.secondary,
                     text: AppLocalizations.of(context)!.common__next,
                   ),
                 ],
