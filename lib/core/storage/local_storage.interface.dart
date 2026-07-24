@@ -4,7 +4,8 @@ final ILocalStorage localStorage = SharedPreferencesLocalStorage();
 
 enum LocalStorageKeys {
   nativeLanguage("native_language"),
-  targetLanguage("target_language");
+  targetLanguage("target_language"),
+  onboarded("onboarded");
 
   final String key;
 
@@ -14,11 +15,16 @@ enum LocalStorageKeys {
 abstract class ILocalStorage {
   void deleteKey(String key);
 
+  // MARK: - String
   Future<String?> getString(LocalStorageKeys key);
   Future<String> getStringWithDefault(
     LocalStorageKeys key,
     String defaultValue,
   );
-
   Future<String> setString(LocalStorageKeys key, String value);
+
+  // MARK: - Boolean
+  Future<bool?> getBoolean(LocalStorageKeys key);
+  Future<bool> getBooleanWithDefault(LocalStorageKeys key, bool defaultValue);
+  Future<bool> setBoolean(LocalStorageKeys key, bool value);
 }

@@ -5,6 +5,7 @@ import "package:fonli_app/src/learning/story_translation/story_translation.view.
 import "package:fonli_app/src/learning/word_conjugation/word_conjugation.view.dart";
 import "package:fonli_app/src/learning/word_translation/word_translation.view.dart";
 import "package:fonli_app/src/learning/word_translation/word_translation.viewcontroller.dart";
+import "package:fonli_app/src/onboarding/onboarding.view.dart";
 import "package:fonli_app/src/settings/language_learning_settings/language_learning_settings.view.dart";
 import "package:fonli_app/src/settings/settings.view.dart";
 import "package:fonli_app/src/splash/splash.view.dart";
@@ -15,6 +16,7 @@ typedef RouteBuilder = Widget Function(BuildContext context);
 enum NavigationRoutes {
   splash("/splash"),
   auth("/auth"),
+  onboarding("/onboarding"),
   exerciseSelection("/exercise-selection"),
   nativeToForeign("/exercise/native-to-foreign"),
   foreignToNative("/exercise/foreign-to-native"),
@@ -41,6 +43,7 @@ class NavigationManager {
     return {
       NavigationRoutes.splash.path: (context) => const SplashView(),
       NavigationRoutes.auth.path: (context) => const AuthView(),
+      NavigationRoutes.onboarding.path: (context) => OnboardingView(),
       NavigationRoutes.exerciseSelection.path: (context) =>
           ExerciseSelectionView(),
       NavigationRoutes.nativeToForeign.path: (context) =>
@@ -82,6 +85,17 @@ class NavigationManager {
   }) {
     _args = args ?? {};
     Navigator.pushNamed(context, route.path);
+  }
+
+  static void pushScreen(BuildContext context, Widget screen) {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => screen));
+  }
+
+  static void replaceScreen(BuildContext context, Widget screen) {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => screen),
+    );
   }
 
   static void replaceWith(

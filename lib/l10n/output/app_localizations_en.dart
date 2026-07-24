@@ -18,6 +18,17 @@ class AppLocalizationsEn extends AppLocalizations {
   String get common__next => 'Next';
 
   @override
+  String get common__skip => 'Skip';
+
+  @override
+  String get onboarding__target_language_title =>
+      'Select the language you want to learn.';
+
+  @override
+  String get onboarding__base_language_title =>
+      'Choose the language you speak.';
+
+  @override
   String get save => 'Save';
 
   @override

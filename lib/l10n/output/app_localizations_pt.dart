@@ -18,6 +18,17 @@ class AppLocalizationsPt extends AppLocalizations {
   String get common__next => 'Próximo';
 
   @override
+  String get common__skip => 'Pular';
+
+  @override
+  String get onboarding__target_language_title =>
+      'Selecione o idioma que você deseja aprender.';
+
+  @override
+  String get onboarding__base_language_title =>
+      'Escolha o idioma que você fala.';
+
+  @override
   String get save => 'Salvar';
 
   @override

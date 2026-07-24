@@ -116,6 +116,24 @@ abstract class AppLocalizations {
   /// **'Next'**
   String get common__next;
 
+  /// Skip label
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get common__skip;
+
+  /// Title at onboarding target language step
+  ///
+  /// In en, this message translates to:
+  /// **'Select the language you want to learn.'**
+  String get onboarding__target_language_title;
+
+  /// Title at onboarding base language step
+  ///
+  /// In en, this message translates to:
+  /// **'Choose the language you speak.'**
+  String get onboarding__base_language_title;
+
   /// Save label
   ///
   /// In en, this message translates to:

@@ -12,6 +12,18 @@
     "@common__next": {
         "description": "Next label"
     },
+    "common__skip": "Pular",
+    "@common__skip": {
+        "description": "Skip label"
+    },
+    "onboarding__target_language_title": "Selecione o idioma que você deseja aprender.",
+    "@onboarding__target_language_title": {
+        "description": "Title at onboarding target language step"
+    },
+    "onboarding__base_language_title": "Escolha o idioma que você fala.",
+    "@onboarding__base_language_title": {
+        "description": "Title at onboarding base language step"
+    },
     "save": "Salvar",
     "@save": {
         "description": "Save label"

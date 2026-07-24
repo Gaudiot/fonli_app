@@ -12,6 +12,18 @@
     "@common__next": {
         "description": "Next label"
     },
+    "common__skip": "Skip",
+    "@common__skip": {
+        "description": "Skip label"
+    },
+    "onboarding__target_language_title": "Select the language you want to learn.",
+    "@onboarding__target_language_title": {
+        "description": "Title at onboarding target language step"
+    },
+    "onboarding__base_language_title": "Choose the language you speak.",
+    "@onboarding__base_language_title": {
+        "description": "Title at onboarding base language step"
+    },
     "save": "Save",
     "@save": {
         "description": "Save label"

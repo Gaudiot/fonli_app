@@ -9,6 +9,8 @@ class SharedPreferencesLocalStorage implements ILocalStorage {
     await _sp.remove(key);
   }
 
+  // MARK: - String
+
   @override
   Future<String?> getString(LocalStorageKeys key) async {
     final containsKey = await _sp.containsKey(key.key);
@@ -39,6 +41,42 @@ class SharedPreferencesLocalStorage implements ILocalStorage {
   @override
   Future<String> setString(LocalStorageKeys key, String value) async {
     await _sp.setString(key.key, value);
+
+    return value;
+  }
+
+  // MARK: - Boolean
+
+  @override
+  Future<bool?> getBoolean(LocalStorageKeys key) async {
+    final containsKey = await _sp.containsKey(key.key);
+
+    if (!containsKey) {
+      return null;
+    }
+
+    final value = await _sp.getBool(key.key);
+
+    return value;
+  }
+
+  @override
+  Future<bool> getBooleanWithDefault(
+    LocalStorageKeys key,
+    bool defaultValue,
+  ) async {
+    final value = await getBoolean(key);
+
+    if (value == null) {
+      return defaultValue;
+    }
+
+    return value;
+  }
+
+  @override
+  Future<bool> setBoolean(LocalStorageKeys key, bool value) async {
+    await _sp.setBool(key.key, value);
 
     return value;
   }
