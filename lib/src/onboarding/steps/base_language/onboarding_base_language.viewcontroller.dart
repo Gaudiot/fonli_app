@@ -7,20 +7,27 @@ class OnboardingBaseLanguageViewController {
   final EventEmitter<OnboardingStepStatus> emitter;
   final viewModel = OnboardingBaseLanguageViewModel();
 
-  OnboardingBaseLanguageViewController({required this.emitter});
+  OnboardingBaseLanguageViewController({required this.emitter}) {
+    _fetchTargetLanguage();
+  }
+
+  void _fetchTargetLanguage() async {
+    viewModel.targetLanguage = await localStorage.getStringWithDefault(
+      LocalStorageKeys.targetLanguage,
+      "en_US",
+    );
+  }
 
   void onLanguageSelected(String languageCode) {
     viewModel.baseLanguage = languageCode;
   }
 
   void onNextPressed() {
-    final selectedLanguage = viewModel.baseLanguage;
-    if (selectedLanguage == null) return;
-    localStorage.setString(.baseLanguage, selectedLanguage);
-    emitter.emit(.completed);
-  }
+    final baseLanguage = viewModel.baseLanguage;
+    final targetLanguage = viewModel.targetLanguage;
+    if (baseLanguage == targetLanguage) return;
 
-  void onSkipPressed() {
+    localStorage.setString(.baseLanguage, viewModel.baseLanguage);
     emitter.emit(.completed);
   }
 }

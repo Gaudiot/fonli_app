@@ -77,13 +77,6 @@ class _OnboardingBaseLanguageViewState
                   FButton(
                     onPressed: viewController.onNextPressed,
                     text: AppLocalizations.of(context)!.common__next,
-                    isEnabled: vm.baseLanguage != null,
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      widget.emitter.emit(.completed);
-                    },
-                    child: Text(AppLocalizations.of(context)!.common__skip),
                   ),
                 ],
               ),

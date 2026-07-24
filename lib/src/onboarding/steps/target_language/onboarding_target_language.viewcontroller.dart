@@ -14,13 +14,7 @@ class OnboardingTargetLanguageViewController {
   }
 
   void onNextPressed() {
-    final selectedLanguage = viewModel.targetLanguage;
-    if (selectedLanguage == null) return;
-    localStorage.setString(.targetLanguage, selectedLanguage);
-    emitter.emit(.completed);
-  }
-
-  void onSkipPressed() {
+    localStorage.setString(.targetLanguage, viewModel.targetLanguage);
     emitter.emit(.completed);
   }
 }

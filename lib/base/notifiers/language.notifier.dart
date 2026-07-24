@@ -12,17 +12,17 @@ class LanguageNotifier extends ChangeNotifier {
 
   factory LanguageNotifier() => _instance;
 
-  String _baseLanguage = "pt_br";
-  String _targetLanguage = "en_us";
+  String _baseLanguage = "pt_BR";
+  String _targetLanguage = "en_US";
 
   Future<void> _loadFromStorage() async {
     _baseLanguage = await localStorage.getStringWithDefault(
       LocalStorageKeys.baseLanguage,
-      "pt_br",
+      "pt_BR",
     );
     _targetLanguage = await localStorage.getStringWithDefault(
       LocalStorageKeys.targetLanguage,
-      "en_us",
+      "en_US",
     );
     notifyListeners();
   }

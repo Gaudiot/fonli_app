@@ -63,11 +63,6 @@ class OnboardingTargetLanguageView extends StatelessWidget {
                   FButton(
                     text: AppLocalizations.of(context)!.common__next,
                     onPressed: vm.onNextPressed,
-                    isEnabled: vm.viewModel.targetLanguage != null,
-                  ),
-                  TextButton(
-                    onPressed: vm.onSkipPressed,
-                    child: Text(AppLocalizations.of(context)!.common__skip),
                   ),
                 ],
               );
