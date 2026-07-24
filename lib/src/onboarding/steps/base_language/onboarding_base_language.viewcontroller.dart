@@ -1,13 +1,14 @@
+import 'dart:async';
+
 import 'package:fonli_app/core/storage/local_storage.interface.dart';
-import 'package:fonli_app/core/types/base_event.dart';
 import 'package:fonli_app/src/onboarding/onboarding.viewcontroller.dart';
 import 'package:fonli_app/src/onboarding/steps/base_language/onboarding_base_language.viewmodel.dart';
 
 class OnboardingBaseLanguageViewController {
-  final EventEmitter<OnboardingStepStatus> emitter;
+  final StreamSink<OnboardingStepStatus> eventStream;
   final viewModel = OnboardingBaseLanguageViewModel();
 
-  OnboardingBaseLanguageViewController({required this.emitter}) {
+  OnboardingBaseLanguageViewController({required this.eventStream}) {
     _fetchTargetLanguage();
   }
 
@@ -28,6 +29,6 @@ class OnboardingBaseLanguageViewController {
     if (baseLanguage == targetLanguage) return;
 
     localStorage.setString(.baseLanguage, viewModel.baseLanguage);
-    emitter.emit(.completed);
+    eventStream.add(.completed);
   }
 }

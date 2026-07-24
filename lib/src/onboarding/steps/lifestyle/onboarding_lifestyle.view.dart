@@ -1,16 +1,17 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:fonli_app/core/components/ui/button.component.dart';
 import 'package:fonli_app/core/design/colors.dart';
-import 'package:fonli_app/core/types/base_event.dart';
 import 'package:fonli_app/l10n/output/app_localizations.dart';
 import 'package:fonli_app/src/onboarding/onboarding.viewcontroller.dart';
 import 'package:fonli_app/src/onboarding/steps/lifestyle/onboarding_lifestyle.viewcontroller.dart';
 
 class OnboardingLifestyleView extends StatefulWidget {
   static const int _maxLifestyleLength = 500;
-  final EventEmitter<OnboardingStepStatus> emitter;
+  final StreamSink<OnboardingStepStatus> eventStream;
 
-  const OnboardingLifestyleView({super.key, required this.emitter});
+  const OnboardingLifestyleView({super.key, required this.eventStream});
 
   @override
   State<OnboardingLifestyleView> createState() =>
@@ -24,7 +25,9 @@ class _OnboardingLifestyleViewState extends State<OnboardingLifestyleView> {
   @override
   void initState() {
     super.initState();
-    viewController = OnboardingLifestyleViewController(emitter: widget.emitter);
+    viewController = OnboardingLifestyleViewController(
+      eventStream: widget.eventStream,
+    );
     _lifestyleController.addListener(_onLifestyleControllerChanged);
   }
 

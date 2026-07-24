@@ -1,19 +1,20 @@
+import 'dart:async';
+
 import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:fonli_app/core/available_languages.dart';
 import 'package:fonli_app/core/components/ui/button.component.dart';
 import 'package:fonli_app/core/design/colors.dart';
-import 'package:fonli_app/core/types/base_event.dart';
 import 'package:fonli_app/l10n/output/app_localizations.dart';
 import 'package:fonli_app/src/onboarding/onboarding.viewcontroller.dart';
 import 'package:fonli_app/src/onboarding/steps/target_language/onboarding_target_language.viewcontroller.dart';
 
 class OnboardingTargetLanguageView extends StatelessWidget {
-  final EventEmitter<OnboardingStepStatus> emitter;
+  final StreamSink<OnboardingStepStatus> eventStream;
   late final OnboardingTargetLanguageViewController vm;
 
-  OnboardingTargetLanguageView({super.key, required this.emitter}) {
-    vm = OnboardingTargetLanguageViewController(emitter: emitter);
+  OnboardingTargetLanguageView({super.key, required this.eventStream}) {
+    vm = OnboardingTargetLanguageViewController(eventStream: eventStream);
   }
 
   @override
