@@ -46,42 +46,52 @@ class _OnboardingLifestyleViewState extends State<OnboardingLifestyleView> {
         color: FColors.primary,
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: SafeArea(
-          child: Column(
-            children: [
-              Text(
-                AppLocalizations.of(context)!.onboarding__lifestyle_title,
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-              ),
-              TextField(
-                controller: _lifestyleController,
-                maxLines: 5,
-                maxLength: OnboardingLifestyleView._maxLifestyleLength,
-                textCapitalization: TextCapitalization.sentences,
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: FColors.primaryLighter,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
+          child: ListenableBuilder(
+            listenable: viewController.viewModel,
+            builder: (context, child) {
+              final vm = viewController.viewModel;
+
+              return Column(
+                children: [
+                  Text(
+                    AppLocalizations.of(context)!.onboarding__lifestyle_title,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
                   ),
-                ),
-              ),
-              Text(
-                AppLocalizations.of(context)!.onboarding__lifestyle_description,
-              ),
-              Spacer(),
-              FButton(
-                text: AppLocalizations.of(context)!.common__next,
-                color: FColors.secondary,
-                onPressed: () =>
-                    viewController.onNextPressed(_lifestyleController.text),
-                isEnabled: _lifestyleController.text.trim().isNotEmpty,
-              ),
-              TextButton(
-                onPressed: viewController.onSkipPressed,
-                child: Text(AppLocalizations.of(context)!.common__skip),
-              ),
-            ],
+                  TextField(
+                    controller: _lifestyleController,
+                    maxLines: 5,
+                    maxLength: OnboardingLifestyleView._maxLifestyleLength,
+                    textCapitalization: TextCapitalization.sentences,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: FColors.primaryLighter,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                  ),
+                  Text(
+                    AppLocalizations.of(
+                      context,
+                    )!.onboarding__lifestyle_description,
+                  ),
+                  Spacer(),
+                  FButton(
+                    text: AppLocalizations.of(context)!.common__next,
+                    color: FColors.secondary,
+                    onPressed: () =>
+                        viewController.onNextPressed(_lifestyleController.text),
+                    isEnabled: _lifestyleController.text.trim().isNotEmpty,
+                    isLoading: vm.isLoading,
+                  ),
+                  TextButton(
+                    onPressed: viewController.onSkipPressed,
+                    child: Text(AppLocalizations.of(context)!.common__skip),
+                  ),
+                ],
+              );
+            },
           ),
         ),
       ),

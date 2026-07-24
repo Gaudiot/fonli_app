@@ -32,7 +32,7 @@ final class SplashViewController {
       false,
     );
     if (context.mounted) {
-      if (!isOnboarded || true) {
+      if (!isOnboarded) {
         NavigationManager.replaceWith(context, NavigationRoutes.onboarding);
         return;
       }
