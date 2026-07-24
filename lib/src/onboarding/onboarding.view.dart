@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fonli_app/l10n/output/app_localizations.dart';
+import 'package:fonli_app/core/design/colors.dart';
 import 'package:fonli_app/src/onboarding/onboarding.viewcontroller.dart';
 
 class OnboardingView extends StatefulWidget {
@@ -23,7 +23,10 @@ class _OnboardingViewState extends State<OnboardingView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(child: Center(child: CircularProgressIndicator())),
+      body: ColoredBox(
+        color: FColors.primary,
+        child: SafeArea(child: Center(child: CircularProgressIndicator())),
+      ),
     );
   }
 }
