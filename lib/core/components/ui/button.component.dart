@@ -19,18 +19,12 @@ class FButton extends StatelessWidget {
 
   Color get _textColor => isEnabled ? FColors.black : FColors.disabled;
 
-  VoidCallback? _onPressed() {
-    if (!isEnabled) return null;
-    if (isLoading) return null;
-    return onPressed;
-  }
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: _onPressed(),
+        onPressed: (isEnabled && !isLoading) ? onPressed : null,
         style: ElevatedButton.styleFrom(
           backgroundColor: color,
           shape: RoundedRectangleBorder(
