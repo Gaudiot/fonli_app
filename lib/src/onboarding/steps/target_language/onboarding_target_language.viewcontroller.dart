@@ -1,21 +1,25 @@
 import 'dart:async';
 
+import 'package:fonli_app/core/components/base_viewcontroller.dart';
 import 'package:fonli_app/core/storage/local_storage.interface.dart';
 import 'package:fonli_app/src/onboarding/onboarding.viewcontroller.dart';
 import 'package:fonli_app/src/onboarding/steps/target_language/onboarding_target_language.viewmodel.dart';
 
-class OnboardingTargetLanguageViewController {
+class OnboardingTargetLanguageViewController
+    extends FViewController<OnboardingTargetLanguageViewModel> {
   final StreamSink<OnboardingStepStatus> eventStream;
-  final viewModel = OnboardingTargetLanguageViewModel();
 
-  OnboardingTargetLanguageViewController({required this.eventStream});
+  OnboardingTargetLanguageViewController({
+    required this.eventStream,
+    required super.viewModel,
+  });
 
   void onLanguageSelected(String languageCode) {
-    viewModel.targetLanguage = languageCode;
+    value = value.copyWith(targetLanguage: languageCode);
   }
 
   void onNextPressed() {
-    localStorage.setString(.targetLanguage, viewModel.targetLanguage);
+    localStorage.setString(.targetLanguage, value.targetLanguage);
     eventStream.add(.completed);
   }
 }

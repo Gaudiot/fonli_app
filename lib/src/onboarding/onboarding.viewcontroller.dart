@@ -6,7 +6,7 @@ import 'package:fonli_app/core/storage/local_storage.interface.dart';
 import 'package:fonli_app/src/onboarding/onboarding.viewmodel.dart';
 import 'package:fonli_app/src/onboarding/steps/base_language/onboarding_base_language.view.dart';
 import 'package:fonli_app/src/onboarding/steps/lifestyle/onboarding_lifestyle.view.dart';
-import 'package:fonli_app/src/onboarding/steps/target_language/onboarding_target_language.view.dart';
+import 'package:fonli_app/src/onboarding/steps/target_language/onboarding_target_language.builder.dart';
 
 enum OnboardingStepStatus { completed }
 
@@ -18,7 +18,8 @@ class OnboardingViewController {
 
   final List<Widget Function(StreamSink<OnboardingStepStatus> stepController)>
   stepsBuilder = [
-    (eventStream) => OnboardingTargetLanguageView(eventStream: eventStream),
+    (eventStream) =>
+        OnboardingTargetLanguageBuilder(eventStream: eventStream).build(),
     (eventStream) => OnboardingBaseLanguageView(eventStream: eventStream),
     (eventStream) => OnboardingLifestyleView(eventStream: eventStream),
   ];

@@ -1,11 +1,13 @@
-import 'package:fonli_app/core/components/base_viewstate.dart';
+import 'package:fonli_app/core/components/base_viewmodel.dart';
 
-class OnboardingTargetLanguageViewModel extends BaseViewState {
-  String _targetLanguage = "en_US";
+class OnboardingTargetLanguageViewModel extends FViewModel {
+  String targetLanguage;
 
-  String get targetLanguage => _targetLanguage;
-  set targetLanguage(String value) {
-    _targetLanguage = value;
-    notifyListeners();
+  OnboardingTargetLanguageViewModel({this.targetLanguage = "en_US"});
+
+  OnboardingTargetLanguageViewModel copyWith({String? targetLanguage}) {
+    return OnboardingTargetLanguageViewModel(
+      targetLanguage: targetLanguage ?? this.targetLanguage,
+    );
   }
 }
