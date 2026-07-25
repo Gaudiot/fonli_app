@@ -16,6 +16,14 @@ class FView<VM extends FViewModel, T extends FViewController<VM>>
 class _FViewState<VM extends FViewModel, T extends FViewController<VM>>
     extends State<FView<VM, T>> {
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) widget.viewController.onInit(context);
+    });
+  }
+
+  @override
   void dispose() {
     widget.viewController.dispose();
     super.dispose();

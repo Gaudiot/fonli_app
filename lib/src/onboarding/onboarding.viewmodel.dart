@@ -1,6 +1,3 @@
-import 'package:fonli_app/core/components/base_viewstate.dart';
+import 'package:fonli_app/core/components/base_viewmodel.dart';
 
-class OnboardingViewModel extends BaseViewState {
-  int currentStep = 0;
-  bool hasStarted = false;
-}
+class OnboardingViewModel extends FViewModel {}

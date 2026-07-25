@@ -1,32 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:fonli_app/core/components/base_view.dart';
 import 'package:fonli_app/core/design/colors.dart';
 import 'package:fonli_app/src/onboarding/onboarding.viewcontroller.dart';
+import 'package:fonli_app/src/onboarding/onboarding.viewmodel.dart';
 
-class OnboardingView extends StatefulWidget {
-  const OnboardingView({super.key});
+class OnboardingView extends StatelessWidget {
+  final OnboardingViewController viewController;
 
-  @override
-  State<OnboardingView> createState() => _OnboardingViewState();
-}
-
-class _OnboardingViewState extends State<OnboardingView> {
-  final viewController = OnboardingViewController();
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      viewController.onInit(context);
-    });
-  }
+  const OnboardingView({super.key, required this.viewController});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ColoredBox(
-        color: FColors.primary,
-        child: SafeArea(child: Center(child: CircularProgressIndicator())),
-      ),
+    return FView<OnboardingViewModel, OnboardingViewController>(
+      viewController: viewController,
+      builder: (context, data) {
+        return ColoredBox(
+          color: FColors.primary,
+          child: SafeArea(child: Center(child: CircularProgressIndicator())),
+        );
+      },
     );
   }
 }

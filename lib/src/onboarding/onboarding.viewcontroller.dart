@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/widgets.dart';
+import 'package:fonli_app/core/components/base_viewcontroller.dart';
 import 'package:fonli_app/core/navigation/navigation.dart';
 import 'package:fonli_app/core/storage/local_storage.interface.dart';
 import 'package:fonli_app/src/onboarding/onboarding.viewmodel.dart';
@@ -10,14 +11,15 @@ import 'package:fonli_app/src/onboarding/steps/target_language/onboarding_target
 
 enum OnboardingStepStatus { completed }
 
-class OnboardingViewController {
+class OnboardingViewController extends FViewController<OnboardingViewModel> {
   final _stepController = StreamController<OnboardingStepStatus>();
   StreamSubscription<OnboardingStepStatus>? _sub;
 
-  final viewModel = OnboardingViewModel();
+  int _currentStep = 0;
+  bool _hasStarted = false;
 
-  final List<Widget Function(StreamSink<OnboardingStepStatus> stepController)>
-  stepsBuilder = [
+  final List<Widget Function(StreamSink<OnboardingStepStatus> eventStream)>
+  _stepsBuilder = [
     (eventStream) =>
         OnboardingTargetLanguageBuilder(eventStream: eventStream).build(),
     (eventStream) =>
@@ -26,6 +28,9 @@ class OnboardingViewController {
         OnboardingLifestyleBuilder(eventStream: eventStream).build(),
   ];
 
+  OnboardingViewController({required super.viewModel});
+
+  @override
   void onInit(BuildContext context) {
     _sub = _stepController.stream.listen((status) {
       if (context.mounted) {
@@ -35,9 +40,11 @@ class OnboardingViewController {
     _launchCurrentStep(context);
   }
 
+  @override
   void dispose() {
     _sub?.cancel();
     _stepController.close();
+    super.dispose();
   }
 
   void _handleEvent(BuildContext context, OnboardingStepStatus status) {
@@ -49,11 +56,11 @@ class OnboardingViewController {
   }
 
   void _stepCompleted(BuildContext context) {
-    if (viewModel.hasStarted) {
-      viewModel.currentStep++;
+    if (_hasStarted) {
+      _currentStep++;
     }
 
-    final isOnboardingFinished = viewModel.currentStep >= stepsBuilder.length;
+    final isOnboardingFinished = _currentStep >= _stepsBuilder.length;
     if (isOnboardingFinished) {
       exitOnboarding(context);
       return;
@@ -63,8 +70,8 @@ class OnboardingViewController {
   }
 
   void _launchCurrentStep(BuildContext context) {
-    final stepBuilder = stepsBuilder[viewModel.currentStep];
-    if (viewModel.hasStarted) {
+    final stepBuilder = _stepsBuilder[_currentStep];
+    if (_hasStarted) {
       NavigationManager.replaceScreen(
         context,
         PopScope(canPop: false, child: stepBuilder(_stepController.sink)),
@@ -75,7 +82,7 @@ class OnboardingViewController {
         PopScope(canPop: false, child: stepBuilder(_stepController.sink)),
       );
     }
-    viewModel.hasStarted = true;
+    _hasStarted = true;
   }
 
   void exitOnboarding(BuildContext context) {

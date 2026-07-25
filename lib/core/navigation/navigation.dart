@@ -5,7 +5,7 @@ import "package:fonli_app/src/learning/story_translation/story_translation.view.
 import "package:fonli_app/src/learning/word_conjugation/word_conjugation.view.dart";
 import "package:fonli_app/src/learning/word_translation/word_translation.view.dart";
 import "package:fonli_app/src/learning/word_translation/word_translation.viewcontroller.dart";
-import "package:fonli_app/src/onboarding/onboarding.view.dart";
+import "package:fonli_app/src/onboarding/onboarding.builder.dart";
 import "package:fonli_app/src/settings/language_learning_settings/language_learning_settings.view.dart";
 import "package:fonli_app/src/settings/settings.view.dart";
 import "package:fonli_app/src/splash/splash.view.dart";
@@ -43,7 +43,8 @@ class NavigationManager {
     return {
       NavigationRoutes.splash.path: (context) => const SplashView(),
       NavigationRoutes.auth.path: (context) => const AuthView(),
-      NavigationRoutes.onboarding.path: (context) => OnboardingView(),
+      NavigationRoutes.onboarding.path: (context) =>
+          const OnboardingBuilder().build(),
       NavigationRoutes.exerciseSelection.path: (context) =>
           ExerciseSelectionView(),
       NavigationRoutes.nativeToForeign.path: (context) =>
