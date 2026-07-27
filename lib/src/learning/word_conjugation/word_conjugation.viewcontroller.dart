@@ -11,7 +11,7 @@ class WordConjugationExerciseViewController {
     viewModel.isLoading = true;
 
     final result = await FonliExerciseServer.getWordConjugationExercise(
-      LanguageNotifier.instance.targetLanguage,
+      LanguageNotifier.instance.value.targetLanguage.code,
     );
 
     result.when(

@@ -21,6 +21,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get common__skip => 'Pular';
 
   @override
+  String get common__save => 'Salvar';
+
+  @override
   String get onboarding__target_language_title =>
       'Selecione o idioma que você deseja aprender.';
 
@@ -34,9 +37,6 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get onboarding__lifestyle_description =>
       'Com isso podemos criar exercícios personalizados para você!';
-
-  @override
-  String get save => 'Salvar';
 
   @override
   String get email => 'E-mail';
@@ -84,10 +84,10 @@ class AppLocalizationsPt extends AppLocalizations {
   String get exercise_story => 'Traduzir história';
 
   @override
-  String get native_lang => 'Lingua Nativa';
+  String get base_language => 'Idioma base';
 
   @override
-  String get foreign_lang => 'Lingua Estrangeira';
+  String get target_language => 'Idioma alvo';
 
   @override
   String get lang__english => 'Inglês';
@@ -158,8 +158,8 @@ class AppLocalizationsPt extends AppLocalizations {
   String get settings__title => 'Configurações';
 
   @override
-  String get settings__change_learning_language =>
-      'Mudar Lingua de Aprendizagem';
+  String get settings__language_learning_title =>
+      'Configurações de Aprendizagem de Idioma';
 
   @override
   String get settings__lifestyle_settings => 'Definir Cotidiano';

@@ -21,6 +21,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get common__skip => 'Skip';
 
   @override
+  String get common__save => 'Save';
+
+  @override
   String get onboarding__target_language_title =>
       'Select the language you want to learn.';
 
@@ -33,9 +36,6 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get onboarding__lifestyle_description =>
       'With this we can create personalized exercises for you!';
-
-  @override
-  String get save => 'Save';
 
   @override
   String get email => 'E-mail';
@@ -77,16 +77,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get exercise_foreign_to_native => 'Foreign to Native';
 
   @override
-  String get exercise_conjugation => 'Word Conjugation';
+  String get exercise_conjugation => 'Verb Conjugation';
 
   @override
   String get exercise_story => 'Story Translation';
 
   @override
-  String get native_lang => 'Native Language';
+  String get base_language => 'Base Language';
 
   @override
-  String get foreign_lang => 'Foreign Language';
+  String get target_language => 'Target Language';
 
   @override
   String get lang__english => 'English';
@@ -157,7 +157,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings__title => 'Settings';
 
   @override
-  String get settings__change_learning_language => 'Change Learning Language';
+  String get settings__language_learning_title => 'Language Learning Settings';
 
   @override
   String get settings__lifestyle_settings => 'Lifestyle Settings';

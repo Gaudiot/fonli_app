@@ -1,6 +1,6 @@
 import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
-import 'package:fonli_app/core/available_languages.dart';
+import 'package:fonli_app/core/types/language_code.type.dart';
 import 'package:fonli_app/core/components/base_view.dart';
 import 'package:fonli_app/core/components/ui/button.component.dart';
 import 'package:fonli_app/core/design/colors.dart';
@@ -37,25 +37,18 @@ class OnboardingTargetLanguageView extends StatelessWidget {
                 Expanded(
                   child: ListView.builder(
                     padding: const EdgeInsets.symmetric(vertical: 16),
-                    itemCount: AvailableLanguages.languageCodes.length,
+                    itemCount: LanguageCode.all.length,
                     itemBuilder: (context, index) => ListTile(
                       leading: CountryFlag.fromCountryCode(
-                        AvailableLanguages.getCountryCodes(
-                          AvailableLanguages.languageCodes[index],
-                        ),
+                        LanguageCode.all[index].countryCode,
                       ),
-                      title: Text(
-                        AvailableLanguages.getLanguageName(
-                          AvailableLanguages.languageCodes[index],
-                        ),
-                      ),
+                      title: Text(LanguageCode.all[index].languageName),
                       trailing:
-                          data.targetLanguage ==
-                              AvailableLanguages.languageCodes[index].code
+                          data.targetLanguage == LanguageCode.all[index].code
                           ? Icon(Icons.check)
                           : null,
                       onTap: () => viewController.onLanguageSelected(
-                        AvailableLanguages.languageCodes[index].code,
+                        LanguageCode.all[index].code,
                       ),
                     ),
                   ),

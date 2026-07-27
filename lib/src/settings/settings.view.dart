@@ -41,7 +41,7 @@ class SettingsView extends StatelessWidget {
                   FonliListTile(
                     title: AppLocalizations.of(
                       context,
-                    )!.settings__change_learning_language,
+                    )!.settings__language_learning_title,
                     onPressed: () => viewController
                         .goToChangeLearningLanguageSettings(context),
                   ),

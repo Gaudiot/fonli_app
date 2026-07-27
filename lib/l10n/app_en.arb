@@ -16,6 +16,10 @@
     "@common__skip": {
         "description": "Skip label"
     },
+    "common__save": "Save",
+    "@common__save": {
+        "description": "Save label"
+    },
     "onboarding__target_language_title": "Select the language you want to learn.",
     "@onboarding__target_language_title": {
         "description": "Title at onboarding target language step"
@@ -31,10 +35,6 @@
     "onboarding__lifestyle_description": "With this we can create personalized exercises for you!",
     "@onboarding__lifestyle_description": {
         "description": "Description at onboarding lifestyle step"
-    },
-    "save": "Save",
-    "@save": {
-        "description": "Save label"
     },
     "email": "E-mail",
     "@email": {
@@ -88,21 +88,21 @@
     "@exercise_foreign_to_native": {
         "description": "Foreign to native exercise label"
     },
-    "exercise_conjugation": "Word Conjugation",
+    "exercise_conjugation": "Verb Conjugation",
     "@exercise_conjugation": {
-        "description": "Word conjugation exercise label"
+        "description": "Verb conjugation exercise label"
     },
     "exercise_story": "Story Translation",
     "@exercise_story": {
         "description": "Story translation exercise label"
     },
-    "native_lang": "Native Language",
-    "@native_lang": {
-        "description": "Native language label"
+    "base_language": "Base Language",
+    "@base_language": {
+        "description": "Base language label"
     },
-    "foreign_lang": "Foreign Language",
-    "@foreign_lang": {
-        "description": "Foreign language label"
+    "target_language": "Target Language",
+    "@target_language": {
+        "description": "Target language label"
     },
     "lang__english": "English",
     "@lang__english": {
@@ -210,9 +210,9 @@
     "@settings__title": {
         "description": "Settings title"
     },
-    "settings__change_learning_language": "Change Learning Language",
-    "@settings__change_learning_language": {
-        "description": "Change learning language label"
+    "settings__language_learning_title": "Language Learning Settings",
+    "@settings__language_learning_title": {
+        "description": "Language learning settings title"
     },
     "settings__lifestyle_settings": "Lifestyle Settings",
     "@settings__lifestyle_settings": {

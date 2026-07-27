@@ -16,6 +16,10 @@
     "@common__skip": {
         "description": "Skip label"
     },
+    "common__save": "Salvar",
+    "@common__save": {
+        "description": "Save label"
+    },
     "onboarding__target_language_title": "Selecione o idioma que você deseja aprender.",
     "@onboarding__target_language_title": {
         "description": "Title at onboarding target language step"
@@ -31,10 +35,6 @@
     "onboarding__lifestyle_description": "Com isso podemos criar exercícios personalizados para você!",
     "@onboarding__lifestyle_description": {
         "description": "Description at onboarding lifestyle step"
-    },
-    "save": "Salvar",
-    "@save": {
-        "description": "Save label"
     },
     "email": "E-mail",
     "@email": {
@@ -90,19 +90,19 @@
     },
     "exercise_conjugation": "Conjugação Verbal",
     "@exercise_conjugation": {
-        "description": "Word conjugation exercise label"
+        "description": "Verb conjugation exercise label"
     },
     "exercise_story": "Traduzir história",
     "@exercise_story": {
         "description": "Story translation exercise label"
     },
-    "native_lang": "Lingua Nativa",
-    "@native_lang": {
-        "description": "Native language label"
+    "base_language": "Idioma base",
+    "@base_language": {
+        "description": "Base language label"
     },
-    "foreign_lang": "Lingua Estrangeira",
-    "@foreign_lang": {
-        "description": "Foreign language label"
+    "target_language": "Idioma alvo",
+    "@target_language": {
+        "description": "Target language label"
     },
     "lang__english": "Inglês",
     "@lang__english": {
@@ -210,8 +210,8 @@
     "@settings__title": {
         "description": "Settings title"
     },
-    "settings__change_learning_language": "Mudar Lingua de Aprendizagem",
-    "@settings__change_learning_language": {
+    "settings__language_learning_title": "Configurações de Aprendizagem de Idioma",
+    "@settings__language_learning_title": {
         "description": "Change learning language label"
     },
     "settings__lifestyle_settings": "Definir Cotidiano",

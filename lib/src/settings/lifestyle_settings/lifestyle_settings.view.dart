@@ -144,7 +144,7 @@ class _UserSettingsViewState extends State<UserSettingsView> {
                                     ),
                                   )
                                 : Text(
-                                    AppLocalizations.of(context)!.save,
+                                    AppLocalizations.of(context)!.common__save,
                                     style: TextStyle(color: FColors.black),
                                   ),
                           ),

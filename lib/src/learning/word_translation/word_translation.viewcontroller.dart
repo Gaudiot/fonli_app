@@ -23,8 +23,8 @@ class WordTranslationExerciseViewController {
     };
 
     final result = await t[exerciseType]!(
-      LanguageNotifier.instance.nativeLanguage,
-      LanguageNotifier.instance.targetLanguage,
+      LanguageNotifier.instance.value.baseLanguage.code,
+      LanguageNotifier.instance.value.targetLanguage.code,
     );
 
     result.when(

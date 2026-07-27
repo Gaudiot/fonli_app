@@ -1,12 +1,14 @@
 import "package:flutter/material.dart";
+import "package:fonli_app/core/components/snackbar/snackbar.dart";
 import "package:fonli_app/src/auth/auth.view.dart";
+import "package:fonli_app/src/learning/exercise_selection.builder.dart";
 import "package:fonli_app/src/learning/exercise_selection.view.dart";
 import "package:fonli_app/src/learning/story_translation/story_translation.view.dart";
 import "package:fonli_app/src/learning/word_conjugation/word_conjugation.view.dart";
 import "package:fonli_app/src/learning/word_translation/word_translation.view.dart";
 import "package:fonli_app/src/learning/word_translation/word_translation.viewcontroller.dart";
 import "package:fonli_app/src/onboarding/onboarding.builder.dart";
-import "package:fonli_app/src/settings/language_learning_settings/language_learning_settings.view.dart";
+import "package:fonli_app/src/settings/language_learning_settings/language_learning_settings.builder.dart";
 import "package:fonli_app/src/settings/settings.view.dart";
 import "package:fonli_app/src/splash/splash.view.dart";
 import "package:fonli_app/src/settings/lifestyle_settings/lifestyle_settings.view.dart";
@@ -20,7 +22,7 @@ enum NavigationRoutes {
   exerciseSelection("/exercise-selection"),
   nativeToForeign("/exercise/native-to-foreign"),
   foreignToNative("/exercise/foreign-to-native"),
-  wordConjugation("/exercise/word-conjugation"),
+  verbConjugation("/exercise/verb-conjugation"),
   storyTranslation("/exercise/story-translation"),
   languageLearningSettings("/language-learning-settings"),
   settings("/settings"),
@@ -44,9 +46,9 @@ class NavigationManager {
       NavigationRoutes.splash.path: (context) => const SplashView(),
       NavigationRoutes.auth.path: (context) => const AuthView(),
       NavigationRoutes.onboarding.path: (context) =>
-          const OnboardingBuilder().build(),
+          OnboardingBuilder(snackbarMessenger: snackbarMessenger).build(),
       NavigationRoutes.exerciseSelection.path: (context) =>
-          ExerciseSelectionView(),
+          ExerciseSelectionBuilder().build(),
       NavigationRoutes.nativeToForeign.path: (context) =>
           WordTranslationExerciseView(
             exerciseType: WordTranslationExerciseType.nativeToForeign,
@@ -55,12 +57,12 @@ class NavigationManager {
           WordTranslationExerciseView(
             exerciseType: WordTranslationExerciseType.foreignToNative,
           ),
-      NavigationRoutes.wordConjugation.path: (context) =>
+      NavigationRoutes.verbConjugation.path: (context) =>
           const WordConjugationExerciseView(),
       NavigationRoutes.storyTranslation.path: (context) =>
           const StoryTranslationExerciseView(),
       NavigationRoutes.languageLearningSettings.path: (context) =>
-          LanguageLearningSettingView(),
+          LanguageLearningSettingsBuilder().build(),
       NavigationRoutes.settings.path: (context) => SettingsView(),
       NavigationRoutes.userLifestyle.path: (context) =>
           const UserSettingsView(),

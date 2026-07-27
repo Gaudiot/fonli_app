@@ -1,20 +1,20 @@
 import 'package:fonli_app/core/components/base_viewmodel.dart';
 import 'package:fonli_app/core/types/language_code.type.dart';
 
-class OnboardingBaseLanguageViewModel extends FViewModel {
+class LanguageLearningSettingsViewModel extends FViewModel {
   final LanguageCode baseLanguage;
   final LanguageCode targetLanguage;
 
-  OnboardingBaseLanguageViewModel({
+  LanguageLearningSettingsViewModel({
     this.baseLanguage = .pt_BR,
     this.targetLanguage = .en_US,
   });
 
-  OnboardingBaseLanguageViewModel copyWith({
+  LanguageLearningSettingsViewModel copyWith({
     LanguageCode? baseLanguage,
     LanguageCode? targetLanguage,
   }) {
-    return OnboardingBaseLanguageViewModel(
+    return LanguageLearningSettingsViewModel(
       baseLanguage: baseLanguage ?? this.baseLanguage,
       targetLanguage: targetLanguage ?? this.targetLanguage,
     );

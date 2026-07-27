@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 enum LanguageCode {
   en_US("en_US"),
   pt_BR("pt_BR"),
@@ -9,22 +11,16 @@ enum LanguageCode {
   final String code;
 
   const LanguageCode(this.code);
-}
 
-class AvailableLanguages {
-  const AvailableLanguages._();
+  factory LanguageCode.fromString(String code) {
+    return LanguageCode.values.firstWhere(
+      (element) => element.code == code,
+      orElse: () => .en_US,
+    );
+  }
 
-  static List<LanguageCode> get languageCodes => [
-    LanguageCode.en_US,
-    LanguageCode.pt_BR,
-    LanguageCode.fr_FR,
-    LanguageCode.it_IT,
-    LanguageCode.de_DE,
-    LanguageCode.es_ES,
-  ];
-
-  static String getCountryCodes(LanguageCode languageCode) {
-    switch (languageCode) {
+  String get countryCode {
+    switch (this) {
       case LanguageCode.en_US:
         return "US";
       case LanguageCode.pt_BR:
@@ -40,8 +36,17 @@ class AvailableLanguages {
     }
   }
 
-  static String getLanguageName(LanguageCode languageCode) {
-    switch (languageCode) {
+  static List<LanguageCode> get all => [
+    LanguageCode.en_US,
+    LanguageCode.pt_BR,
+    LanguageCode.fr_FR,
+    LanguageCode.it_IT,
+    LanguageCode.de_DE,
+    LanguageCode.es_ES,
+  ];
+
+  String get languageName {
+    switch (this) {
       case LanguageCode.en_US:
         return "English";
       case LanguageCode.pt_BR:

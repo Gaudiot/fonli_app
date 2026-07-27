@@ -122,6 +122,12 @@ abstract class AppLocalizations {
   /// **'Skip'**
   String get common__skip;
 
+  /// Save label
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get common__save;
+
   /// Title at onboarding target language step
   ///
   /// In en, this message translates to:
@@ -145,12 +151,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'With this we can create personalized exercises for you!'**
   String get onboarding__lifestyle_description;
-
-  /// Save label
-  ///
-  /// In en, this message translates to:
-  /// **'Save'**
-  String get save;
 
   /// E-mail label
   ///
@@ -230,10 +230,10 @@ abstract class AppLocalizations {
   /// **'Foreign to Native'**
   String get exercise_foreign_to_native;
 
-  /// Word conjugation exercise label
+  /// Verb conjugation exercise label
   ///
   /// In en, this message translates to:
-  /// **'Word Conjugation'**
+  /// **'Verb Conjugation'**
   String get exercise_conjugation;
 
   /// Story translation exercise label
@@ -242,17 +242,17 @@ abstract class AppLocalizations {
   /// **'Story Translation'**
   String get exercise_story;
 
-  /// Native language label
+  /// Base language label
   ///
   /// In en, this message translates to:
-  /// **'Native Language'**
-  String get native_lang;
+  /// **'Base Language'**
+  String get base_language;
 
-  /// Foreign language label
+  /// Target language label
   ///
   /// In en, this message translates to:
-  /// **'Foreign Language'**
-  String get foreign_lang;
+  /// **'Target Language'**
+  String get target_language;
 
   /// English
   ///
@@ -374,11 +374,11 @@ abstract class AppLocalizations {
   /// **'Settings'**
   String get settings__title;
 
-  /// Change learning language label
+  /// Language learning settings title
   ///
   /// In en, this message translates to:
-  /// **'Change Learning Language'**
-  String get settings__change_learning_language;
+  /// **'Language Learning Settings'**
+  String get settings__language_learning_title;
 
   /// Lifestyle settings label
   ///

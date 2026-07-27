@@ -11,7 +11,12 @@ final class TopSnackbarMessenger implements SnackbarMessenger {
   void _show(BuildContext context, Widget snackBar) {
     final overlay = Overlay.maybeOf(context);
     if (overlay == null) return;
-    showTopSnackBar(overlay, snackBar);
+    showTopSnackBar(
+      overlay,
+      snackBar,
+      animationDuration: const Duration(milliseconds: 500),
+      displayDuration: const Duration(seconds: 2),
+    );
   }
 
   @override

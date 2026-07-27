@@ -11,8 +11,8 @@ class StoryTranslationExerciseViewController {
     viewModel.notifyListeners();
 
     final result = await FonliExerciseServer.generateStory(
-      LanguageNotifier.instance.nativeLanguage,
-      LanguageNotifier.instance.targetLanguage,
+      LanguageNotifier.instance.value.baseLanguage.code,
+      LanguageNotifier.instance.value.targetLanguage.code,
     );
 
     result.when(
@@ -41,8 +41,8 @@ class StoryTranslationExerciseViewController {
 
     final result = await FonliExerciseServer.evaluateStoryTranslation(
       request,
-      LanguageNotifier.instance.nativeLanguage,
-      LanguageNotifier.instance.targetLanguage,
+      LanguageNotifier.instance.value.baseLanguage.code,
+      LanguageNotifier.instance.value.targetLanguage.code,
     );
 
     result.when(

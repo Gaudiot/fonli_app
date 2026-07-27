@@ -1,225 +1,148 @@
+import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
-import 'package:fonli_app/base/notifiers/language.notifier.dart';
+import 'package:fonli_app/core/components/base_view.dart';
 import 'package:fonli_app/core/design/colors.dart';
 import 'package:fonli_app/core/navigation/navigation.dart';
-import 'package:fonli_app/core/storage/local_storage.interface.dart';
+import 'package:fonli_app/core/types/language_code.type.dart';
 import 'package:fonli_app/l10n/output/app_localizations.dart';
+import 'package:fonli_app/src/settings/language_learning_settings/language_learning_settings.viewcontroller.dart';
+import 'package:fonli_app/src/settings/language_learning_settings/language_learning_settings.viewmodel.dart';
 
-class _LanguageModel {
-  final String name;
-  final String code;
+// MARK: - V2
 
-  _LanguageModel({required this.name, required this.code});
-}
+class LanguageLearningSettingsView extends StatelessWidget {
+  final LanguageLearningSettingsViewController viewController;
 
-class LanguageLearningSettingView extends StatefulWidget {
-  const LanguageLearningSettingView({super.key});
-
-  @override
-  State<LanguageLearningSettingView> createState() =>
-      _LanguageLearningSettingViewState();
-}
-
-class _LanguageLearningSettingViewState
-    extends State<LanguageLearningSettingView> {
-  String selectedNativeLanguage = "US";
-  String selectedTargetLanguage = "BR";
-  final LanguageNotifier _languageNotifier = LanguageNotifier();
-
-  void initLanguages() async {
-    selectedNativeLanguage = await localStorage.getStringWithDefault(
-      LocalStorageKeys.baseLanguage,
-      "US",
-    );
-    selectedTargetLanguage = await localStorage.getStringWithDefault(
-      LocalStorageKeys.targetLanguage,
-      "BR",
-    );
-
-    setState(() {});
-  }
-
-  @override
-  void initState() {
-    initLanguages();
-    super.initState();
-  }
-
-  void onNativeLanguageTap(String languageCode) {
-    setState(() {
-      selectedNativeLanguage = languageCode;
-    });
-  }
-
-  void onTargetLanguageTap(String languageCode) {
-    setState(() {
-      selectedTargetLanguage = languageCode;
-    });
-  }
-
-  void onSavePressed() async {
-    if (selectedNativeLanguage == selectedTargetLanguage) {
-      return;
-    }
-    _languageNotifier.nativeLanguage = selectedNativeLanguage;
-    _languageNotifier.targetLanguage = selectedTargetLanguage;
-
-    if (context.mounted) {
-      NavigationManager.pop(context);
-    }
-  }
+  const LanguageLearningSettingsView({super.key, required this.viewController});
 
   @override
   Widget build(BuildContext context) {
-    final List<_LanguageModel> _languages = [
-      _LanguageModel(
-        name: AppLocalizations.of(context)!.lang__english,
-        code: "US",
-      ),
-      _LanguageModel(
-        name: AppLocalizations.of(context)!.lang__portuguese,
-        code: "BR",
-      ),
-      _LanguageModel(
-        name: AppLocalizations.of(context)!.lang__french,
-        code: "FR",
-      ),
-      _LanguageModel(
-        name: AppLocalizations.of(context)!.lang__italian,
-        code: "IT",
-      ),
-    ];
-
-    return Scaffold(
+    return FView<
+      LanguageLearningSettingsViewModel,
+      LanguageLearningSettingsViewController
+    >(
       appBar: AppBar(
         backgroundColor: FColors.primary,
         elevation: 0,
+        title: Text(
+          AppLocalizations.of(context)!.settings__language_learning_title,
+        ),
         leading: IconButton(
-          icon: const Icon(Icons.close, color: FColors.black),
+          icon: const Icon(Icons.close),
           onPressed: () {
             NavigationManager.pop(context);
           },
         ),
       ),
-      body: Container(
-        color: FColors.primary,
-        padding: const EdgeInsets.all(16),
-        child: SafeArea(
-          child: Column(
-            children: [
-              Flexible(
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Text(AppLocalizations.of(context)!.native_lang),
-                          const SizedBox(height: 8),
-                          Expanded(
-                            child: ListView.separated(
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemBuilder: (context, index) =>
-                                  _LanguageSelectionItem(
-                                    language: _languages[index],
-                                    isSelected:
-                                        selectedNativeLanguage ==
-                                        _languages[index].code,
-                                    onTap: () => onNativeLanguageTap(
-                                      _languages[index].code,
-                                    ),
-                                  ),
-                              separatorBuilder: (context, index) =>
-                                  const SizedBox(height: 16),
-                              itemCount: _languages.length,
+      viewController: viewController,
+      builder: (context, data) {
+        return Container(
+          color: FColors.primary,
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: SafeArea(
+            child: Column(
+              children: [
+                const SizedBox(height: 8),
+                Expanded(
+                  child: Row(
+                    spacing: 16,
+                    children: [
+                      Expanded(
+                        child: Column(
+                          children: [
+                            Text(AppLocalizations.of(context)!.base_language),
+                            const SizedBox(height: 8),
+                            Expanded(
+                              child: ListView.separated(
+                                separatorBuilder: (context, index) =>
+                                    const SizedBox(height: 4),
+                                itemCount: LanguageCode.values.length,
+                                itemBuilder: (context, index) {
+                                  final language = LanguageCode.values[index];
+                                  return _LanguageTile(
+                                    isSelected: data.baseLanguage == language,
+                                    language: language,
+                                    onTap: () => viewController
+                                        .onBaseLanguageChanged(language),
+                                  );
+                                },
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Text(AppLocalizations.of(context)!.foreign_lang),
-                          const SizedBox(height: 8),
-                          Expanded(
-                            child: ListView.separated(
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemBuilder: (context, index) =>
-                                  _LanguageSelectionItem(
-                                    language: _languages[index],
-                                    isSelected:
-                                        selectedTargetLanguage ==
-                                        _languages[index].code,
-                                    onTap: () => onTargetLanguageTap(
-                                      _languages[index].code,
-                                    ),
-                                  ),
-                              separatorBuilder: (context, index) =>
-                                  const SizedBox(height: 16),
-                              itemCount: _languages.length,
+                      Expanded(
+                        child: Column(
+                          children: [
+                            Text(AppLocalizations.of(context)!.target_language),
+                            const SizedBox(height: 8),
+                            Expanded(
+                              child: ListView.separated(
+                                separatorBuilder: (context, index) =>
+                                    const SizedBox(height: 4),
+                                itemCount: LanguageCode.values.length,
+                                itemBuilder: (context, index) {
+                                  final language = LanguageCode.values[index];
+                                  return _LanguageTile(
+                                    isSelected: data.targetLanguage == language,
+                                    language: language,
+                                    onTap: () => viewController
+                                        .onTargetLanguageChanged(language),
+                                  );
+                                },
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              _SaveSelectionButton(onPressed: onSavePressed),
-            ],
+              ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
 
-class _LanguageSelectionItem extends StatelessWidget {
-  final _LanguageModel language;
-  final bool isSelected;
+class _LanguageTile extends StatelessWidget {
+  final LanguageCode language;
   final VoidCallback onTap;
+  final bool isSelected;
 
-  const _LanguageSelectionItem({
+  const _LanguageTile({
     required this.language,
-    required this.isSelected,
     required this.onTap,
+    required this.isSelected,
   });
+
+  Color get _borderColor => isSelected ? FColors.black : FColors.primaryDarkest;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: isSelected ? FColors.secondary : FColors.primaryLightest,
-          borderRadius: BorderRadius.circular(8),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        decoration: ShapeDecoration(
+          color: FColors.primaryDark,
+          shape: RoundedRectangleBorder(
+            side: BorderSide(color: _borderColor),
+            borderRadius: .all(.circular(4)),
+          ),
         ),
-        child: Text(language.name),
-      ),
-    );
-  }
-}
-
-class _SaveSelectionButton extends StatelessWidget {
-  final VoidCallback onPressed;
-  const _SaveSelectionButton({required this.onPressed});
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        backgroundColor: FColors.secondary,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-      ),
-      child: Text(
-        AppLocalizations.of(context)!.save,
-        style: TextStyle(color: FColors.black),
+        child: Row(
+          children: [
+            CountryFlag.fromCountryCode(
+              language.countryCode,
+              theme: const EmojiTheme(),
+            ),
+            const SizedBox(width: 8),
+            Text(language.languageName),
+          ],
+        ),
       ),
     );
   }

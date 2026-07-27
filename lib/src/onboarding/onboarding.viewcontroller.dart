@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/widgets.dart';
 import 'package:fonli_app/core/components/base_viewcontroller.dart';
+import 'package:fonli_app/core/components/snackbar/snackbar_messenger.interface.dart';
 import 'package:fonli_app/core/navigation/navigation.dart';
 import 'package:fonli_app/core/storage/local_storage.interface.dart';
 import 'package:fonli_app/src/onboarding/onboarding.viewmodel.dart';
@@ -12,23 +13,32 @@ import 'package:fonli_app/src/onboarding/steps/target_language/onboarding_target
 enum OnboardingStepStatus { completed }
 
 class OnboardingViewController extends FViewController<OnboardingViewModel> {
+  final SnackbarMessenger snackbarMessenger;
+
   final _stepController = StreamController<OnboardingStepStatus>();
   StreamSubscription<OnboardingStepStatus>? _sub;
 
   int _currentStep = 0;
   bool _hasStarted = false;
 
-  final List<Widget Function(StreamSink<OnboardingStepStatus> eventStream)>
-  _stepsBuilder = [
-    (eventStream) =>
-        OnboardingTargetLanguageBuilder(eventStream: eventStream).build(),
-    (eventStream) =>
-        OnboardingBaseLanguageBuilder(eventStream: eventStream).build(),
-    (eventStream) =>
-        OnboardingLifestyleBuilder(eventStream: eventStream).build(),
-  ];
+  late final List<Widget Function(StreamSink<OnboardingStepStatus> eventStream)>
+  _stepsBuilder;
 
-  OnboardingViewController({required super.viewModel});
+  OnboardingViewController({
+    required super.viewModel,
+    required this.snackbarMessenger,
+  }) {
+    _stepsBuilder = [
+      (eventStream) =>
+          OnboardingTargetLanguageBuilder(eventStream: eventStream).build(),
+      (eventStream) => OnboardingBaseLanguageBuilder(
+        eventStream: eventStream,
+        snackbarMessenger: snackbarMessenger,
+      ).build(),
+      (eventStream) =>
+          OnboardingLifestyleBuilder(eventStream: eventStream).build(),
+    ];
+  }
 
   @override
   void onInit(BuildContext context) {

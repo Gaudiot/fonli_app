@@ -1,6 +1,6 @@
 import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
-import 'package:fonli_app/core/available_languages.dart';
+import 'package:fonli_app/core/types/language_code.type.dart';
 import 'package:fonli_app/core/components/base_view.dart';
 import 'package:fonli_app/core/components/ui/button.component.dart';
 import 'package:fonli_app/core/design/colors.dart';
@@ -34,31 +34,23 @@ class OnboardingBaseLanguageView extends StatelessWidget {
                 ),
                 Expanded(
                   child: ListView.builder(
-                    itemCount: AvailableLanguages.languageCodes.length,
+                    itemCount: LanguageCode.all.length,
                     itemBuilder: (context, index) => ListTile(
                       leading: CountryFlag.fromCountryCode(
-                        AvailableLanguages.getCountryCodes(
-                          AvailableLanguages.languageCodes[index],
-                        ),
+                        LanguageCode.all[index].countryCode,
                       ),
-                      title: Text(
-                        AvailableLanguages.getLanguageName(
-                          AvailableLanguages.languageCodes[index],
-                        ),
-                      ),
-                      trailing:
-                          data.baseLanguage ==
-                              AvailableLanguages.languageCodes[index].code
-                          ? Icon(Icons.check)
+                      title: Text(LanguageCode.all[index].languageName),
+                      trailing: data.baseLanguage == LanguageCode.all[index]
+                          ? const Icon(Icons.check)
                           : null,
                       onTap: () => viewController.onLanguageSelected(
-                        AvailableLanguages.languageCodes[index].code,
+                        LanguageCode.all[index],
                       ),
                     ),
                   ),
                 ),
                 FButton(
-                  onPressed: viewController.onNextPressed,
+                  onPressed: () => viewController.onNextPressed(context),
                   color: FColors.secondary,
                   text: AppLocalizations.of(context)!.common__next,
                 ),
