@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:fonli_app/core/components/snackbar/snackbar.dart";
 import "package:fonli_app/src/auth/auth.view.dart";
+import "package:fonli_app/src/bootstrap/splash/splash.builder.dart";
 import "package:fonli_app/src/bootstrap/version_gate/version_gate.builder.dart";
 import "package:fonli_app/src/learning/exercise_selection.builder.dart";
 import "package:fonli_app/src/learning/story_translation/story_translation.view.dart";
@@ -9,13 +10,11 @@ import "package:fonli_app/src/learning/word_conjugation/word_conjugation.view.da
 import "package:fonli_app/src/onboarding/onboarding.builder.dart";
 import "package:fonli_app/src/settings/language_learning_settings/language_learning_settings.builder.dart";
 import "package:fonli_app/src/settings/settings.view.dart";
-import "package:fonli_app/src/splash/splash.view.dart";
 import "package:fonli_app/src/settings/lifestyle_settings/lifestyle_settings.view.dart";
 
-typedef RouteBuilder = Widget Function(BuildContext context);
-
 enum NavigationRoutes {
-  splash("/splash"),
+  splash("/bootstrap/splash"),
+  versionGate("/bootstrap/version-gate"),
   auth("/auth"),
   onboarding("/onboarding"),
   exerciseSelection("/exercise-selection"),
@@ -24,8 +23,7 @@ enum NavigationRoutes {
   storyTranslation("/exercise/story-translation"),
   languageLearningSettings("/language-learning-settings"),
   settings("/settings"),
-  userLifestyle("/user-lifestyle"),
-  versionGate("/bootstrap/version-gate");
+  userLifestyle("/user-lifestyle");
 
   final String path;
 
@@ -40,9 +38,9 @@ class NavigationManager {
   static String initialRoute = NavigationRoutes.splash.path;
   static var _args = <String, dynamic>{};
 
-  static Map<String, RouteBuilder> routesMap() {
+  static Map<String, WidgetBuilder> routesMap() {
     return {
-      NavigationRoutes.splash.path: (context) => const SplashView(),
+      NavigationRoutes.splash.path: (context) => SplashBuilder().build(),
       NavigationRoutes.auth.path: (context) => const AuthView(),
       NavigationRoutes.onboarding.path: (context) =>
           OnboardingBuilder(snackbarMessenger: snackbarMessenger).build(),

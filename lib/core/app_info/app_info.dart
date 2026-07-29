@@ -15,9 +15,13 @@ class AppInfo {
   static String get version => _instance?._version ?? 'Version not available';
 
   /// Static getter to access the build number
-  /// Returns 'Build number not available' if the build number is not available or not initialized
-  static String get buildNumber =>
-      _instance?._buildNumber ?? 'Build number not available';
+  /// Returns 0 if the build number is not available or not initialized
+  static int get buildNumber {
+    final stringBuildNumber = _instance?._buildNumber;
+    if (stringBuildNumber == null) return 0;
+    final appBuildNumber = int.tryParse(stringBuildNumber);
+    return appBuildNumber ?? 0;
+  }
 
   static Future<void> init() async {
     final info = await PackageInfo.fromPlatform();
