@@ -44,6 +44,10 @@ class AppLocalizationsEn extends AppLocalizations {
       'With this we can create personalized exercises for you!';
 
   @override
+  String get bootstrap__version_gate =>
+      'This app version is not supported anymore. Please update to the latest version.';
+
+  @override
   String get email => 'E-mail';
 
   @override

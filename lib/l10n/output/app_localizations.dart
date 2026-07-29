@@ -164,6 +164,12 @@ abstract class AppLocalizations {
   /// **'With this we can create personalized exercises for you!'**
   String get onboarding__lifestyle_description;
 
+  /// Text displayed at version gate
+  ///
+  /// In en, this message translates to:
+  /// **'This app version is not supported anymore. Please update to the latest version.'**
+  String get bootstrap__version_gate;
+
   /// E-mail label
   ///
   /// In en, this message translates to:

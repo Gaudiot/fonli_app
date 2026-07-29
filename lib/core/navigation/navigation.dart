@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:fonli_app/core/components/snackbar/snackbar.dart";
 import "package:fonli_app/src/auth/auth.view.dart";
+import "package:fonli_app/src/bootstrap/version_gate/version_gate.builder.dart";
 import "package:fonli_app/src/learning/exercise_selection.builder.dart";
 import "package:fonli_app/src/learning/story_translation/story_translation.view.dart";
 import "package:fonli_app/src/learning/vocabulary/vocabulary.builder.dart";
@@ -23,7 +24,8 @@ enum NavigationRoutes {
   storyTranslation("/exercise/story-translation"),
   languageLearningSettings("/language-learning-settings"),
   settings("/settings"),
-  userLifestyle("/user-lifestyle");
+  userLifestyle("/user-lifestyle"),
+  versionGate("/bootstrap/version-gate");
 
   final String path;
 
@@ -57,6 +59,8 @@ class NavigationManager {
       NavigationRoutes.settings.path: (context) => SettingsView(),
       NavigationRoutes.userLifestyle.path: (context) =>
           const UserSettingsView(),
+      NavigationRoutes.versionGate.path: (context) =>
+          VersionGateBuilder().build(),
     };
   }
 

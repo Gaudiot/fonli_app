@@ -44,6 +44,10 @@
     "@onboarding__lifestyle_description": {
         "description": "Description at onboarding lifestyle step"
     },
+    "bootstrap__version_gate": "Esta versão do aplicativo não é mais suportada. Por favor, atualize para a versão mais recente.",
+    "@bootstrap__version_gate": {
+        "description": "Text displayed at version gate"
+    },
     "email": "E-mail",
     "@email": {
         "description": "E-mail label"

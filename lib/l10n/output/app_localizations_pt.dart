@@ -45,6 +45,10 @@ class AppLocalizationsPt extends AppLocalizations {
       'Com isso podemos criar exercícios personalizados para você!';
 
   @override
+  String get bootstrap__version_gate =>
+      'Esta versão do aplicativo não é mais suportada. Por favor, atualize para a versão mais recente.';
+
+  @override
   String get email => 'E-mail';
 
   @override
