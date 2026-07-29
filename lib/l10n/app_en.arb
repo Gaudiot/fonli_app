@@ -20,6 +20,10 @@
     "@common__save": {
         "description": "Save label"
     },
+    "common__complete": "Complete",
+    "@common__complete": {
+        "description": "Complete label"
+    },
     "onboarding__target_language_title": "Select the language you want to learn.",
     "@onboarding__target_language_title": {
         "description": "Title at onboarding target language step"
@@ -72,28 +76,20 @@
     "@logout": {
         "description": "Log out label"
     },
-    "complete": "Complete",
-    "@complete": {
-        "description": "Complete label"
-    },
-    "select_exercise": "Select an exercise",
-    "@select_exercise": {
+    "exercises__selection": "Select an exercise",
+    "@exercises__selection": {
         "description": "Text to select an exercise"
     },
-    "exercise_native_to_foreign": "Native to Foreign",
-    "@exercise_native_to_foreign": {
-        "description": "Native to foreign exercise label"
+    "exercises__vocabulary": "Vocabulary",
+    "@exercises__vocabulary": {
+        "description": "Vocabulary exercise label"
     },
-    "exercise_foreign_to_native": "Foreign to Native",
-    "@exercise_foreign_to_native": {
-        "description": "Foreign to native exercise label"
-    },
-    "exercise_conjugation": "Verb Conjugation",
-    "@exercise_conjugation": {
+    "exercises__verb_conjugation": "Verb Conjugation",
+    "@exercises__verb_conjugation": {
         "description": "Verb conjugation exercise label"
     },
-    "exercise_story": "Story Translation",
-    "@exercise_story": {
+    "exercises__story_translation": "Story Translation",
+    "@exercises__story_translation": {
         "description": "Story translation exercise label"
     },
     "base_language": "Base Language",

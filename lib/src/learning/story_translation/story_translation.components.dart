@@ -173,7 +173,7 @@ class _CompleteButton extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 16, horizontal: 120),
               child: Center(
-                child: Text(AppLocalizations.of(context)!.complete),
+                child: Text(AppLocalizations.of(context)!.common__complete),
               ),
             ),
           ),

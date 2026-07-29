@@ -12,7 +12,7 @@ class FButton extends StatelessWidget {
     super.key,
     required this.text,
     required this.onPressed,
-    this.color = Colors.white,
+    this.color = FColors.secondary,
     this.isLoading = false,
     this.isEnabled = true,
   });

@@ -3,36 +3,16 @@ part of 'fonli_server.dart';
 class FonliExerciseServer {
   FonliExerciseServer._();
 
-  static Future<Result<WordTranslationExercise, Exception>>
-  getWordTranslationNativeToForeignExercise(
-    String nativeLanguage,
+  static Future<Result<VocabularyExercise, Exception>> getVocabularyExercise(
+    String baseLanguage,
     String targetLanguage,
   ) async {
     final fonliApi = FonliApi.instance;
     try {
       final response = await fonliApi.get(
-        '/exercises/word-translation/native-to-foreign?nl=$nativeLanguage&fl=$targetLanguage',
+        '/exercises/vocabulary?nl=$baseLanguage&fl=$targetLanguage',
       );
-      final exercise = WordTranslationExercise.fromJson(
-        response.data as Map<String, dynamic>,
-      );
-      return Result.ok(exercise);
-    } catch (e) {
-      return Result.error(Exception(e));
-    }
-  }
-
-  static Future<Result<WordTranslationExercise, Exception>>
-  getWordTranslationForeignToNativeExercise(
-    String nativeLanguage,
-    String targetLanguage,
-  ) async {
-    final fonliApi = FonliApi.instance;
-    try {
-      final response = await fonliApi.get(
-        '/exercises/word-translation/foreign-to-native?nl=$nativeLanguage&fl=$targetLanguage',
-      );
-      final exercise = WordTranslationExercise.fromJson(
+      final exercise = VocabularyExercise.fromJson(
         response.data as Map<String, dynamic>,
       );
       return Result.ok(exercise);
@@ -46,7 +26,7 @@ class FonliExerciseServer {
     final fonliApi = FonliApi.instance;
     try {
       final response = await fonliApi.get(
-        '/exercises/word-conjugation?fl=$targetLanguage&tense=present-simple',
+        '/exercises/verb-conjugation?fl=$targetLanguage&tense=present-simple',
       );
       final exercise = WordConjugationExercise.fromJson(
         response.data as Map<String, dynamic>,

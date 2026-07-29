@@ -197,7 +197,7 @@ class _CompleteButton extends StatelessWidget {
                 horizontal: 120,
               ),
               child: Center(
-                child: Text(AppLocalizations.of(context)!.complete),
+                child: Text(AppLocalizations.of(context)!.common__complete),
               ),
             ),
           ),

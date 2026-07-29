@@ -1,7 +1,6 @@
 import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:fonli_app/base/notifiers/language.notifier.dart';
-import 'package:fonli_app/core/types/language_code.type.dart';
 import 'package:fonli_app/core/components/base_view.dart';
 import 'package:fonli_app/core/design/colors.dart';
 import 'package:fonli_app/core/navigation/navigation.dart';
@@ -33,17 +32,11 @@ class _ExerciseSelectionHeader extends StatelessWidget {
       mainAxisAlignment: .spaceBetween,
       children: [
         _SettingsDisplay(onTap: onSettingsTap),
-        _LanguageSelector(
-          onTap: onLanguageSelectorTap,
-          baseLanguage: .de_DE,
-          targetLanguage: .es_ES,
-        ),
+        _LanguageSelector(onTap: onLanguageSelectorTap),
       ],
     );
   }
 }
-
-// MARK: -  V2
 
 class ExerciseSelectionViewV2 extends StatelessWidget {
   final ExerciseSelectionViewController viewController;
@@ -54,19 +47,15 @@ class ExerciseSelectionViewV2 extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<_ExerciseModel> exercises = [
       _ExerciseModel(
-        title: AppLocalizations.of(context)!.exercise_native_to_foreign,
-        onTap: () => NavigationManager.goTo(context, .nativeToForeign),
+        title: AppLocalizations.of(context)!.exercises__vocabulary,
+        onTap: () => NavigationManager.goTo(context, .vocabularyExercise),
       ),
       _ExerciseModel(
-        title: AppLocalizations.of(context)!.exercise_foreign_to_native,
-        onTap: () => NavigationManager.goTo(context, .foreignToNative),
-      ),
-      _ExerciseModel(
-        title: AppLocalizations.of(context)!.exercise_conjugation,
+        title: AppLocalizations.of(context)!.exercises__verb_conjugation,
         onTap: () => NavigationManager.goTo(context, .verbConjugation),
       ),
       _ExerciseModel(
-        title: AppLocalizations.of(context)!.exercise_story,
+        title: AppLocalizations.of(context)!.exercises__story_translation,
         onTap: () => NavigationManager.goTo(context, .storyTranslation),
       ),
     ];
@@ -91,7 +80,7 @@ class ExerciseSelectionViewV2 extends StatelessWidget {
                       mainAxisSize: .min,
                       children: [
                         Text(
-                          AppLocalizations.of(context)!.select_exercise,
+                          AppLocalizations.of(context)!.exercises__selection,
                           style: TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,

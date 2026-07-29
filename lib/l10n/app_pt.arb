@@ -1,6 +1,6 @@
 {
     "@@locale": "pt",
-    "common__retry": "Retentar",
+    "common__retry": "Tentar Novamente",
     "@common__retry": {
         "description": "Retry label"
     },
@@ -19,6 +19,10 @@
     "common__save": "Salvar",
     "@common__save": {
         "description": "Save label"
+    },
+    "common__complete": "Concluir",
+    "@common__complete": {
+        "description": "Complete label"
     },
     "onboarding__target_language_title": "Selecione o idioma que você deseja aprender.",
     "@onboarding__target_language_title": {
@@ -72,28 +76,20 @@
     "@logout": {
         "description": "Log out label"
     },
-    "complete": "Concluir",
-    "@complete": {
-        "description": "Complete label"
-    },
-    "select_exercise": "Selecione um exercício",
-    "@select_exercise": {
+    "exercises__selection": "Selecione um exercício",
+    "@exercises__selection": {
         "description": "Text to select an exercise"
     },
-    "exercise_native_to_foreign": "Nativo para Estrangeiro",
-    "@exercise_native_to_foreign": {
-        "description": "Native to foreign exercise label"
+    "exercises__vocabulary": "Vocabulário",
+    "@exercises__vocabulary": {
+        "description": "Vocabulary exercise label"
     },
-    "exercise_foreign_to_native": "Estrangeiro para Nativo",
-    "@exercise_foreign_to_native": {
-        "description": "Foreign to native exercise label"
-    },
-    "exercise_conjugation": "Conjugação Verbal",
-    "@exercise_conjugation": {
+    "exercises__verb_conjugation": "Conjugação Verbal",
+    "@exercises__verb_conjugation": {
         "description": "Verb conjugation exercise label"
     },
-    "exercise_story": "Traduzir história",
-    "@exercise_story": {
+    "exercises__story_translation": "Traduzir história",
+    "@exercises__story_translation": {
         "description": "Story translation exercise label"
     },
     "base_language": "Idioma base",

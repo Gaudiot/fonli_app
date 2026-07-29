@@ -26,14 +26,8 @@ class _SettingsDisplay extends StatelessWidget {
 
 class _LanguageSelector extends StatelessWidget {
   final VoidCallback onTap;
-  final LanguageCode baseLanguage;
-  final LanguageCode targetLanguage;
 
-  const _LanguageSelector({
-    required this.onTap,
-    required this.baseLanguage,
-    required this.targetLanguage,
-  });
+  const _LanguageSelector({required this.onTap});
 
   @override
   Widget build(BuildContext context) {

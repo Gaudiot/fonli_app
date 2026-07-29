@@ -4,6 +4,7 @@ import "package:fonli_app/src/auth/auth.view.dart";
 import "package:fonli_app/src/learning/exercise_selection.builder.dart";
 import "package:fonli_app/src/learning/exercise_selection.view.dart";
 import "package:fonli_app/src/learning/story_translation/story_translation.view.dart";
+import "package:fonli_app/src/learning/vocabulary/vocabulary.builder.dart";
 import "package:fonli_app/src/learning/word_conjugation/word_conjugation.view.dart";
 import "package:fonli_app/src/learning/word_translation/word_translation.view.dart";
 import "package:fonli_app/src/learning/word_translation/word_translation.viewcontroller.dart";
@@ -20,8 +21,7 @@ enum NavigationRoutes {
   auth("/auth"),
   onboarding("/onboarding"),
   exerciseSelection("/exercise-selection"),
-  nativeToForeign("/exercise/native-to-foreign"),
-  foreignToNative("/exercise/foreign-to-native"),
+  vocabularyExercise("/exercise/vocabulary"),
   verbConjugation("/exercise/verb-conjugation"),
   storyTranslation("/exercise/story-translation"),
   languageLearningSettings("/language-learning-settings"),
@@ -49,14 +49,8 @@ class NavigationManager {
           OnboardingBuilder(snackbarMessenger: snackbarMessenger).build(),
       NavigationRoutes.exerciseSelection.path: (context) =>
           ExerciseSelectionBuilder().build(),
-      NavigationRoutes.nativeToForeign.path: (context) =>
-          WordTranslationExerciseView(
-            exerciseType: WordTranslationExerciseType.nativeToForeign,
-          ),
-      NavigationRoutes.foreignToNative.path: (context) =>
-          WordTranslationExerciseView(
-            exerciseType: WordTranslationExerciseType.foreignToNative,
-          ),
+      NavigationRoutes.vocabularyExercise.path: (context) =>
+          VocabularyExerciseBuilder().build(),
       NavigationRoutes.verbConjugation.path: (context) =>
           const WordConjugationExerciseView(),
       NavigationRoutes.storyTranslation.path: (context) =>

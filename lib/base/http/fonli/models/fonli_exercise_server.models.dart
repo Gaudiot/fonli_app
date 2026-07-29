@@ -1,34 +1,29 @@
 part of '../fonli_server.dart';
 
-final class WordTranslationExerciseQuestion {
+final class VocabularyQuestionEntity {
   final String word;
   final String translation;
 
-  WordTranslationExerciseQuestion({
-    required this.word,
-    required this.translation,
-  });
+  VocabularyQuestionEntity({required this.word, required this.translation});
 
-  factory WordTranslationExerciseQuestion.fromJson(
-    Map<String, dynamic> json,
-  ) => WordTranslationExerciseQuestion(
-    word: json['word'] as String,
-    translation: json['translation'] as String,
-  );
+  factory VocabularyQuestionEntity.fromJson(Map<String, dynamic> json) =>
+      VocabularyQuestionEntity(
+        word: json['word'] as String,
+        translation: json['translation'] as String,
+      );
 }
 
-final class WordTranslationExercise {
-  final List<WordTranslationExerciseQuestion> questions;
+final class VocabularyExercise {
+  final List<VocabularyQuestionEntity> questions;
 
-  WordTranslationExercise({required this.questions});
+  VocabularyExercise({required this.questions});
 
-  factory WordTranslationExercise.fromJson(Map<String, dynamic> json) =>
-      WordTranslationExercise(
+  factory VocabularyExercise.fromJson(Map<String, dynamic> json) =>
+      VocabularyExercise(
         questions: (json['questions'] as List<dynamic>)
             .map(
-              (e) => WordTranslationExerciseQuestion.fromJson(
-                e as Map<String, dynamic>,
-              ),
+              (e) =>
+                  VocabularyQuestionEntity.fromJson(e as Map<String, dynamic>),
             )
             .toList(),
       );

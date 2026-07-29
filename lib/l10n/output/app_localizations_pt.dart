@@ -9,7 +9,7 @@ class AppLocalizationsPt extends AppLocalizations {
   AppLocalizationsPt([String locale = 'pt']) : super(locale);
 
   @override
-  String get common__retry => 'Retentar';
+  String get common__retry => 'Tentar Novamente';
 
   @override
   String get common__submit => 'Enviar';
@@ -22,6 +22,9 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get common__save => 'Salvar';
+
+  @override
+  String get common__complete => 'Concluir';
 
   @override
   String get onboarding__target_language_title =>
@@ -66,22 +69,16 @@ class AppLocalizationsPt extends AppLocalizations {
   String get logout => 'Sair';
 
   @override
-  String get complete => 'Concluir';
+  String get exercises__selection => 'Selecione um exercício';
 
   @override
-  String get select_exercise => 'Selecione um exercício';
+  String get exercises__vocabulary => 'Vocabulário';
 
   @override
-  String get exercise_native_to_foreign => 'Nativo para Estrangeiro';
+  String get exercises__verb_conjugation => 'Conjugação Verbal';
 
   @override
-  String get exercise_foreign_to_native => 'Estrangeiro para Nativo';
-
-  @override
-  String get exercise_conjugation => 'Conjugação Verbal';
-
-  @override
-  String get exercise_story => 'Traduzir história';
+  String get exercises__story_translation => 'Traduzir história';
 
   @override
   String get base_language => 'Idioma base';

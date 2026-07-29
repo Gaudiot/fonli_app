@@ -128,6 +128,12 @@ abstract class AppLocalizations {
   /// **'Save'**
   String get common__save;
 
+  /// Complete label
+  ///
+  /// In en, this message translates to:
+  /// **'Complete'**
+  String get common__complete;
+
   /// Title at onboarding target language step
   ///
   /// In en, this message translates to:
@@ -206,41 +212,29 @@ abstract class AppLocalizations {
   /// **'Log Out'**
   String get logout;
 
-  /// Complete label
-  ///
-  /// In en, this message translates to:
-  /// **'Complete'**
-  String get complete;
-
   /// Text to select an exercise
   ///
   /// In en, this message translates to:
   /// **'Select an exercise'**
-  String get select_exercise;
+  String get exercises__selection;
 
-  /// Native to foreign exercise label
+  /// Vocabulary exercise label
   ///
   /// In en, this message translates to:
-  /// **'Native to Foreign'**
-  String get exercise_native_to_foreign;
-
-  /// Foreign to native exercise label
-  ///
-  /// In en, this message translates to:
-  /// **'Foreign to Native'**
-  String get exercise_foreign_to_native;
+  /// **'Vocabulary'**
+  String get exercises__vocabulary;
 
   /// Verb conjugation exercise label
   ///
   /// In en, this message translates to:
   /// **'Verb Conjugation'**
-  String get exercise_conjugation;
+  String get exercises__verb_conjugation;
 
   /// Story translation exercise label
   ///
   /// In en, this message translates to:
   /// **'Story Translation'**
-  String get exercise_story;
+  String get exercises__story_translation;
 
   /// Base language label
   ///
