@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fonli_app/base/notifiers/auth_session.notifier.dart';
 import 'package:fonli_app/core/app_info/app_info.dart';
 import 'package:fonli_app/core/components/base_viewcontroller.dart';
 import 'package:fonli_app/core/flags/dynamic_config.dart';
@@ -10,10 +11,13 @@ final class SplashViewController extends FViewController<SplashViewModel> {
 
   @override
   void onInit(BuildContext context) {
-    // TODO: implement onInit
     super.onInit(context);
 
-    bootstrapApp().then((_) => handleAppStatus(context));
+    bootstrapApp().then((_) {
+      if (context.mounted) {
+        handleAppStatus(context);
+      }
+    });
   }
 
   Future<void> bootstrapApp() async {
@@ -41,7 +45,8 @@ final class SplashViewController extends FViewController<SplashViewModel> {
 
 extension on SplashViewController {
   Future<bool> checkIfUserAuthenticated() async {
-    return true;
+    final isAuthenticated = AuthSessionNotifier.instance.isAuthenticated;
+    return isAuthenticated;
   }
 
   Future<bool> checkIfVersionSupported() async {
@@ -68,43 +73,3 @@ extension on SplashViewController {
     NavigationManager.pushNamedAndRemoveAll(context, .exerciseSelection);
   }
 }
-
-// final class SplashViewController {
-//   final SplashViewModel viewModel = SplashViewModel();
-
-//   void onInit(BuildContext context) async {
-//     final isAuthenticated = await _hasUserAuthenticatedBefore();
-
-//     if (!context.mounted) return;
-
-//     isAuthenticated
-//         ? _navigateToExerciseSelection(context)
-//         : _navigateToAuth(context);
-//   }
-
-//   Future<bool> _hasUserAuthenticatedBefore() async {
-//     final accessToken = await AuthSessionNotifier.instance.getAccessToken();
-//     return accessToken != null && accessToken.isNotEmpty;
-//   }
-
-//   void _navigateToAuth(BuildContext context) {
-//     NavigationManager.replaceWith(context, NavigationRoutes.auth);
-//   }
-
-//   void _navigateToExerciseSelection(BuildContext context) async {
-//     final isOnboarded = await localStorage.getBooleanWithDefault(
-//       LocalStorageKeys.onboarded,
-//       false,
-//     );
-//     if (context.mounted) {
-//       if (!isOnboarded) {
-//         NavigationManager.replaceWith(context, NavigationRoutes.onboarding);
-//         return;
-//       }
-//       NavigationManager.replaceWith(
-//         context,
-//         NavigationRoutes.exerciseSelection,
-//       );
-//     }
-//   }
-// }
