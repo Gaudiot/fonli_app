@@ -48,6 +48,7 @@ class VocabularyExerciseView extends StatelessWidget {
                     isAnswerCorrect: data.isUserAnswerCorrect,
                     onAnswerSubmitted: viewController.onUserAnswerSubmit,
                     onNextQuestion: viewController.onNextQuestion,
+                    progressPercentage: data.progressPercentage,
                   ),
                 ),
               ),
@@ -71,7 +72,10 @@ class _Loading extends StatelessWidget {
       child: Column(
         mainAxisAlignment: .center,
         mainAxisSize: .max,
-        children: [CircularProgressIndicator(), Text("Loading...")],
+        children: [
+          CircularProgressIndicator(),
+          Text(AppLocalizations.of(context)!.common__loading),
+        ],
       ),
     );
   }
@@ -93,7 +97,10 @@ class _Error extends StatelessWidget {
           mainAxisAlignment: .center,
           mainAxisSize: .max,
           children: [
-            Text("Error"),
+            Text(
+              AppLocalizations.of(context)!.exercises__error_fetching_data,
+              textAlign: .center,
+            ),
             const SizedBox(height: 16),
             FButton(
               color: FColors.secondary,
@@ -115,6 +122,7 @@ class _VocabularyExercise extends StatelessWidget {
   final VoidCallback onNextQuestion;
   final bool isAnswerCorrect;
   final bool didUserSubmitAnswer;
+  final double progressPercentage;
   final TextEditingController userAnswerController;
 
   const _VocabularyExercise({
@@ -123,6 +131,7 @@ class _VocabularyExercise extends StatelessWidget {
     required this.onNextQuestion,
     required this.isAnswerCorrect,
     required this.didUserSubmitAnswer,
+    required this.progressPercentage,
     required this.userAnswerController,
   });
 
@@ -130,6 +139,17 @@ class _VocabularyExercise extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        TweenAnimationBuilder<double>(
+          tween: Tween<double>(begin: 0, end: progressPercentage),
+          duration: Duration(milliseconds: 300),
+          builder: (context, value, _) {
+            return LinearProgressIndicator(
+              value: value.clamp(0, 1),
+              backgroundColor: FColors.white,
+              color: FColors.secondary,
+            );
+          },
+        ),
         Expanded(
           child: Center(
             child: _QuestionCard(

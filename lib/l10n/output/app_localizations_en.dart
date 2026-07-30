@@ -27,6 +27,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get common__complete => 'Complete';
 
   @override
+  String get common__loading => 'Loading...';
+
+  @override
   String get onboarding__target_language_title =>
       'Select the language you want to learn.';
 
@@ -78,6 +81,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get exercises__story_translation => 'Story Translation';
+
+  @override
+  String get exercises__error_fetching_data =>
+      'An error occurred while fetching the exercise data. Please try again later.';
 
   @override
   String get base_language => 'Base Language';

@@ -14,7 +14,6 @@ class VocabularyViewController extends FViewController<VocabularyViewModel> {
   @override
   void onInit(BuildContext context) {
     _getVocabularyExercise();
-    // userAnswerController.addListener(_onUserAnswerChanged);
     super.onInit(context);
   }
 
@@ -49,17 +48,9 @@ class VocabularyViewController extends FViewController<VocabularyViewModel> {
       },
       onError: (error) {
         value = value.copyWith(
-          questions: [
-            VocabularyQuestion(word: "word1", answer: "answer1"),
-            VocabularyQuestion(word: "word2", answer: "answer2"),
-            VocabularyQuestion(word: "word3", answer: "answer3"),
-          ],
+          errorMessage: error.toString(),
           isLoading: false,
         );
-        // value = value.copyWith(
-        //   errorMessage: error.toString(),
-        //   isLoading: false,
-        // );
       },
     );
   }

@@ -24,6 +24,10 @@
     "@common__complete": {
         "description": "Complete label"
     },
+    "common__loading": "Loading...",
+    "@common__loading": {
+        "description": "Loading label"
+    },
     "onboarding__target_language_title": "Select the language you want to learn.",
     "@onboarding__target_language_title": {
         "description": "Title at onboarding target language step"
@@ -91,6 +95,10 @@
     "exercises__story_translation": "Story Translation",
     "@exercises__story_translation": {
         "description": "Story translation exercise label"
+    },
+    "exercises__error_fetching_data": "An error occurred while fetching the exercise data. Please try again later.",
+    "@exercises__error_fetching_data": {
+        "description": "Text displayed when an error occurs while fetching the exercise data"
     },
     "base_language": "Base Language",
     "@base_language": {

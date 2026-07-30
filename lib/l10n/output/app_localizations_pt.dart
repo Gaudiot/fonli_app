@@ -27,6 +27,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get common__complete => 'Concluir';
 
   @override
+  String get common__loading => 'Carregando...';
+
+  @override
   String get onboarding__target_language_title =>
       'Selecione o idioma que você deseja aprender.';
 
@@ -79,6 +82,10 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get exercises__story_translation => 'Traduzir história';
+
+  @override
+  String get exercises__error_fetching_data =>
+      'Ocorreu um erro ao buscar os dados do exercício. Por favor, tente novamente mais tarde.';
 
   @override
   String get base_language => 'Idioma base';

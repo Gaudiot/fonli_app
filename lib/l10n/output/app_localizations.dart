@@ -134,6 +134,12 @@ abstract class AppLocalizations {
   /// **'Complete'**
   String get common__complete;
 
+  /// Loading label
+  ///
+  /// In en, this message translates to:
+  /// **'Loading...'**
+  String get common__loading;
+
   /// Title at onboarding target language step
   ///
   /// In en, this message translates to:
@@ -235,6 +241,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Story Translation'**
   String get exercises__story_translation;
+
+  /// Text displayed when an error occurs while fetching the exercise data
+  ///
+  /// In en, this message translates to:
+  /// **'An error occurred while fetching the exercise data. Please try again later.'**
+  String get exercises__error_fetching_data;
 
   /// Base language label
   ///

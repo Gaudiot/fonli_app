@@ -16,6 +16,13 @@ class VocabularyViewModel extends FViewModel {
 
   bool get hasError => errorMessage.isNotEmpty;
   bool get hasCompletedExercise => currentQuestionIndex >= questions.length;
+  double get progressPercentage {
+    final questionsLength = questions.length;
+    if (questionsLength == 0) return 1;
+    final completedQuestions =
+        currentQuestionIndex + (didUserSubmitAnswer ? 1 : 0);
+    return completedQuestions / questionsLength;
+  }
 
   VocabularyViewModel({
     this.isLoading = true,
