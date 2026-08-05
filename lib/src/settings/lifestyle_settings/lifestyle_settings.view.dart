@@ -70,7 +70,7 @@ class _UserSettingsViewState extends State<UserSettingsView> {
           onPressed: () => NavigationManager.pop(context),
         ),
         title: Text(
-          AppLocalizations.of(context)!.user_settings,
+          AppLocalizations.of(context).user_settings,
           style: TextStyle(color: FColors.black),
         ),
       ),
@@ -96,7 +96,7 @@ class _UserSettingsViewState extends State<UserSettingsView> {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Text(
-                            AppLocalizations.of(context)!.lifestyle_header,
+                            AppLocalizations.of(context).lifestyle_header,
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w600,
@@ -105,7 +105,7 @@ class _UserSettingsViewState extends State<UserSettingsView> {
                           ),
                           const SizedBox(height: 32),
                           Text(
-                            AppLocalizations.of(context)!.lifestyle,
+                            AppLocalizations.of(context).lifestyle,
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
@@ -144,7 +144,7 @@ class _UserSettingsViewState extends State<UserSettingsView> {
                                     ),
                                   )
                                 : Text(
-                                    AppLocalizations.of(context)!.common__save,
+                                    AppLocalizations.of(context).common__save,
                                     style: TextStyle(color: FColors.black),
                                   ),
                           ),

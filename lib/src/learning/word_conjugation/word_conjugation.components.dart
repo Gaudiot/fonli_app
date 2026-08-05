@@ -36,10 +36,10 @@ final class _NoMistakesResult extends StatelessWidget {
         child: Column(
           mainAxisSize: .min,
           children: [
-            Text(AppLocalizations.of(context)!.exercise_finished),
+            Text(AppLocalizations.of(context).exercise_finished),
             SizedBox(height: 16),
             Text(
-              AppLocalizations.of(context)!.exercise_no_mistake,
+              AppLocalizations.of(context).exercise_no_mistake,
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 16),
@@ -101,7 +101,7 @@ class _SomeMistakesResultHeader extends StatelessWidget {
       mainAxisSize: .min,
       children: [
         Text(
-          AppLocalizations.of(context)!.exercise_finished,
+          AppLocalizations.of(context).exercise_finished,
           style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
         Row(
@@ -115,7 +115,7 @@ class _SomeMistakesResultHeader extends StatelessWidget {
             Text(
               AppLocalizations.of(
                 context,
-              )!.exercise_mistakes(correctAnswersQuantity, questionsQuantity),
+              ).exercise_mistakes(correctAnswersQuantity, questionsQuantity),
             ),
           ],
         ),
@@ -135,7 +135,7 @@ class _SomeMistakesResultContent extends StatelessWidget {
       mainAxisSize: .min,
       children: [
         Text(
-          AppLocalizations.of(context)!.exercise_mistakes_output,
+          AppLocalizations.of(context).exercise_mistakes_output,
           style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
         Container(
@@ -197,7 +197,7 @@ class _CompleteButton extends StatelessWidget {
                 horizontal: 120,
               ),
               child: Center(
-                child: Text(AppLocalizations.of(context)!.common__complete),
+                child: Text(AppLocalizations.of(context).common__complete),
               ),
             ),
           ),
@@ -223,13 +223,13 @@ class _FailedToFetchExercise extends StatelessWidget {
           mainAxisSize: .min,
           children: [
             Text(
-              AppLocalizations.of(context)!.exercise_load_fail,
+              AppLocalizations.of(context).exercise_load_fail,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
             FilledButton(
               onPressed: onRetry,
-              child: Text(AppLocalizations.of(context)!.common__retry),
+              child: Text(AppLocalizations.of(context).common__retry),
             ),
           ],
         ),

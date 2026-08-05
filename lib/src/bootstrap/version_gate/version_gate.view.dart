@@ -26,7 +26,7 @@ class VersionGateView extends StatelessWidget {
                 SvgPicture.asset(SvgAssets.fonliLogo, height: 200, width: 200),
                 SizedBox(
                   child: Text(
-                    AppLocalizations.of(context)!.bootstrap__version_gate,
+                    AppLocalizations.of(context).bootstrap__version_gate,
                     textAlign: .center,
                   ),
                 ),

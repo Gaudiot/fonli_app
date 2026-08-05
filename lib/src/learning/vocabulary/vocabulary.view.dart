@@ -74,7 +74,7 @@ class _Loading extends StatelessWidget {
         mainAxisSize: .max,
         children: [
           CircularProgressIndicator(),
-          Text(AppLocalizations.of(context)!.common__loading),
+          Text(AppLocalizations.of(context).common__loading),
         ],
       ),
     );
@@ -98,13 +98,13 @@ class _Error extends StatelessWidget {
           mainAxisSize: .max,
           children: [
             Text(
-              AppLocalizations.of(context)!.exercises__error_fetching_data,
+              AppLocalizations.of(context).exercises__error_fetching_data,
               textAlign: .center,
             ),
             const SizedBox(height: 16),
             FButton(
               color: FColors.secondary,
-              text: AppLocalizations.of(context)!.common__retry,
+              text: AppLocalizations.of(context).common__retry,
               onPressed: onRetry,
             ),
           ],
@@ -163,7 +163,7 @@ class _VocabularyExercise extends StatelessWidget {
         IfElseWidget(
           condition: didUserSubmitAnswer,
           ifChild: (_) => FButton(
-            text: AppLocalizations.of(context)!.common__next,
+            text: AppLocalizations.of(context).common__next,
             onPressed: onNextQuestion,
           ),
           elseChild: (_) => Row(
@@ -176,7 +176,7 @@ class _VocabularyExercise extends StatelessWidget {
                   autocorrect: false,
                   enableSuggestions: false,
                   decoration: InputDecoration(
-                    hintText: AppLocalizations.of(context)!.insert_translation,
+                    hintText: AppLocalizations.of(context).insert_translation,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(16)),
                     ),
@@ -271,7 +271,7 @@ class _ResultPanel extends StatelessWidget {
           children: [
             SizedBox(height: 24),
             Text(
-              AppLocalizations.of(context)!.exercise_finished,
+              AppLocalizations.of(context).exercise_finished,
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             Row(
@@ -283,7 +283,7 @@ class _ResultPanel extends StatelessWidget {
                 ),
                 SizedBox(width: 8),
                 Text(
-                  AppLocalizations.of(context)!.exercise_mistakes(
+                  AppLocalizations.of(context).exercise_mistakes(
                     correctAnswersQuantity,
                     questionsQuantity,
                   ),
@@ -292,7 +292,7 @@ class _ResultPanel extends StatelessWidget {
             ),
             SizedBox(height: 32),
             Text(
-              AppLocalizations.of(context)!.exercise_mistakes_output,
+              AppLocalizations.of(context).exercise_mistakes_output,
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             Center(
@@ -328,7 +328,7 @@ class _ResultPanel extends StatelessWidget {
             ),
             Spacer(),
             FButton(
-              text: AppLocalizations.of(context)!.common__complete,
+              text: AppLocalizations.of(context).common__complete,
               onPressed: onComplete,
             ),
           ],

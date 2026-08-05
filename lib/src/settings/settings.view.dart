@@ -23,7 +23,7 @@ class SettingsView extends StatelessWidget {
             NavigationManager.pop(context);
           },
         ),
-        title: Text(AppLocalizations.of(context)!.settings__title),
+        title: Text(AppLocalizations.of(context).settings__title),
       ),
       body: SafeArea(
         child: Padding(
@@ -41,7 +41,7 @@ class SettingsView extends StatelessWidget {
                   FonliListTile(
                     title: AppLocalizations.of(
                       context,
-                    )!.settings__language_learning_title,
+                    ).settings__language_learning_title,
                     onPressed: () => viewController
                         .goToChangeLearningLanguageSettings(context),
                   ),
@@ -49,7 +49,7 @@ class SettingsView extends StatelessWidget {
                   FonliListTile(
                     title: AppLocalizations.of(
                       context,
-                    )!.settings__lifestyle_settings,
+                    ).settings__lifestyle_settings,
                     onPressed: () =>
                         viewController.goToLifestyleSettings(context),
                   ),
@@ -65,7 +65,7 @@ class SettingsView extends StatelessWidget {
                     TextButton(
                       onPressed: viewController.logout,
                       child: Text(
-                        AppLocalizations.of(context)!.logout,
+                        AppLocalizations.of(context).logout,
                         style: TextStyle(color: FColors.feedbackIncorrect),
                       ),
                     ),

@@ -15,7 +15,10 @@ class OnboardingLifestyleView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FView<OnboardingLifestyleViewModel, OnboardingLifestyleViewController>(
+    return FView<
+      OnboardingLifestyleViewModel,
+      OnboardingLifestyleViewController
+    >(
       viewController: viewController,
       builder: (context, data) {
         return Container(
@@ -25,7 +28,7 @@ class OnboardingLifestyleView extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  AppLocalizations.of(context)!.onboarding__lifestyle_title,
+                  AppLocalizations.of(context).onboarding__lifestyle_title,
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
                 ),
@@ -43,11 +46,13 @@ class OnboardingLifestyleView extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  AppLocalizations.of(context)!.onboarding__lifestyle_description,
+                  AppLocalizations.of(
+                    context,
+                  ).onboarding__lifestyle_description,
                 ),
                 Spacer(),
                 FButton(
-                  text: AppLocalizations.of(context)!.common__next,
+                  text: AppLocalizations.of(context).common__next,
                   color: FColors.secondary,
                   onPressed: viewController.onNextPressed,
                   isEnabled: data.canSubmit,
@@ -55,7 +60,7 @@ class OnboardingLifestyleView extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: viewController.onSkipPressed,
-                  child: Text(AppLocalizations.of(context)!.common__skip),
+                  child: Text(AppLocalizations.of(context).common__skip),
                 ),
               ],
             ),

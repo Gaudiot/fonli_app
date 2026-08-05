@@ -18,11 +18,6 @@ class MainApp extends StatelessWidget {
         routes: NavigationManager.routesMap(),
         initialRoute: NavigationManager.initialRoute,
         supportedLocales: AppLocalizations.supportedLocales,
-        localeResolutionCallback: (locale, supportedLocales) {
-          if (locale == null) return const Locale('en', 'US');
-          if (supportedLocales.contains(locale)) return locale;
-          return const Locale('en', 'US');
-        },
         localizationsDelegates: AppLocalizations.localizationsDelegates,
       ),
     );

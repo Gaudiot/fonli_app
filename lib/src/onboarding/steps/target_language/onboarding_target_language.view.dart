@@ -30,7 +30,7 @@ class OnboardingTargetLanguageView extends StatelessWidget {
                 Text(
                   AppLocalizations.of(
                     context,
-                  )!.onboarding__target_language_title,
+                  ).onboarding__target_language_title,
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
                 ),
@@ -54,7 +54,7 @@ class OnboardingTargetLanguageView extends StatelessWidget {
                   ),
                 ),
                 FButton(
-                  text: AppLocalizations.of(context)!.common__next,
+                  text: AppLocalizations.of(context).common__next,
                   color: FColors.secondary,
                   onPressed: viewController.onNextPressed,
                 ),

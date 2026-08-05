@@ -123,7 +123,7 @@ class _StoryCard extends StatelessWidget {
             mainAxisSize: .min,
             children: [
               Text(
-                AppLocalizations.of(context)!.translate_story,
+                AppLocalizations.of(context).translate_story,
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -163,7 +163,7 @@ class _TranslationSection extends StatelessWidget {
             controller: controller,
             maxLines: 5,
             decoration: InputDecoration(
-              hintText: AppLocalizations.of(context)!.input_translation,
+              hintText: AppLocalizations.of(context).input_translation,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(16),
               ),
@@ -190,7 +190,7 @@ class _TranslationSection extends StatelessWidget {
                           width: 20,
                           child: CircularProgressIndicator(strokeWidth: 2),
                         )
-                      : Text(AppLocalizations.of(context)!.common__submit),
+                      : Text(AppLocalizations.of(context).common__submit),
                 ),
               ),
             ),

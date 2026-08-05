@@ -143,7 +143,7 @@ class _ConjugationCard extends StatelessWidget {
             ),
             const SizedBox(height: 24),
             Text(
-              AppLocalizations.of(context)!.conjugate_for(prompt),
+              AppLocalizations.of(context).conjugate_for(prompt),
               style: const TextStyle(fontSize: 18),
             ),
           ],
@@ -178,7 +178,7 @@ class _ConjugationInput extends StatelessWidget {
               autocorrect: false,
               enableSuggestions: false,
               decoration: InputDecoration(
-                hintText: AppLocalizations.of(context)!.insert_conjugation,
+                hintText: AppLocalizations.of(context).insert_conjugation,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(16)),
                 ),

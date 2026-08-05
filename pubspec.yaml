@@ -20,6 +20,7 @@ dependencies:
   json_annotation: ^4.10.0
   logger: ^2.7.0
   package_info_plus: ^10.2.1
+  posthog_flutter: ^5.34.0
   shared_preferences: ^2.5.4
   top_snackbar_flutter: ^3.3.0
 
@@ -38,7 +39,6 @@ flutter:
     - lib/assets/
 
 flutter_launcher_icons:
+  image_path: "lib/assets/icon/fonli-icon.png"
   android: "launcher_icon"
   ios: true
-  image_path: "lib/assets/icon/fonli-icon.png"
-  min_sdk_android: 21

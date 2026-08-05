@@ -47,15 +47,15 @@ class ExerciseSelectionViewV2 extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<_ExerciseModel> exercises = [
       _ExerciseModel(
-        title: AppLocalizations.of(context)!.exercises__vocabulary,
+        title: AppLocalizations.of(context).exercises__vocabulary,
         onTap: () => NavigationManager.goTo(context, .vocabularyExercise),
       ),
       _ExerciseModel(
-        title: AppLocalizations.of(context)!.exercises__verb_conjugation,
+        title: AppLocalizations.of(context).exercises__verb_conjugation,
         onTap: () => NavigationManager.goTo(context, .verbConjugation),
       ),
       _ExerciseModel(
-        title: AppLocalizations.of(context)!.exercises__story_translation,
+        title: AppLocalizations.of(context).exercises__story_translation,
         onTap: () => NavigationManager.goTo(context, .storyTranslation),
       ),
     ];
@@ -80,7 +80,7 @@ class ExerciseSelectionViewV2 extends StatelessWidget {
                       mainAxisSize: .min,
                       children: [
                         Text(
-                          AppLocalizations.of(context)!.exercises__selection,
+                          AppLocalizations.of(context).exercises__selection,
                           style: TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,

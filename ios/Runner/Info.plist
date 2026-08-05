@@ -64,5 +64,8 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
+	<!-- Disable PostHog auto-initialization -->
+	<key>com.posthog.posthog.AUTO_INIT</key>
+    <false/>
 </dict>
 </plist>

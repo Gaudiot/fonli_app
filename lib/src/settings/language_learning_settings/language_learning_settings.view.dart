@@ -25,7 +25,7 @@ class LanguageLearningSettingsView extends StatelessWidget {
         backgroundColor: FColors.primary,
         elevation: 0,
         title: Text(
-          AppLocalizations.of(context)!.settings__language_learning_title,
+          AppLocalizations.of(context).settings__language_learning_title,
         ),
         leading: IconButton(
           icon: const Icon(Icons.close),
@@ -50,7 +50,7 @@ class LanguageLearningSettingsView extends StatelessWidget {
                       Expanded(
                         child: Column(
                           children: [
-                            Text(AppLocalizations.of(context)!.base_language),
+                            Text(AppLocalizations.of(context).base_language),
                             const SizedBox(height: 8),
                             Expanded(
                               child: ListView.separated(
@@ -74,7 +74,7 @@ class LanguageLearningSettingsView extends StatelessWidget {
                       Expanded(
                         child: Column(
                           children: [
-                            Text(AppLocalizations.of(context)!.target_language),
+                            Text(AppLocalizations.of(context).target_language),
                             const SizedBox(height: 8),
                             Expanded(
                               child: ListView.separated(

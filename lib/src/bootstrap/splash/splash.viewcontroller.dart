@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:fonli_app/base/notifiers/auth_session.notifier.dart';
 import 'package:fonli_app/core/app_info/app_info.dart';
 import 'package:fonli_app/core/components/base_viewcontroller.dart';
-import 'package:fonli_app/core/flags/dynamic_config.dart';
+import 'package:fonli_app/core/flags/remote_config/remote_config.dart';
+import 'package:fonli_app/core/flags/remote_config/remote_config.interface.dart';
 import 'package:fonli_app/core/navigation/navigation.dart';
 import 'package:fonli_app/src/bootstrap/splash/splash.viewmodel.dart';
 
@@ -13,11 +14,17 @@ final class SplashViewController extends FViewController<SplashViewModel> {
   void onInit(BuildContext context) {
     super.onInit(context);
 
-    bootstrapApp().then((_) {
-      if (context.mounted) {
-        handleAppStatus(context);
-      }
-    });
+    _initialize(context);
+  }
+
+  Future<void> _initialize(BuildContext context) async {
+    await initFlags();
+    await bootstrapApp();
+    if (context.mounted) await handleAppStatus(context);
+  }
+
+  Future<void> initFlags() async {
+    await remoteConfig.init();
   }
 
   Future<void> bootstrapApp() async {
@@ -51,7 +58,7 @@ extension on SplashViewController {
 
   Future<bool> checkIfVersionSupported() async {
     final appBuildNumber = AppInfo.buildNumber;
-    final minimumRequiredBuilderNumber = await IntegerDynamicConfig
+    final minimumRequiredBuilderNumber = await IntegerRemoteConfig
         .minimumBuildNumber
         .value();
     return minimumRequiredBuilderNumber <= appBuildNumber;
