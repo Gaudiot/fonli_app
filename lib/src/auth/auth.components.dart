@@ -24,31 +24,20 @@ class _AuthCardShell extends StatelessWidget {
 
 //MARK: - Login Form
 
-class _LoginForm extends StatefulWidget {
+class _LoginForm extends StatelessWidget {
   final VoidCallback onSignUpTap;
-  final void Function(String, String) onSubmit;
+  final VoidCallback onSubmit;
   final bool isLoading;
+  final TextEditingController emailOrUsernameController;
+  final TextEditingController passwordController;
 
   const _LoginForm({
     required this.onSignUpTap,
     required this.onSubmit,
     required this.isLoading,
+    required this.emailOrUsernameController,
+    required this.passwordController,
   });
-
-  @override
-  State<_LoginForm> createState() => _LoginFormState();
-}
-
-class _LoginFormState extends State<_LoginForm> {
-  final emailOrUsernameController = TextEditingController();
-  final passwordController = TextEditingController();
-
-  @override
-  void dispose() {
-    emailOrUsernameController.dispose();
-    passwordController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,10 +45,7 @@ class _LoginFormState extends State<_LoginForm> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          _LoginFormHeader(
-            onSignUpTap: widget.onSignUpTap,
-            isLoading: widget.isLoading,
-          ),
+          _LoginFormHeader(onSignUpTap: onSignUpTap, isLoading: isLoading),
           const SizedBox(height: 24),
           FTextInput(
             label: AppLocalizations.of(context).email_or_username,
@@ -73,12 +59,9 @@ class _LoginFormState extends State<_LoginForm> {
           ),
           const SizedBox(height: 48),
           FButton(
-            isLoading: widget.isLoading,
+            isLoading: isLoading,
             text: AppLocalizations.of(context).login,
-            onPressed: () => widget.onSubmit(
-              emailOrUsernameController.text,
-              passwordController.text,
-            ),
+            onPressed: onSubmit,
             color: FColors.secondary,
           ),
         ],
@@ -124,33 +107,22 @@ class _LoginFormHeader extends StatelessWidget {
 
 //MARK: - Register (Sign up)
 
-class _SignUpForm extends StatefulWidget {
+class _SignUpForm extends StatelessWidget {
   final VoidCallback onLogInTap;
-  final void Function(String, String, String) onSubmit;
+  final VoidCallback onSubmit;
   final bool isLoading;
+  final TextEditingController usernameController;
+  final TextEditingController emailController;
+  final TextEditingController passwordController;
 
   const _SignUpForm({
     required this.onLogInTap,
     required this.onSubmit,
     required this.isLoading,
+    required this.usernameController,
+    required this.emailController,
+    required this.passwordController,
   });
-
-  @override
-  State<_SignUpForm> createState() => _SignUpFormState();
-}
-
-class _SignUpFormState extends State<_SignUpForm> {
-  final usernameController = TextEditingController();
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-
-  @override
-  void dispose() {
-    usernameController.dispose();
-    emailController.dispose();
-    passwordController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -158,10 +130,7 @@ class _SignUpFormState extends State<_SignUpForm> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          _SignUpFormHeader(
-            onLogInTap: widget.onLogInTap,
-            isLoading: widget.isLoading,
-          ),
+          _SignUpFormHeader(onLogInTap: onLogInTap, isLoading: isLoading),
           const SizedBox(height: 24),
           FTextInput(
             label: AppLocalizations.of(context).username,
@@ -180,13 +149,9 @@ class _SignUpFormState extends State<_SignUpForm> {
           ),
           const SizedBox(height: 48),
           FButton(
-            isLoading: widget.isLoading,
+            isLoading: isLoading,
             text: AppLocalizations.of(context).signup,
-            onPressed: () => widget.onSubmit(
-              usernameController.text,
-              emailController.text,
-              passwordController.text,
-            ),
+            onPressed: onSubmit,
             color: FColors.secondary,
           ),
         ],

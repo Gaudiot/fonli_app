@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 import "package:fonli_app/core/components/snackbar/snackbar.dart";
-import "package:fonli_app/src/auth/auth.view.dart";
+import "package:fonli_app/src/auth/auth.builder.dart";
 import "package:fonli_app/src/bootstrap/splash/splash.builder.dart";
 import "package:fonli_app/src/bootstrap/version_gate/version_gate.builder.dart";
 import "package:fonli_app/src/learning/exercise_selection.builder.dart";
@@ -41,7 +41,8 @@ class NavigationManager {
   static Map<String, WidgetBuilder> routesMap() {
     return {
       NavigationRoutes.splash.path: (context) => SplashBuilder().build(),
-      NavigationRoutes.auth.path: (context) => const AuthView(),
+      NavigationRoutes.auth.path: (context) =>
+          AuthBuilder(snackbarMessenger: snackbarMessenger).build(),
       NavigationRoutes.onboarding.path: (context) =>
           OnboardingBuilder(snackbarMessenger: snackbarMessenger).build(),
       NavigationRoutes.exerciseSelection.path: (context) =>

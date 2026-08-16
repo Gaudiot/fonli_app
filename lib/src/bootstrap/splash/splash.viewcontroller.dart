@@ -5,6 +5,7 @@ import 'package:fonli_app/core/components/base_viewcontroller.dart';
 import 'package:fonli_app/core/flags/remote_config/remote_config.dart';
 import 'package:fonli_app/core/flags/remote_config/remote_config.interface.dart';
 import 'package:fonli_app/core/navigation/navigation.dart';
+import 'package:fonli_app/core/storage/local_storage.interface.dart';
 import 'package:fonli_app/src/bootstrap/splash/splash.viewmodel.dart';
 
 final class SplashViewController extends FViewController<SplashViewModel> {
@@ -44,6 +45,12 @@ final class SplashViewController extends FViewController<SplashViewModel> {
       return;
     }
 
+    final hasCompletedOnboarding = await checkIfUserHasCompletedOnboarding();
+    if (!hasCompletedOnboarding) {
+      if (context.mounted) await routeToOnboarding(context);
+      return;
+    }
+
     if (context.mounted) await routeToHome(context);
   }
 }
@@ -63,6 +70,14 @@ extension on SplashViewController {
         .value();
     return minimumRequiredBuilderNumber <= appBuildNumber;
   }
+
+  Future<bool> checkIfUserHasCompletedOnboarding() async {
+    final hasCompletedOnboarding = await localStorage.getBooleanWithDefault(
+      .onboarded,
+      false,
+    );
+    return hasCompletedOnboarding;
+  }
 }
 
 //MARK: - Routing Methods
@@ -74,6 +89,10 @@ extension on SplashViewController {
 
   Future<void> routeToAuth(BuildContext context) async {
     NavigationManager.pushNamedAndRemoveAll(context, .auth);
+  }
+
+  Future<void> routeToOnboarding(BuildContext context) async {
+    NavigationManager.pushNamedAndRemoveAll(context, .onboarding);
   }
 
   Future<void> routeToHome(BuildContext context) async {

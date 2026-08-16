@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:fonli_app/base/notifiers/language.notifier.dart';
 import 'package:fonli_app/core/components/base_viewcontroller.dart';
 import 'package:fonli_app/core/components/snackbar/snackbar_messenger.interface.dart';
 import 'package:fonli_app/core/storage/local_storage.interface.dart';
@@ -44,7 +45,7 @@ class OnboardingBaseLanguageViewController
       return;
     }
 
-    localStorage.setString(.baseLanguage, value.baseLanguage.code);
+    LanguageNotifier.instance.setBaseLanguage(value.baseLanguage);
     eventStream.add(.completed);
   }
 }

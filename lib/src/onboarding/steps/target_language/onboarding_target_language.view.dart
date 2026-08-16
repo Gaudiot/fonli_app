@@ -43,12 +43,11 @@ class OnboardingTargetLanguageView extends StatelessWidget {
                         LanguageCode.all[index].countryCode,
                       ),
                       title: Text(LanguageCode.all[index].languageName),
-                      trailing:
-                          data.targetLanguage == LanguageCode.all[index].code
+                      trailing: data.targetLanguage == LanguageCode.all[index]
                           ? Icon(Icons.check)
                           : null,
                       onTap: () => viewController.onLanguageSelected(
-                        LanguageCode.all[index].code,
+                        LanguageCode.all[index],
                       ),
                     ),
                   ),

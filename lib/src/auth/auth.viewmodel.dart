@@ -1,33 +1,15 @@
-import 'package:fonli_app/core/components/base_viewstate.dart';
+import 'package:fonli_app/core/components/base_viewmodel.dart';
 
-final class AuthViewModel extends BaseViewState {
-  bool _isLogin = true;
-  bool get isLogin => _isLogin;
+final class AuthViewModel extends FViewModel {
+  final bool isLogin;
+  final bool isLoading;
 
-  set isLogin(bool value) {
-    _isLogin = value;
-    notifyListeners();
-  }
+  AuthViewModel({this.isLogin = true, this.isLoading = false});
 
-  bool _isAuthenticated = false;
-  bool get isAuthenticated => _isAuthenticated;
-
-  set isAuthenticated(bool value) {
-    _isAuthenticated = value;
-    notifyListeners();
-  }
-
-  /// Set when login/signup fails; consumed by the view to show the app snackbar.
-  String? authErrorMessage;
-
-  void clearAuthError() {
-    if (authErrorMessage == null) return;
-    authErrorMessage = null;
-    notifyListeners();
-  }
-
-  void reportAuthError(String message) {
-    authErrorMessage = message;
-    notifyListeners();
+  AuthViewModel copyWith({bool? isLogin, bool? isLoading}) {
+    return AuthViewModel(
+      isLogin: isLogin ?? this.isLogin,
+      isLoading: isLoading ?? this.isLoading,
+    );
   }
 }
